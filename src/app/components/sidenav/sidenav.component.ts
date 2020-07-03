@@ -14,6 +14,7 @@ export class SidenavComponent extends LogWrapper implements OnInit, OnDestroy {
   public isOpen: boolean;
   public LightThemeEnum = LightThemeEnum;
   public lightTheme: LightThemeEnum;
+  public isTransitioning: boolean = false;
 
   public drawers: { [key: string]: boolean } = {};
 
@@ -26,10 +27,15 @@ export class SidenavComponent extends LogWrapper implements OnInit, OnDestroy {
     optionsService: OptionsService
   ) {
     super(logService);
-    sidenavService.isOpen$.subscribe(isOpen => this.isOpen = isOpen);
+    sidenavService.isOpen$.subscribe(isOpen => {
+      if (this.isOpen !== isOpen) {
+        this.isTransitioning = true;
+        setTimeout(() => this.isTransitioning = false, 200);
+      }
+      setTimeout(() => this.isOpen = isOpen, 1)
+    });
     this.sidenavService = sidenavService;
     this.optionsService = optionsService;
-
     this.optionsService.lightTheme$.subscribe(theme => this.lightTheme = theme);
   }
 

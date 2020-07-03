@@ -3,6 +3,7 @@
 .section {
   // background: inherit;
   transition: background 2s;
+  border-radius: 8px;
 
   &.is-new {
     transition: background 0s;
@@ -20,6 +21,8 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 10px 20px;
+    border-radius: 8px 8px 0 0;
+    transition: background 1s;
     // background: inherit;
     
     @include phone { padding: 10px 7px; }
@@ -52,13 +55,21 @@
 
   .header__left {
     position: relative;
+    width: 100%;
+    
     .header__left--title {
       padding-left: 25px;
-      * {
-        max-width: 225px;
+      
+      .truncate {
+        width: 80%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        
+        @include phone { max-width: 225px; }
+      }
+      
+      * {
         @include tablet { max-width: 500px; }
         @include desktop { max-width: 800px; }
       }
@@ -71,6 +82,18 @@
     background: inherit;
   }
 
+  .section-comment {
+    border-radius: 8px;
+    max-height: 0;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    transition: max-height .2s;
+    margin-left: 45px;
+    
+    &.is-visible { max-height: 200px; }
+    span { padding: 8px; }
+  }
+
   .section-list {
     // border-left-width: 1px;
     margin-left: 19px;
@@ -80,12 +103,12 @@
     // border-top-width: 1px;
     position: relative;
 
-    @include tablet { margin-left: 12px; margin-right: 5px; }
-    @include phone { margin-left: 7px; margin-right: 3px; }
+    @include tablet { margin-left: 14px; margin-right: 5px; }
+    @include phone { margin-left: 9px; margin-right: 3px; }
   
     .section-list-drop-wrapper {
-      &.is-empty { padding-bottom: 34px; }
-      border-radius: 7px;
+      &.is-empty { padding-bottom: 10px; }
+      border-radius: 8px;
     }
   }
 }

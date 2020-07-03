@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { TopnavComponent } from './components/topnav/topnav.component';
 import { NewSectionComponent } from './components/new-section/new-section.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { EditingBarComponent } from './components/editing-bar/editing-bar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ModalComponent } from './components/modal/modal.component';
     SidenavComponent,
     TopnavComponent,
     NewSectionComponent,
-    ModalComponent
+    ModalComponent,
+    EditingBarComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { ModalComponent } from './components/modal/modal.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    DragDropModule
+    DragDropModule,
+    TextFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

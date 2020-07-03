@@ -1,26 +1,27 @@
 .sidenav {
   position: fixed;
   top: 0;
-  right: -400px;
+  left: -400px;
   width: 30%;
   min-width: 300px;
   max-width: 400px;
   height: 100%;
   z-index: 4;
-  border-left-width: 1px;
-  transition: right .4s;
+  border-right-width: 1px;
+  transition: left .4s;
   display: flex;
   flex-direction: column;
   -webkit-user-select: none;
+  padding-top: 59px;
 
   &.is-active {
-    right: 0;
+    left: 0;
   }
 }
 
 .sidenav-button {
   position: fixed;
-  right: 0;
+  left: 0;
   top: 0;
   cursor: pointer;
   z-index: 10;
@@ -33,19 +34,17 @@
   right: 0;
   bottom: 0;
   z-index: 3;
-  visibility: hidden;
   transition: opacity .2s;
   opacity: 0;
 
   &.is-active {
     visibility: visible;
-    background-color: #888;
-    opacity: .1;
+    opacity: 1;
   }
 }
 
 .sidenav-section {
-  border-bottom-width: 1px;
+  border-top-width: 1px;
 
   .sidenav-section-header {
     width: 100%;

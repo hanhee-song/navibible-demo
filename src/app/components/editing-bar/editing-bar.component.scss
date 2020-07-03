@@ -1,0 +1,49 @@
+$bar-height: 50px;
+
+.editing-bar {
+  position: fixed;
+  height: $bar-height;
+  max-height: 0;
+  border-bottom-width: 1px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  transition: max-height .3s;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  // padding-right: 20px;
+  
+  &.is-visible {
+    max-height: $bar-height;
+  }
+  
+  & > button {
+    width: 50px;
+    // height: 32px;
+    height: 100%;
+    // border-top-width: 1px;
+    // border-bottom-width: 1px;
+    border-right-width: 1px;
+    
+    &:first-of-type {
+      border-left-width: 1px;
+      // border-radius: 8px 0 0 8px;
+    }
+    &:last-of-type {
+      // border-radius: 0 8px 8px 0;
+    }
+  }
+}
+
+.editing-bar-offset {
+  height: $bar-height;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .3s;
+  
+  &.is-visible {
+    max-height: $bar-height;
+  }
+}

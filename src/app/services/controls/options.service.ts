@@ -7,7 +7,12 @@ import { Injectable, OnDestroy } from '@angular/core';
   providedIn: 'root'
 })
 export class OptionsService extends LogWrapper implements OnDestroy {
+  
+  public isEditingMode$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public lightTheme$: BehaviorSubject<LightThemeEnum> = new BehaviorSubject<LightThemeEnum>(LightThemeEnum.LIGHT);
+  public onSave$: Subject<void> = new Subject();
+  public onCancel$: Subject<void> = new Subject();
+  
   private lightTheme: LightThemeEnum;
   private static readonly LIGHT_THEME_KEY: string = 'LIGHT_THEME';
 
@@ -33,6 +38,18 @@ export class OptionsService extends LogWrapper implements OnDestroy {
 
   public get(key): any {
     return localStorage.getItem(key);
+  }
+  
+  public setEditingMode(bool: boolean) {
+    this.isEditingMode$.next(bool);
+  }
+  
+  public onSave(): void {
+    this.onSave$.next();
+  }
+  
+  public onCancel(): void {
+    this.onCancel$.next();
   }
 }
 

@@ -1,5 +1,4 @@
 import { MultiRange } from './multi-range.model';
-import { ReferenceRange } from './reference-range';
 import { BibleDataService } from './../services/bible/bible-data.service';
 import { flatten } from 'lodash';
 
@@ -7,14 +6,16 @@ export class Section implements SectionInterface {
   public static bibleDataService: BibleDataService;
 
   public title: string;
-  public description: string;
+  public comment: string;
   public multiRanges: MultiRange[];
   public isExpanded: boolean = false;
   public sections: Section[] = [];
   public isNew: boolean = false;
+  public uniqueId: number = Math.random();
 
-  constructor(title: string, multiRanges: MultiRange[]) {
+  constructor(title: string, comment: string, multiRanges: MultiRange[]) {
     this.title = title;
+    this.comment = comment;
     this.multiRanges = multiRanges;
   }
 
@@ -67,7 +68,7 @@ export class Section implements SectionInterface {
 
 export interface SectionInterface {
   title?: string;
-  description?: string;
+  comment?: string;
   multiRanges?: MultiRange[];
   isExpanded?: boolean;
   sections?: Section[];

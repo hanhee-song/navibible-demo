@@ -24,16 +24,16 @@ export class SectionFactory {
     Section.bibleDataService = bibleDataService;
   }
 
-  public create(title: string, multiRange: MultiRange);
-  public create(title: string, refRange: ReferenceRange);
-  public create(title: string, multiRanges: MultiRange[]);
-  public create(title: string, arg1: MultiRange | MultiRange[] | ReferenceRange): Section {
+  public create(title: string, comment: string, multiRange: MultiRange);
+  public create(title: string, comment: string, refRange: ReferenceRange);
+  public create(title: string, comment: string, multiRanges: MultiRange[]);
+  public create(title: string, comment: string, arg1: MultiRange | MultiRange[] | ReferenceRange): Section {
     if (arg1 instanceof ReferenceRange) {
       arg1 = [this.referenceFactory.createMultiRange(arg1)];
     } else if (arg1 instanceof MultiRange) {
       arg1 = [arg1]
     }
-    return new Section(title, arg1);
+    return new Section(title, comment, arg1);
   }
 
   public fromSectionsParentJson(sectionsParentJson: SectionsParentInterface): SectionsParent {
@@ -50,7 +50,7 @@ export class SectionFactory {
 
   private fromSectionJson(json): Section {
     if (!json) return null;
-    const section = this.create(json.title, this.referenceFactory.createMultiRangeFromJson(json.multiRanges));
+    const section = this.create(json.title, json.comment, this.referenceFactory.createMultiRangeFromJson(json.multiRanges));
     if (json.sections) {
       section.sections = json.sections.map(section => this.fromSectionJson(section));
     }

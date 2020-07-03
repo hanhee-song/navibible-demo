@@ -22,8 +22,8 @@ export class ModalService extends LogWrapper implements OnDestroy {
     this.modals$.next(new Modal(
       content,
       [
-        new ModalButton('Yes', '', callback),
-        new ModalButton('Cancel', '', null)
+        new ModalButton('No', 'background-color-subtle-red', null),
+        new ModalButton('Yes', 'background-color-subtle-green', callback)
       ]
     ));
   }
@@ -36,27 +36,36 @@ export class Modal {
   constructor(content: string, buttons: ModalButton[]) {
     this.content = content;
     this.buttons = buttons;
-
-    this.buttons.forEach(button => {
-      if (button.onPress === null) {
-        button.onPress = this.closeModal;
-      }
-    });
   }
 
-  public closeModal() {
-    ///
+  public setCloseModal(fn: Function): Modal {
+    this.buttons.forEach(button => {
+      const onClick: Function = button.onClick;
+      button.onClick = () => {
+        onClick && onClick(...arguments);
+        fn();
+      }
+    });
+    return this;
   }
 }
 
 export class ModalButton {
   public text: string;
   public classes: string;
-  public onPress: Function;
+  public onClick: Function; // leave null to make the button close the modal
 
-  constructor(text: string, classes: string, onPress: Function) {
+  constructor(text: string, classes: string, onClick: Function) {
     this.text = text;
     this.classes = classes;
-    this.onPress = onPress;
+    this.onClick = onClick;
+  }
+}
+
+export class Modals {
+  public modals: Modal[];
+  
+  constructor() {
+    
   }
 }

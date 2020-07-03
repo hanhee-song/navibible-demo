@@ -1,3 +1,4 @@
+import { OptionsService } from './../../services/controls/options.service';
 import { LogService } from './../../logger/log.service';
 import { SectionService } from './../../services/section/section.service';
 import { SectionsParentInterface, SectionsParent } from './../../models/sections-parent.model';
@@ -13,18 +14,29 @@ export class BibleMainComponent extends LogWrapper implements OnInit, OnDestroy 
 
   public sectionsParent: SectionsParent;
   public isEditingMode: boolean;
+  
   private sectionService: SectionService;
+  private optionsService: OptionsService;
 
   constructor(
     sectionService: SectionService,
-    logService: LogService
+    logService: LogService,
+    optionsService: OptionsService
   ) {
     super(logService);
     this.sectionService = sectionService;
+    this.optionsService = optionsService;
   }
 
   ngOnInit(): void {
     this.initializeData();
+    this.optionsService.isEditingMode$.subscribe(editingMode => this.isEditingMode = editingMode);
+    this.optionsService.onSave$.subscribe(val => {
+      this.save();
+    });
+    this.optionsService.onCancel$.subscribe(cancel => {
+      this.sectionsParent = this.sectionService.getOriginalState();
+    });
   }
 
   ngOnDestroy(): void {

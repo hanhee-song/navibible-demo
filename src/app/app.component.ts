@@ -18,8 +18,9 @@ export class AppComponent extends LogWrapper implements OnDestroy {
 
   public isBibleDataInitialized: boolean = false;
   public lightTheme: LightThemeEnum;
-
-  public optionsService: OptionsService;
+  public isEditingMode: boolean = false;
+  
+  private optionsService: OptionsService;
 
   constructor(
     bibleDataService: BibleDataService,
@@ -34,6 +35,7 @@ export class AppComponent extends LogWrapper implements OnDestroy {
     this.optionsService = optionsService;
 
     this.optionsService.lightTheme$.subscribe(mode => this.lightTheme = mode);
+    this.optionsService.isEditingMode$.subscribe(editingMode => this.isEditingMode = editingMode);
   }
 
   ngOnDestroy() { }

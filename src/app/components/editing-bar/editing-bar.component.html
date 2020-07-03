@@ -1,0 +1,18 @@
+<div class="editing-bar background-color-subtle border-color-default font-size-6"
+  [ngClass]="{'is-visible': isVisible}">
+  <button class="save-button border-color-subtle background-color-strong"
+    (click)="onSave()">
+    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+  </button>
+  <button class="undo-button border-color-subtle background-color-strong">
+    <i class="fa fa-undo" aria-hidden="true"></i>
+  </button>
+  <button class="cancel-button border-color-subtle background-color-strong"
+    (click)="onCancel()">
+    <i class="fa fa-ban" aria-hidden="true"></i>
+  </button>
+</div>
+
+<div class="editing-bar-offset"
+  [ngClass]="{'is-visible': isVisible}">
+</div>

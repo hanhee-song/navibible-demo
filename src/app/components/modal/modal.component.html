@@ -1,1 +1,17 @@
-<p>modal works!</p>
+<ng-container *ngFor="let modal of modals">
+  <div class="modal background-color-strong border-color-default">
+    <div class="modal__content">
+      {{modal.content}}
+    </div>
+    <div class="modal__buttons">
+      <ng-container *ngFor="let button of modal.buttons">
+        <button [ngClass]="button.classes" (click)="button.onClick()" #modalButton tabindex="2">
+          {{button.text}}
+        </button>
+      </ng-container>
+    </div>
+  </div>
+  <div class="modal-backdrop background-color-backdrop">
+    
+  </div>
+</ng-container>

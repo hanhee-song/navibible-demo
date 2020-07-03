@@ -1,3 +1,4 @@
+import { ModalService } from './../../services/controls/modal.service';
 import { LogService } from './../../logger/log.service';
 import { Section } from './../../models/section.model';
 import { Component, OnInit, Input, OnDestroy, ViewChild, HostBinding, SimpleChanges, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
@@ -23,11 +24,15 @@ export class SectionComponent extends LogWrapper implements OnInit, OnDestroy {
   @Input('sectionLevel') sectionLevel: number;
   
   public isEdit: boolean;
+  
+  private modalService: ModalService;
 
   constructor(
-    logService: LogService
+    logService: LogService,
+    modalService: ModalService
   ) {
     super(logService);
+    this.modalService = modalService;
   }
 
   ngOnInit(): void {
@@ -57,7 +62,7 @@ export class SectionComponent extends LogWrapper implements OnInit, OnDestroy {
       this.parentSection.sections,
       this.grandparentSection.sections,
       this.parentSection.sections.findIndex(section => section === this.section),
-      this.grandparentSection.sections.findIndex(section => section === this.parentSection) - 1
+      this.grandparentSection.sections.findIndex(section => section === this.parentSection)
     );
   }
 
@@ -75,8 +80,10 @@ export class SectionComponent extends LogWrapper implements OnInit, OnDestroy {
   }
 
   public onDeleteSelf() {
-    this.parentSection.flashNew();
-    this.parentSection.sections = this.parentSection.sections.filter(section => section !== this.section);
+    this.modalService.yesNoModal('Are you sure you want to delete this section?', () => {
+      this.parentSection.flashNew();
+      this.parentSection.sections = this.parentSection.sections.filter(section => section !== this.section);
+    });
   }
 
   public onNewSection(newSection: Section): void {
@@ -86,6 +93,7 @@ export class SectionComponent extends LogWrapper implements OnInit, OnDestroy {
 
   public onUpdateSection(section: Section): void {
     this.section.title = section.title;
+    this.section.comment = section.comment;
     this.section.multiRanges = section.multiRanges;
     this.isEdit = false;
   }
@@ -101,5 +109,9 @@ export class SectionComponent extends LogWrapper implements OnInit, OnDestroy {
         event.currentIndex
       );
     }
+  }
+  
+  public __trackByFn(index: number, section: Section): number {
+    return section.uniqueId;
   }
 }

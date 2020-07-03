@@ -4,9 +4,11 @@ import { Section } from 'src/app/models/section.model';
 import { ReferenceFactory } from './../../services/bible/reference-factory';
 import { LogService } from './../../logger/log.service';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
-import { Component, OnInit, OnDestroy, Output, EventEmitter, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter, Input, SimpleChanges, ViewEncapsulation, ElementRef, ViewChild, HostBinding } from '@angular/core';
 import { MultiRange } from 'src/app/models/multi-range.model';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import {CdkTextareaAutosize} from '@angular/cdk/text-field';
+
 
 @Component({
   selector: 'div[app-new-section]',
@@ -16,20 +18,29 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   encapsulation: ViewEncapsulation.None,
 })
 export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy {
-
-  @Output() onNewSection = new EventEmitter<Section>();
   
+  @Input() visible: boolean = false;
   @Input() isFormOpen: boolean = false;
   @Input() showHeader: boolean = true;
   @Input() submitButtonText: string = 'Create';
-  @Input() inputName: string = ''
+  @Input() inputName: string = '';
+  @Input() inputComment: string = '';
   @Input() multiRanges: MultiRange[];
+  
+  @Output() cancel = new EventEmitter<boolean>();
+  @Output() onNewSection = new EventEmitter<Section>();
+  
+  public isTransitioning: boolean = false;
   public inputMultiRanges: {
     input?: string,
     multiRange?: string,
     error?: boolean
   }[] = [{}];
-  @Output() cancel = new EventEmitter<boolean>();
+  
+  @HostBinding('class.is-visible') isVisible: boolean = false;
+
+  
+  @ViewChild('inputNameField') inputNameField: ElementRef;
 
   private referenceFactory: ReferenceFactory;
   private sectionFactory: SectionFactory;
@@ -47,19 +58,28 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
   ngOnInit(): void {
   }
   
-  onCancel($event): void {
+  onCancel(event): void {
     event.preventDefault();
     this.isFormOpen = false;
     this.cancel.next();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['multiRanges']) {
+    if (changes['multiRanges'] && changes['multiRanges'].currentValue) {
       const multiRanges: MultiRange[] = changes['multiRanges'].currentValue;
-      this.inputMultiRanges = multiRanges.map(multiRange => ({
+      this.inputMultiRanges = multiRanges.filter(multiRange => !multiRange.isEmpty()).map(multiRange => ({
         input: multiRange.toString(),
         multiRange: multiRange.toString()
       }));
+      this.inputMultiRanges.push({});
+    } if (changes['visible'] && typeof changes['visible'].currentValue === 'boolean') {
+      const visible = changes['visible'].currentValue;
+      if (this.isVisible !== visible) {
+        this.isTransitioning = true;
+        setTimeout(() => this.isTransitioning = false, 200);
+      }
+      setTimeout(() => this.isVisible = visible, 1)
+      
     }
   }
 
@@ -77,16 +97,18 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
 
   public submit(event): void {
     event.preventDefault();
+    if (!this.inputName) return;
     this.inputMultiRanges.forEach(inputMultiRange => {
       this.onInputReferenceChange(inputMultiRange.input, inputMultiRange);
     });
-
+    
     if (this.inputMultiRanges.some(inputMultiRange => inputMultiRange.error)) return;
     const multiRange = this.inputMultiRanges.map(inputMultiRange => this.referenceFactory.resolveMultiReference(inputMultiRange.input));
-    this.onNewSection.emit(this.sectionFactory.create(this.inputName, multiRange));
+    this.onNewSection.emit(this.sectionFactory.create(this.inputName, this.inputComment, multiRange));
     this.inputName = '';
     this.inputMultiRanges = [{}];
     this.multiRanges = [];
+    this.inputNameField.nativeElement.focus();
   }
 
   public onInputReferenceChange(input: string, inputMultiRange: { input?: string, multiRange?: string, error?: boolean }) {

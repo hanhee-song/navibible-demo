@@ -14,12 +14,14 @@
 
   .text-color-default { color: #eee; }
   .text-color-subtle { color: #ccc; }
+  .text-color-faint { color: #aaa; }
   .background-color-default { background: #111; }
   .background-color-strong { background: #333; }
   .background-color-subtle { background: #222; }
   .background-color-green { background: #025413; }
   .background-color-subtle-green { background: #025413; }
   .background-color-subtle-red { background: #691111; }
+  .background-color-backdrop { background: #eeeeee33; }
   .cdk-drag-preview { background: #333; }
   .border-color-default { border-color: #555; border-style: solid; }
   .border-color-subtle {border-color: #444; border-style: solid; }
@@ -45,12 +47,14 @@
 
   .text-color-default { color: #ddd; }
   .text-color-subtle { color: #bbb; }
+  .text-color-faint { color: #999; }
   .background-color-default { background: #222; }
   .background-color-strong { background: #444; }
   .background-color-subtle { background: #333; }
   .background-color-green { background: #035915; }
   .background-color-subtle-green { background: #035915; }
   .background-color-subtle-red { background: #7d1515; }
+  .background-color-backdrop { background: #dddddd33; }
   .cdk-drag-preview { background: #444; }
   .border-color-default { border-color: #777; border-style: solid; }
   .border-color-subtle {border-color: #666; border-style: solid; }
@@ -76,12 +80,14 @@
 
   .text-color-default { color: #222; }
   .text-color-subtle { color: #444; }
+  .text-color-faint { color: #666; }
   .background-color-default { background: #eee; }
   .background-color-strong { background: #fff; }
   .background-color-subtle { background: #fafafa; }
   .background-color-green { background: #adffad; }
   .background-color-subtle-green { background: #d1ffd1; }
   .background-color-subtle-red { background: #ffd4d4; }
+  .background-color-backdrop { background: #22222233; }
   .cdk-drag-preview { background: #fff; }
   .border-color-default { border-color: #999; border-style: solid; }
   .border-color-subtle {border-color: #bbb; border-style: solid; }
@@ -144,6 +150,7 @@ $desktop-width: 1024px;
 }
 
 @include phone {
+  .font-size-6 { font-size: 20px; }
   .font-size-5 { font-size: 18px; }
   .font-size-4 { font-size: 16px; }
   .font-size-3 { font-size: 14px; }
@@ -152,6 +159,7 @@ $desktop-width: 1024px;
 }
 
 @include tablet {
+  .font-size-6 { font-size: 21px; }
   .font-size-5 { font-size: 19px; }
   .font-size-4 { font-size: 17px; }
   .font-size-3 { font-size: 15px; }
@@ -160,6 +168,7 @@ $desktop-width: 1024px;
 }
 
 @include desktop {
+  .font-size-6 { font-size: 21px; }
   .font-size-5 { font-size: 19px; }
   .font-size-4 { font-size: 17px; }
   .font-size-3 { font-size: 15px; }

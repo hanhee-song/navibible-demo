@@ -10,7 +10,7 @@ export class SectionsParent extends Section implements SectionsParentInterface {
   constructor();
   constructor(title: string, referenceRange: ReferenceRange);
   constructor(title?: string, referenceRange?: ReferenceRange) {
-    super(null, null);
+    super(null, null, null);
   }
 }
 

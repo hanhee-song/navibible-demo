@@ -5,7 +5,8 @@
 </button>
 
 <div class="sidenav background-color-default border-color-default"
-  [ngClass]="{'is-active': isOpen}">
+  [ngClass]="{'is-active': isOpen}"
+  *ngIf="isOpen || isTransitioning">
   <div class="sidenav-section border-color-default">
     <button class="sidenav-section-header">
       Font
@@ -28,18 +29,11 @@
         </button>
     </div>
   </div>
-
-
-  
-  
-
-
-
-
 </div>
 
-<div class="page-cover background-color-default"
+<div class="page-cover background-color-backdrop"
   [ngClass]="{'is-active': isOpen}"
+  *ngIf="isOpen || isTransitioning"
   (click)="closeSidenav()">
 
 </div>
