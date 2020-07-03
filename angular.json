@@ -28,7 +28,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/reset.scss",
+              "node_modules/hamburgers/_sass/hamburgers/hamburgers.scss"
             ],
             "scripts": []
           },
@@ -92,7 +94,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/reset.scss",
+              "node_modules/hamburgers/_sass/hamburgers/hamburgers.scss"
             ],
             "scripts": []
           }

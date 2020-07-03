@@ -1,0 +1,87 @@
+<!-- <div class="section border-color-default" *ngIf="section"> -->
+
+<div class="section__header" *ngIf="sectionLevel > 0" [ngClass]="{'background-color-strong': isEdit}">
+  <div class="header__left">
+    <button class="expand-button" (click)="toggleExpand()">
+      <i class="font-size-5 fa fa-chevron-right" [ngClass]="{ 'rotate': section.isExpanded }" aria-hidden="true"></i>
+      <span *ngIf="section.sections.length" class="section-count text-color-subtle font-size-1">{{section.sections.length}}</span>
+    </button>
+    <div class="header__left--title">
+      <div class="font-size-4">{{section.title}}</div>
+      <div class="font-size-2">{{section.multiRangeString()}}</div>
+    </div>
+  </div>
+  <ng-content></ng-content>
+
+  <div class="header__right font-size-5" *ngIf="isEditingMode">
+    <button (click)="onPromote()" *ngIf="sectionLevel > 1">
+      <i class="fa fa-sort-amount-desc" style="transform: scaleY(-1);" aria-hidden="true"></i>
+    </button>
+    <button (click)="onDemote()" *ngIf="parentSection.sections.length > 1">
+      <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+    </button>
+    <button (click)="onDeleteSelf()">
+      <i class="fa fa-trash" aria-hidden="true"></i>
+    </button>
+    <button (click)="onEdit()">
+      <i class="fa fa-edit" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+<div>{{section.description}}</div>
+
+<div app-new-section
+  class="edit-section"
+  *ngIf="isEdit && isEditingMode"
+  [inputName]="section.title"
+  [multiRanges]="section.multiRanges"
+  [isFormOpen]="true"
+  [showHeader]="false"
+  [submitButtonText]="'Update ' + section.title"
+  (onNewSection)="onUpdateSection($event)"
+  (cancel)="isEdit = false;">
+
+</div>
+
+<div class="section-list border-color-default"
+  *ngIf="section.isExpanded">
+
+  <div class="section-list-drop-wrapper drag-wrapper"
+    [cdkDropListData]="section.sections"
+    cdkDropList id="list-{{sectionLevel}}"
+    [cdkDropListConnectedTo]="['list-' + sectionLevel]"
+    (cdkDropListDropped)="drop($event)"
+    [cdkDropListDisabled]="!isEditingMode"
+    [ngClass]="{
+      'background-color-subtle': !!(sectionLevel % 2),
+      'background-color-default': !(sectionLevel % 2),
+      'is-empty': section.sections.length === 0
+    }">
+    <ng-container 
+      *ngFor="let subsection of section.sections; let i = index;">
+      <div app-section
+        class="draggable"
+        [ngClass]="{
+          'background-color-green is-new': subsection.isNew
+        }"
+        cdkDrag
+        [section]="subsection"
+        [parentSection]="section"
+        [grandparentSection]="parentSection"
+        [isEditingMode]="isEditingMode"
+        [sectionLevel]="sectionLevel + 1">
+        <button class="drag-button font-size-5" *ngIf="isEditingMode"
+          cdkDragHandle>
+          <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+        </button>
+      </div>
+    </ng-container>
+  </div>
+  <div app-new-section
+    *ngIf="isEditingMode"
+    (onNewSection)="onNewSection($event)">
+  </div>
+
+</div>
+
+<!-- </div> -->

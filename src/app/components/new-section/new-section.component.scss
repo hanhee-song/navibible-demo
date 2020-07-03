@@ -1,0 +1,92 @@
+@import '../../../styles.scss';
+
+.new-section {
+  display: content;
+  flex-direction: column;
+  width: 100%;
+  &:not(.edit-section) {
+    padding: 10px;
+    @include phone { padding: 7px; }
+  }
+  .section__header {
+    width: 100%;
+    border-radius: 7px;
+}
+
+  .new-section-form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-height: 0;
+    transition: max-height .2s cubic-bezier(1,0,0,1);
+    overflow: hidden;
+    border-radius: 7px;
+
+    &.is-expanded {
+      max-height: 4000px;
+    }
+
+    .form-buttons {
+      display: flex;
+      button {
+        padding: 10px 15px;
+        flex: 1;
+      }
+    }
+
+    .help-question {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      cursor: help;
+      font-size: 14px;
+      vertical-align: text-top;
+      margin-left: 3px;
+
+      &:hover::after {
+        content: "// TODO";
+        position: relative;
+      }
+    }
+  }
+}
+
+.input-group {
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  
+  &.transparent {
+    opacity: .5;
+  }
+
+  label {
+  }
+
+  input.input-text {
+    border-radius: 6px;
+    border-width: 1px;
+    font-size: 16px;
+    padding: 6px
+  }
+
+  &.is-error {
+    background-color: pink;
+    input.input-text {
+      border-color: pink;
+      outline-color: red;
+    }
+  }
+
+  .delete-multi-range {
+    position: absolute;
+    right: 17px;
+    bottom: 12px;
+    cursor: pointer;
+  }
+  
+  // .add-multi-range {
+  //   padding: 6px;
+  // }
+}

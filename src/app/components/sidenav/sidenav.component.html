@@ -1,0 +1,45 @@
+<button class="sidenav-button hamburger hamburger--collapse" type="button" [ngClass]="{'is-active': isOpen}" (click)="toggleSidenav()">
+  <span class="hamburger-box">
+    <span class="hamburger-inner background-color-default"></span>
+  </span>
+</button>
+
+<div class="sidenav background-color-default border-color-default"
+  [ngClass]="{'is-active': isOpen}">
+  <div class="sidenav-section border-color-default">
+    <button class="sidenav-section-header">
+      Font
+    </button>
+    <div class="sidenav-section-body">
+        <button class="theme-button border-color-default light-mode"
+          (click)="togglelightTheme(LightThemeEnum.LIGHT)"
+          [ngClass]="{'is-selected': lightTheme === LightThemeEnum.LIGHT}">
+          abc
+        </button>
+        <button class="theme-button border-color-default dim-mode"
+          (click)="togglelightTheme(LightThemeEnum.DIM)"
+          [ngClass]="{'is-selected': lightTheme === LightThemeEnum.DIM}">
+          abc
+        </button>
+        <button class="theme-button border-color-default dark-mode"
+          (click)="togglelightTheme(LightThemeEnum.DARK)"
+          [ngClass]="{'is-selected': lightTheme === LightThemeEnum.DARK}">
+          abc
+        </button>
+    </div>
+  </div>
+
+
+  
+  
+
+
+
+
+</div>
+
+<div class="page-cover background-color-default"
+  [ngClass]="{'is-active': isOpen}"
+  (click)="closeSidenav()">
+
+</div>

@@ -1,0 +1,13 @@
+.topnav {
+  height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom-width: 1px;
+  z-index: 2;
+}
+
+.topnav-offset {
+  margin-top: 60px;
+}

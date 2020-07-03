@@ -1,1 +1,168 @@
-/* You can add global styles to this file, and also import other style files */
+.main-body {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-x: hidden;
+}
+
+.dark-mode {
+  color: #eee;
+  text-decoration-color: #eee;
+  background: #111;
+
+  .text-color-default { color: #eee; }
+  .text-color-subtle { color: #ccc; }
+  .background-color-default { background: #111; }
+  .background-color-strong { background: #333; }
+  .background-color-subtle { background: #222; }
+  .background-color-green { background: #025413; }
+  .background-color-subtle-green { background: #025413; }
+  .background-color-subtle-red { background: #691111; }
+  .cdk-drag-preview { background: #333; }
+  .border-color-default { border-color: #555; border-style: solid; }
+  .border-color-subtle {border-color: #444; border-style: solid; }
+  input[type=text] {
+    outline-color: #333;
+  }
+  .error {
+    background-color: #960000;
+    input[type=text] { outline-color: #a80000; border-color: #960000; }
+  }
+
+  .hamburger-inner {
+    background-color: #eee !important;
+    &::before { background-color: #eee !important; }
+    &::after { background-color: #eee !important; }
+  }
+}
+
+.dim-mode {
+  color: #ddd;
+  text-decoration-color: #ddd;
+  background: #222;
+
+  .text-color-default { color: #ddd; }
+  .text-color-subtle { color: #bbb; }
+  .background-color-default { background: #222; }
+  .background-color-strong { background: #444; }
+  .background-color-subtle { background: #333; }
+  .background-color-green { background: #035915; }
+  .background-color-subtle-green { background: #035915; }
+  .background-color-subtle-red { background: #7d1515; }
+  .cdk-drag-preview { background: #444; }
+  .border-color-default { border-color: #777; border-style: solid; }
+  .border-color-subtle {border-color: #666; border-style: solid; }
+  input[type=text] {
+    outline-color: #bbb;
+  }
+  .error {
+    background-color: #a80000;
+    input[type=text] { outline-color: #ba0000; border-color: #a80000; }
+  }
+
+  .hamburger-inner {
+    background-color: #ccc !important;
+    &::before { background-color: #ccc !important; }
+    &::after { background-color: #ccc !important; }
+  }
+}
+
+.light-mode {
+  color: #222;
+  text-decoration-color: #222;
+  background: #f5f5f5;
+
+  .text-color-default { color: #222; }
+  .text-color-subtle { color: #444; }
+  .background-color-default { background: #eee; }
+  .background-color-strong { background: #fff; }
+  .background-color-subtle { background: #fafafa; }
+  .background-color-green { background: #adffad; }
+  .background-color-subtle-green { background: #d1ffd1; }
+  .background-color-subtle-red { background: #ffd4d4; }
+  .cdk-drag-preview { background: #fff; }
+  .border-color-default { border-color: #999; border-style: solid; }
+  .border-color-subtle {border-color: #bbb; border-style: solid; }
+  input[type=text] {
+    outline-color: #444;
+  }
+  .error {
+    background-color: #ff7575;
+    input[type=text] { outline-color: #ff3b3b; border-color: #ff7575; }
+  }
+
+  .hamburger-inner {
+    background-color: #222 !important;
+    &::before { background-color: #222 !important; }
+    &::after { background-color: #222 !important; }
+  }
+}
+
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.drag-wrapper.cdk-drop-list-dragging .draggable:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+$phone-width: 420px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin phone {
+  @media (max-width: #{$phone-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$phone-width}) and (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@include phone {
+  .font-size-5 { font-size: 18px; }
+  .font-size-4 { font-size: 16px; }
+  .font-size-3 { font-size: 14px; }
+  .font-size-2 { font-size: 12px; }
+  .font-size-1 { font-size: 10px; }
+}
+
+@include tablet {
+  .font-size-5 { font-size: 19px; }
+  .font-size-4 { font-size: 17px; }
+  .font-size-3 { font-size: 15px; }
+  .font-size-2 { font-size: 13px; }
+  .font-size-1 { font-size: 11px; }
+}
+
+@include desktop {
+  .font-size-5 { font-size: 19px; }
+  .font-size-4 { font-size: 17px; }
+  .font-size-3 { font-size: 15px; }
+  .font-size-2 { font-size: 13px; }
+  .font-size-1 { font-size: 11px; }
+}
