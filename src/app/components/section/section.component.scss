@@ -26,6 +26,14 @@
     // background: inherit;
     
     @include phone { padding: 10px 7px; }
+    
+    &.background-color-strong {
+      transition: background .25s;
+      border-left-width: 1px;
+      border-right-width: 1px;
+      border-top-width: 1px;
+      padding: 9px 19px;
+    }
 
     .expand-button {
       position: absolute;
@@ -91,24 +99,28 @@
     margin-left: 45px;
     
     &.is-visible { max-height: 200px; }
-    span { padding: 8px; }
+    div { padding: 10px 20px; }
   }
 
   .section-list {
-    // border-left-width: 1px;
     margin-left: 19px;
     margin-right: 10px;
-    // border-bottom-width: 1px;
-    // border-right-width: 1px;
-    // border-top-width: 1px;
     position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    padding-bottom: 10px;
 
     @include tablet { margin-left: 14px; margin-right: 5px; }
     @include phone { margin-left: 9px; margin-right: 3px; }
-  
+    
     .section-list-drop-wrapper {
-      &.is-empty { padding-bottom: 10px; }
       border-radius: 8px;
+      opacity: 0;
+      transition: transform .15s, opacity .2s;
+      transform: translateY(-100%);
+      
+      &.is-empty { padding-bottom: 10px; }
+      &.is-visible { transform: translateY(0); opacity: 1; }
     }
   }
 }

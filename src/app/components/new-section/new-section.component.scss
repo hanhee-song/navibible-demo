@@ -6,19 +6,29 @@
   width: 100%;
   max-height: 0px;
   overflow: hidden;
-  transition: max-height .2s;
-  border-radius: 8px;
+  transition: max-height .3s;
+  border-radius: 0 0 8px 8px;
   
-  &.is-visible { max-height: 500px; }
+  &.is-visible { max-height: 400px; }
   
   &:not(.edit-section) {
-    padding: 10px;
+    border-radius: 8px;
+    
     @include phone { padding: 7px; }
   }
   .section__header {
     width: 100%;
     border-radius: 7px;
-}
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    
+    &.is-expanded {
+      border-radius: 7px 7px 0 0;
+      border-bottom-width: 0;
+    }
+  }
 
   .new-section-form {
     display: flex;
@@ -27,10 +37,12 @@
     max-height: 0px;
     overflow: hidden;
     overflow-y: auto;
-    transition: max-height .2s;
-    border-radius: 7px;
+    transition: max-height .3s;
+    border-radius: 0 0 8px 8px;
+    border-left-width: 1px;
+    border-right-width: 1px;
     
-    &.is-visible { max-height: 500px; }
+    &.is-visible { max-height: 400px; border-bottom-width: 1px; }
 
     .form-buttons {
       display: flex;
@@ -41,6 +53,9 @@
       button {
         padding: 10px 15px;
         flex: 1;
+        
+        &:first-of-type { border-radius: 0 0 0 8px; }
+        &:last-of-type { border-radius: 0 0 8px 0; }
       }
     }
     

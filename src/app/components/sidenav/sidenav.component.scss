@@ -1,21 +1,23 @@
 .sidenav {
   position: fixed;
   top: 0;
-  left: -400px;
+  // left: -400px;
+  left: 0;
+  transform: translateX(-100%);
   width: 30%;
   min-width: 300px;
   max-width: 400px;
   height: 100%;
   z-index: 4;
   border-right-width: 1px;
-  transition: left .4s;
+  transition: transform .4s;
   display: flex;
   flex-direction: column;
   -webkit-user-select: none;
   padding-top: 59px;
 
   &.is-active {
-    left: 0;
+    transform: translateX(0);
   }
 }
 

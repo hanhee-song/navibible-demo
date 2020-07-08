@@ -10,7 +10,7 @@
 .dark-mode {
   color: #eee;
   text-decoration-color: #eee;
-  background: #111;
+  background: #000;
 
   .text-color-default { color: #eee; }
   .text-color-subtle { color: #ccc; }
@@ -43,7 +43,7 @@
 .dim-mode {
   color: #ddd;
   text-decoration-color: #ddd;
-  background: #222;
+  background: #111;
 
   .text-color-default { color: #ddd; }
   .text-color-subtle { color: #bbb; }
@@ -56,8 +56,8 @@
   .background-color-subtle-red { background: #7d1515; }
   .background-color-backdrop { background: #dddddd33; }
   .cdk-drag-preview { background: #444; }
-  .border-color-default { border-color: #777; border-style: solid; }
-  .border-color-subtle {border-color: #666; border-style: solid; }
+  .border-color-default { border-color: #666; border-style: solid; }
+  .border-color-subtle {border-color: #555; border-style: solid; }
   input[type=text] {
     outline-color: #bbb;
   }
@@ -76,21 +76,21 @@
 .light-mode {
   color: #222;
   text-decoration-color: #222;
-  background: #f5f5f5;
+  background: #e5e5e5;
 
   .text-color-default { color: #222; }
   .text-color-subtle { color: #444; }
   .text-color-faint { color: #666; }
   .background-color-default { background: #eee; }
   .background-color-strong { background: #fff; }
-  .background-color-subtle { background: #fafafa; }
+  .background-color-subtle { background: #f9f9f9; }
   .background-color-green { background: #adffad; }
   .background-color-subtle-green { background: #d1ffd1; }
   .background-color-subtle-red { background: #ffd4d4; }
   .background-color-backdrop { background: #22222233; }
   .cdk-drag-preview { background: #fff; }
-  .border-color-default { border-color: #999; border-style: solid; }
-  .border-color-subtle {border-color: #bbb; border-style: solid; }
+  .border-color-default { border-color: #bbb; border-style: solid; }
+  .border-color-subtle {border-color: #ddd; border-style: solid; }
   input[type=text] {
     outline-color: #444;
   }

@@ -15,6 +15,7 @@ import { TopnavComponent } from './components/topnav/topnav.component';
 import { NewSectionComponent } from './components/new-section/new-section.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { EditingBarComponent } from './components/editing-bar/editing-bar.component';
+import { SmoothHeightDirective } from './directives/smooth-height.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { EditingBarComponent } from './components/editing-bar/editing-bar.compon
     TopnavComponent,
     NewSectionComponent,
     ModalComponent,
-    EditingBarComponent
+    EditingBarComponent,
+    SmoothHeightDirective
   ],
   imports: [
     BrowserModule,

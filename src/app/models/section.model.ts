@@ -64,6 +64,11 @@ export class Section implements SectionInterface {
       return flatten(this.sections.map(section => section.getAllChildMultiRanges()));
     }
   }
+  
+  public forAllDescendents(fn: (section: Section) => void): void {
+    fn(this);
+    this.sections.forEach(section => section.forAllDescendents(fn));
+  }
 }
 
 export interface SectionInterface {

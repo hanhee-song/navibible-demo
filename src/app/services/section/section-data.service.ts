@@ -11,14 +11,11 @@ import { of, Observable } from 'rxjs';
 })
 export class SectionDataService extends LogWrapper implements OnDestroy {
 
-  private sectionFactoryService: SectionFactory;
-  
   constructor(
     logService: LogService,
-    sectionFactoryService: SectionFactory
+    private sectionFactoryService: SectionFactory
   ) {
     super(logService);
-    this.sectionFactoryService = sectionFactoryService;
   }
 
   ngOnDestroy() { }

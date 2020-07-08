@@ -1,6 +1,6 @@
 <!-- <div class="section border-color-default" *ngIf="section"> -->
 
-<div class="section__header" *ngIf="sectionLevel > 0" [ngClass]="{'background-color-strong': isEdit}">
+<div class="section__header border-color-subtle" *ngIf="sectionLevel > 0" [ngClass]="{'background-color-strong': isEdit}">
   <div class="header__left">
     <button class="expand-button" (click)="toggleExpand()">
       <i class="font-size-5 fa fa-chevron-right" [ngClass]="{ 'rotate': section.isExpanded }" aria-hidden="true"></i>
@@ -29,16 +29,6 @@
   </div>
 </div>
 
-<div class="font-size-3 section-comment"
-  *ngIf="section.comment"
-  [ngClass]="{
-    'background-color-subtle': !!(sectionLevel % 2),
-    'background-color-default': !(sectionLevel % 2),
-    'is-visible': section.isExpanded && !isEdit
-  }">
-  <span>{{section.comment}}</span>
-</div>
-
 <div app-new-section
   class="edit-section"
   [visible]="isEdit && isEditingMode"
@@ -52,8 +42,18 @@
   (cancel)="isEdit = false;">
 </div>
 
-<div class="section-list border-color-default"
-  *ngIf="section.isExpanded">
+<div class="font-size-3 section-comment section-list"
+  *ngIf="section.comment && (section.isExpanded || isDropdownTransitioning)"
+  [ngClass]="{
+    'background-color-subtle': !(sectionLevel % 2),
+    'background-color-default': !!(sectionLevel % 2),
+    'is-visible': section.isExpanded && !isEdit
+  }">
+  <div>{{section.comment}}</div>
+</div>
+
+<div class="section-list"
+  *ngIf="section.isExpanded || isDropdownTransitioning">
   <div class="section-list-drop-wrapper drag-wrapper"
     [cdkDropListData]="section.sections"
     cdkDropList id="list-{{sectionLevel}}"
@@ -61,9 +61,10 @@
     (cdkDropListDropped)="drop($event)"
     [cdkDropListDisabled]="!isEditingMode"
     [ngClass]="{
-      'background-color-subtle': !!(sectionLevel % 2),
-      'background-color-default': !(sectionLevel % 2),
-      'is-empty': section.sections.length === 0
+      'background-color-subtle': !(sectionLevel % 2),
+      'background-color-default': !!(sectionLevel % 2),
+      'is-empty': section.sections.length === 0,
+      'is-visible': section.isExpanded
     }">
     <ng-container 
       *ngFor="let subsection of section.sections; trackBy: __trackByFn">
@@ -87,6 +88,7 @@
   </div>
   <div app-new-section
     *ngIf="isEditingMode"
+    [visible]="true"
     (onNewSection)="onNewSection($event)">
   </div>
 

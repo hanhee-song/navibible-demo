@@ -15,17 +15,12 @@ export class BibleMainComponent extends LogWrapper implements OnInit, OnDestroy 
   public sectionsParent: SectionsParent;
   public isEditingMode: boolean;
   
-  private sectionService: SectionService;
-  private optionsService: OptionsService;
-
   constructor(
-    sectionService: SectionService,
     logService: LogService,
-    optionsService: OptionsService
+    private sectionService: SectionService,
+    private optionsService: OptionsService
   ) {
     super(logService);
-    this.sectionService = sectionService;
-    this.optionsService = optionsService;
   }
 
   ngOnInit(): void {

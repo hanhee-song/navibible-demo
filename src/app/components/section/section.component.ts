@@ -1,18 +1,20 @@
+import { SectionService } from './../../services/section/section.service';
 import { ModalService } from './../../services/controls/modal.service';
 import { LogService } from './../../logger/log.service';
 import { Section } from './../../models/section.model';
-import { Component, OnInit, Input, OnDestroy, ViewChild, HostBinding, SimpleChanges, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild, HostBinding, SimpleChanges, EventEmitter, Output, ViewEncapsulation, ElementRef } from '@angular/core';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { remove } from 'lodash';
+import { smoothHeight } from 'src/app/animations/animations';
 
 @Component({
   selector: 'div[app-section]',
   templateUrl: './section.component.html',
   styleUrls: ['./section.component.scss'],
   host: {
-    'class': 'section border-color-default'
+    'class': 'section'
   },
+  animations: [smoothHeight],
   encapsulation: ViewEncapsulation.None
 })
 export class SectionComponent extends LogWrapper implements OnInit, OnDestroy {
@@ -24,15 +26,14 @@ export class SectionComponent extends LogWrapper implements OnInit, OnDestroy {
   @Input('sectionLevel') sectionLevel: number;
   
   public isEdit: boolean;
+  public isDropdownTransitioning: boolean;
   
-  private modalService: ModalService;
-
   constructor(
     logService: LogService,
-    modalService: ModalService
+    private modalService: ModalService,
+    private sectionService: SectionService
   ) {
     super(logService);
-    this.modalService = modalService;
   }
 
   ngOnInit(): void {
@@ -49,7 +50,17 @@ export class SectionComponent extends LogWrapper implements OnInit, OnDestroy {
   }
 
   public toggleExpand(): void {
-    this.section.toggleExpand(!this.section.isExpanded);
+    // const state = this.section.isExpanded;
+    this.isDropdownTransitioning = true;
+    setTimeout(() => {
+      this.isDropdownTransitioning = false
+      // this.element.nativeElement.clientHeight = 0;
+    }, 200);
+    setTimeout(() => {
+      this.section.toggleExpand(!this.section.isExpanded);
+      const original = this.sectionService.getOriginalStateSection(this.section.uniqueId);
+      if (original) original.isExpanded = this.section.isExpanded;
+    }, 1);
   }
 
   public onEdit() {
@@ -88,7 +99,7 @@ export class SectionComponent extends LogWrapper implements OnInit, OnDestroy {
 
   public onNewSection(newSection: Section): void {
     newSection.flashNew();
-    this.section.sections.push(newSection); 
+    this.section.sections.push(newSection);
   }
 
   public onUpdateSection(section: Section): void {
