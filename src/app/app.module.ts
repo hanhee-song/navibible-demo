@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TextFieldModule } from '@angular/cdk/text-field';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,7 +39,8 @@ import { NotificationComponent } from './components/notification/notification.co
     FormsModule,
     BrowserAnimationsModule,
     DragDropModule,
-    TextFieldModule
+    TextFieldModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

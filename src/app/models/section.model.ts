@@ -69,6 +69,14 @@ export class Section implements SectionInterface {
     fn(this);
     this.sections.forEach(section => section.forAllDescendents(fn));
   }
+  
+  public clearUnsavedFields() {
+    delete this.isNew;
+    delete this.isExpanded;
+    delete this.uniqueId;
+    if (!this.comment) delete this.comment;
+    if (!this.title) delete this.title;
+  }
 }
 
 export interface SectionInterface {

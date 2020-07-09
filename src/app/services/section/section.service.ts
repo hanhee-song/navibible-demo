@@ -4,19 +4,22 @@ import { cloneDeep } from 'lodash';
 import { Observable } from 'rxjs/internal/Observable';
 import { SectionsParent } from './../../models/sections-parent.model';
 import { SectionDataService } from './section-data.service';
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { tap, map, catchError } from 'rxjs/operators';
 import { Section } from 'src/app/models/section.model';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
-import { of } from 'rxjs';
+import { of, BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SectionService extends LogWrapper implements OnDestroy {
 
+  public onSectionParent$: BehaviorSubject<SectionsParent> = new BehaviorSubject<SectionsParent>(null);
+  
   private originalState: SectionsParent;
   private idSectionMap: Map<number, Section>;
+  private sectionsParent: SectionsParent;
 
   constructor(
     logService: LogService,
@@ -24,6 +27,7 @@ export class SectionService extends LogWrapper implements OnDestroy {
     private notificationsService: NotificationService
   ) {
     super(logService);
+    this.initSectionsParent().subscribe(data => this.setSectionParent(data));
   }
   
   ngOnDestroy() { }
@@ -36,15 +40,20 @@ export class SectionService extends LogWrapper implements OnDestroy {
     return this.idSectionMap.get(uniqueId);
   }
 
-  public getSectionsParent(): Observable<SectionsParent> {
+  private initSectionsParent(): Observable<SectionsParent> {
     return this.sectionDataService.getSections()
-      .pipe(tap(data => this.setOriginalState(data)));
+      .pipe(tap(data => this.setSectionParent(data)));
+  }
+  
+  public setSectionParent(sectionParent: SectionsParent) {
+    this.setOriginalState(sectionParent);
+    return this.onSectionParent$.next(sectionParent);
   }
 
   public save(sectionsParent: SectionsParent): Observable<boolean> {
     return this.sectionDataService.save(sectionsParent)
       .pipe(
-        tap(data => this.setOriginalState(sectionsParent)),
+        tap(data => this.setSectionParent(sectionsParent)),
         map(data => true),
         catchError(e => {
           this.logService.error(e);
@@ -62,4 +71,20 @@ export class SectionService extends LogWrapper implements OnDestroy {
     this.idSectionMap = new Map();
     this.originalState.forAllDescendents(section => this.idSectionMap.set(section.uniqueId, section));
   }
+  
+  public export(): string {
+    return this.sectionDataService.export(this.originalState);
+  }
+  
+  public import(str: string) {
+    try {
+      const data = this.sectionDataService.import(str);
+      this.setSectionParent(data);
+      this.notificationsService.pushNotification('Imported data successfully!');
+    } catch (e) {
+      this.notificationsService.pushError('Could not import data, see log for error');
+      this.logService.error(e);
+    }
+  }
+  
 }

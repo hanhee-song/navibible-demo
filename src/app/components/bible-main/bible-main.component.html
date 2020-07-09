@@ -3,6 +3,7 @@
 </div>
 
 <div app-section
+  *ngIf="sectionsParent"
   class="top-level-section"
   cdkDropListGroup
   [section]="sectionsParent"

@@ -26,7 +26,9 @@ export class BibleMainComponent extends LogWrapper implements OnInit, OnDestroy 
   }
 
   ngOnInit(): void {
-    this.initializeData();
+    this.sectionService.onSectionParent$.subscribe(sectionParent => {
+      this.sectionsParent = sectionParent;
+    });
     this.optionsService.isEditingMode$.subscribe(editingMode => this.isEditingMode = editingMode);
     this.optionsService.onSave$.subscribe(val => {
       this.save();
@@ -42,13 +44,5 @@ export class BibleMainComponent extends LogWrapper implements OnInit, OnDestroy 
 
   public save() {
     this.sectionService.save(this.sectionsParent).subscribe();
-  }
-
-  private initializeData() {
-    this.sectionService.getSectionsParent()
-      .subscribe(data => {
-        console.log(data);
-        this.sectionsParent = data;
-      });
   }
 }

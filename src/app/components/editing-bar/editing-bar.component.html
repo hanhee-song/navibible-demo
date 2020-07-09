@@ -1,12 +1,20 @@
 <div class="editing-bar background-color-subtle border-color-default font-size-6"
   [ngClass]="{'is-visible': isVisible}">
   <button class="save-button border-color-subtle background-color-strong"
-    (click)="onSave()">
-    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+    (click)="onImport()">
+    <i class="fa fa-download" aria-hidden="true"></i>
+  </button>
+  <button class="save-button border-color-subtle background-color-strong"
+    (click)="onExport()">
+    <i class="fa fa-upload" aria-hidden="true"></i>
   </button>
   <button class="undo-button border-color-subtle background-color-strong"
     (click)="onUndo()">
     <i class="fa fa-undo" aria-hidden="true"></i>
+  </button>
+  <button class="save-button border-color-subtle background-color-strong"
+    (click)="onSave()">
+    <i class="fa fa-floppy-o" aria-hidden="true"></i>
   </button>
   <button class="cancel-button border-color-subtle background-color-strong"
     (click)="onCancel()">

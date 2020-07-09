@@ -1,9 +1,12 @@
+import { SectionService } from './../../services/section/section.service';
 import { NotificationService } from './../../services/controls/notification.service';
-import { ModalService } from './../../services/controls/modal.service';
+import { ModalService, ModalButton } from './../../services/controls/modal.service';
 import { LogService } from './../../logger/log.service';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
 import { OptionsService } from './../../services/controls/options.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Clipboard } from '@angular/cdk/clipboard';
+
 
 @Component({
   selector: 'app-editing-bar',
@@ -19,7 +22,9 @@ export class EditingBarComponent extends LogWrapper implements OnInit, OnDestroy
     logService: LogService,
     private optionsService: OptionsService,
     private modalService: ModalService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private sectionService: SectionService,
+    private clipboard: Clipboard
   ) {
     super(logService);
   }
@@ -44,5 +49,37 @@ export class EditingBarComponent extends LogWrapper implements OnInit, OnDestroy
   
   public onUndo(): void {
     this.notificationService.pushError("I haven't implemented this feature yet c:");
+  }
+  
+  public onImport(): void {
+    this.modalService.textboxModal('Import saved state here:', data => {
+      this.sectionService.import(data);
+    })
+  }
+  
+  public onExport(): void {
+    const data = this.sectionService.export();
+    if (this.copy(data)) {
+      this.notificationService.pushNotification('Successfully exported data to clipboard')
+    } else {
+      this.modalService.customModal('Copy the following text:', data, ModalButton.greenModal('Close'));
+    }
+    
+  }
+  
+  private copy(data: string): boolean {
+    const pending = this.clipboard.beginCopy(data);
+    let remainingAttempts = 3;
+    const attempt = () => {
+      const result = pending.copy();
+      if (!result && --remainingAttempts) {
+        setTimeout(attempt);
+      } else {
+        // Remember to destroy when you're done!
+        pending.destroy();
+        if (result) return true;
+      }
+    };
+    return attempt();
   }
 }

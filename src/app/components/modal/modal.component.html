@@ -4,6 +4,16 @@
     <div class="modal__content">
       {{modal.content}}
     </div>
+    <textarea
+      *ngIf="modal.inputText !== undefined"
+      name="inputText"
+      [ngModel]="modal.inputText"
+      (ngModelChange)="modal.inputText = $event"
+      (focus)="$event.target.select()"
+      cdkTextareaAutosize
+      tabindex="1"
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"></textarea>
     <div class="modal__buttons">
       <ng-container *ngFor="let button of modal.buttons">
         <button [ngClass]="button.classes" (click)="button.onClick()" #modalButton tabindex="2">
