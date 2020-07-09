@@ -82,7 +82,7 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
         this.isTransitioning = true;
         setTimeout(() => this.isTransitioning = false, 200);
         setTimeout(() => {
-          if (visible) this.inputNameField.nativeElement.focus();
+          if (visible && this.isFormOpen) this.inputNameField.nativeElement.focus();
           this.isVisible = visible;
         }, 1);
       }
@@ -90,6 +90,11 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
   }
 
   ngOnDestroy(): void { }
+  
+  public onOpenForm(): void {
+    this.isFormOpen = !this.isFormOpen;
+    if (this.visible && this.isFormOpen) this.inputNameField.nativeElement.focus();
+  }
 
   public onAddMultiRange(event) {
     event.preventDefault()

@@ -126,6 +126,11 @@
     position: relative;
     overflow: hidden;
   }
+  
+  .drag-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .top-level-section {

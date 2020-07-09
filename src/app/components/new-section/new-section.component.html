@@ -1,7 +1,7 @@
 <!-- <div class="new-section"> -->
 <ng-container>
   <button class="section__header background-color-strong border-color-subtle"
-    (click)="isFormOpen = !isFormOpen"
+    (click)="onOpenForm()"
     [ngClass]="{'is-expanded': isFormOpen || isTransitioning}"
     *ngIf="showHeader">
     <div>
