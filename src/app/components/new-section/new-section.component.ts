@@ -60,7 +60,11 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
   
   onCancel(event): void {
     event.preventDefault();
-    this.isFormOpen = false;
+    if (this.visible) {
+      this.visible = false;
+    } else if (this.isFormOpen) {
+      this.isFormOpen = false;
+    }
     this.cancel.next();
   }
 
@@ -77,9 +81,11 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
       if (this.isVisible !== visible) {
         this.isTransitioning = true;
         setTimeout(() => this.isTransitioning = false, 200);
+        setTimeout(() => {
+          if (visible) this.inputNameField.nativeElement.focus();
+          this.isVisible = visible;
+        }, 1);
       }
-      setTimeout(() => this.isVisible = visible, 1)
-      
     }
   }
 
