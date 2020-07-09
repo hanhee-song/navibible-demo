@@ -1,5 +1,6 @@
 <ng-container *ngFor="let modal of modals">
-  <div class="modal background-color-strong border-color-default">
+  <div class="modal background-color-strong border-color-default"
+    [ngClass]="{'is-visible': modal.isVisible}">
     <div class="modal__content">
       {{modal.content}}
     </div>
@@ -11,7 +12,7 @@
       </ng-container>
     </div>
   </div>
-  <div class="modal-backdrop background-color-backdrop">
-    
+  <div class="modal-backdrop background-color-backdrop"
+    [ngClass]="{'is-visible': modal.isVisible}">
   </div>
 </ng-container>

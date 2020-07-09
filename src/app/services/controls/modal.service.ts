@@ -32,6 +32,8 @@ export class ModalService extends LogWrapper implements OnDestroy {
 export class Modal {
   public content: string;
   public buttons: ModalButton[];
+  public isVisible: boolean;
+  public isTransitioning: boolean;
 
   constructor(content: string, buttons: ModalButton[]) {
     this.content = content;

@@ -1,25 +1,32 @@
+import { NotificationService } from './../controls/notification.service';
+import { LogService } from './../../logger/log.service';
 import { cloneDeep } from 'lodash';
 import { Observable } from 'rxjs/internal/Observable';
 import { SectionsParent } from './../../models/sections-parent.model';
 import { SectionDataService } from './section-data.service';
-import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { Injectable, OnDestroy } from '@angular/core';
+import { tap, map, catchError } from 'rxjs/operators';
 import { Section } from 'src/app/models/section.model';
+import { LogWrapper } from 'src/app/logger/log-wrapper';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SectionService {
+export class SectionService extends LogWrapper implements OnDestroy {
 
-  private sectionDataService: SectionDataService;
   private originalState: SectionsParent;
   private idSectionMap: Map<number, Section>;
 
   constructor(
-    sectionDataService: SectionDataService
+    logService: LogService,
+    private sectionDataService: SectionDataService,
+    private notificationsService: NotificationService
   ) {
-    this.sectionDataService = sectionDataService;
+    super(logService);
   }
+  
+  ngOnDestroy() { }
   
   public getOriginalState(): SectionsParent {
     return cloneDeep(this.originalState);
@@ -36,7 +43,18 @@ export class SectionService {
 
   public save(sectionsParent: SectionsParent): Observable<boolean> {
     return this.sectionDataService.save(sectionsParent)
-      .pipe(tap(data => this.setOriginalState(sectionsParent)));
+      .pipe(
+        tap(data => this.setOriginalState(sectionsParent)),
+        map(data => true),
+        catchError(e => {
+          this.logService.error(e);
+          return of(false);
+        }),
+        tap(bool => {
+          if (bool) this.notificationsService.pushNotification('Saved successfully!');
+          if (!bool) this.notificationsService.pushError('Failed to save, please check logs');
+        })
+      );
   }
   
   private setOriginalState(sectionsParent: SectionsParent): void {

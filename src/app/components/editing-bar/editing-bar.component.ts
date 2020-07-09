@@ -1,3 +1,4 @@
+import { NotificationService } from './../../services/controls/notification.service';
 import { ModalService } from './../../services/controls/modal.service';
 import { LogService } from './../../logger/log.service';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
@@ -13,17 +14,14 @@ export class EditingBarComponent extends LogWrapper implements OnInit, OnDestroy
 
   public isVisible: boolean = false;
   
-  private optionsService: OptionsService;
-  private modalService: ModalService;
   
   constructor(
     logService: LogService,
-    optionsService: OptionsService,
-    modalService: ModalService
+    private optionsService: OptionsService,
+    private modalService: ModalService,
+    private notificationService: NotificationService
   ) {
     super(logService);
-    this.optionsService = optionsService;
-    this.modalService = modalService;
   }
 
   ngOnInit(): void {
@@ -42,5 +40,9 @@ export class EditingBarComponent extends LogWrapper implements OnInit, OnDestroy
     this.modalService.yesNoModal('Are you sure you want to discard unsaved changes and revert to last saved state?', () => {
       this.optionsService.onCancel();
     });
+  }
+  
+  public onUndo(): void {
+    this.notificationService.pushError("I haven't implemented this feature yet c:");
   }
 }

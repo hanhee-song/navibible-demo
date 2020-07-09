@@ -16,6 +16,7 @@ import { NewSectionComponent } from './components/new-section/new-section.compon
 import { ModalComponent } from './components/modal/modal.component';
 import { EditingBarComponent } from './components/editing-bar/editing-bar.component';
 import { SmoothHeightDirective } from './directives/smooth-height.directive';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SmoothHeightDirective } from './directives/smooth-height.directive';
     NewSectionComponent,
     ModalComponent,
     EditingBarComponent,
-    SmoothHeightDirective
+    SmoothHeightDirective,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

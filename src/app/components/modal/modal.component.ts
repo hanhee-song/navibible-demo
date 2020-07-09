@@ -20,7 +20,12 @@ export class ModalComponent extends LogWrapper implements OnInit, OnDestroy {
   ) {
     super(logService);
     modalService.modals$.subscribe(modal => {
-      this.modals.push(modal.setCloseModal(this.closeModal(modal)))
+      modal.isTransitioning = true;
+      setTimeout(() => {
+        modal.isVisible = true;
+      }, 1);
+      this.modals.push(modal.setCloseModal(this.closeModal(modal)));
+      
     });
   }
 
@@ -30,6 +35,12 @@ export class ModalComponent extends LogWrapper implements OnInit, OnDestroy {
   ngOnDestroy() { }
   
   public closeModal(modal: Modal): Function {
-    return () => this.modals = this.modals.filter(m => m !== modal);
+    return () => {
+      modal.isTransitioning = true;
+      modal.isVisible = false;
+      setTimeout(() => {
+        this.modals = this.modals.filter(m => m !== modal);
+      }, 200);
+    };
   }
 }

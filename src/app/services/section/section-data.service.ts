@@ -33,9 +33,13 @@ export class SectionDataService extends LogWrapper implements OnDestroy {
   }
 
   public save(sectionsParent: SectionsParent): Observable<boolean> {
-    const str = JSON.stringify(sectionsParent);
-    localStorage.setItem('sectionsParentData', str);
-    return of(true);
+    try {
+      const str = JSON.stringify(sectionsParent);
+      localStorage.setItem('sectionsParentData', str);
+      return of(true);
+    } catch(e) {
+      return of(e);
+    }
   }
 }
 

@@ -55,7 +55,7 @@ export class SectionComponent extends LogWrapper implements OnInit, OnDestroy {
     setTimeout(() => {
       this.isDropdownTransitioning = false
       // this.element.nativeElement.clientHeight = 0;
-    }, 200);
+    }, 300);
     setTimeout(() => {
       this.section.toggleExpand(!this.section.isExpanded);
       const original = this.sectionService.getOriginalStateSection(this.section.uniqueId);
@@ -91,7 +91,7 @@ export class SectionComponent extends LogWrapper implements OnInit, OnDestroy {
   }
 
   public onDeleteSelf() {
-    this.modalService.yesNoModal('Are you sure you want to delete this section?', () => {
+    this.modalService.yesNoModal('Are you sure you want to delete section "' + this.section.title + '"?', () => {
       this.parentSection.flashNew();
       this.parentSection.sections = this.parentSection.sections.filter(section => section !== this.section);
     });

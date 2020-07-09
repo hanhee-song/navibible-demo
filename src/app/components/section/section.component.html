@@ -42,56 +42,59 @@
   (cancel)="isEdit = false;">
 </div>
 
-<div class="font-size-3 section-comment section-list"
-  *ngIf="section.comment && (section.isExpanded || isDropdownTransitioning)"
+<div class="section-list__drop-wrapper"
   [ngClass]="{
     'background-color-subtle': !(sectionLevel % 2),
-    'background-color-default': !!(sectionLevel % 2),
-    'is-visible': section.isExpanded && !isEdit
+    'background-color-default': !!(sectionLevel % 2)
   }">
-  <div>{{section.comment}}</div>
-</div>
-
-<div class="section-list"
-  *ngIf="section.isExpanded || isDropdownTransitioning">
-  <div class="section-list-drop-wrapper drag-wrapper"
-    [cdkDropListData]="section.sections"
-    cdkDropList id="list-{{sectionLevel}}"
-    [cdkDropListConnectedTo]="['list-' + sectionLevel]"
-    (cdkDropListDropped)="drop($event)"
-    [cdkDropListDisabled]="!isEditingMode"
+  <div class="section-list__drop"
     [ngClass]="{
-      'background-color-subtle': !(sectionLevel % 2),
-      'background-color-default': !!(sectionLevel % 2),
-      'is-empty': section.sections.length === 0,
       'is-visible': section.isExpanded
     }">
-    <ng-container 
-      *ngFor="let subsection of section.sections; trackBy: __trackByFn">
-      <div app-section
-        class="draggable"
-        [ngClass]="{
-          'background-color-green is-new': subsection.isNew
-        }"
-        cdkDrag
-        [section]="subsection"
-        [parentSection]="section"
-        [grandparentSection]="parentSection"
-        [isEditingMode]="isEditingMode"
-        [sectionLevel]="sectionLevel + 1">
-        <button class="drag-button font-size-5" *ngIf="isEditingMode"
-          cdkDragHandle>
-          <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-        </button>
+    <div class="font-size-3 section-comment"
+      *ngIf="section.comment && (section.isExpanded || isDropdownTransitioning)"
+      [ngClass]="{
+        'is-visible': section.isExpanded && !isEdit
+      }">
+      <div>{{section.comment}}</div>
+    </div>
+    
+    <div class="section-list"
+      *ngIf="section.isExpanded || isDropdownTransitioning">
+      <div class="drag-wrapper"
+        [cdkDropListData]="section.sections"
+        cdkDropList id="list-{{sectionLevel}}"
+        [cdkDropListConnectedTo]="['list-' + sectionLevel]"
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListDisabled]="!isEditingMode">
+        <ng-container 
+          *ngFor="let subsection of section.sections; trackBy: __trackByFn">
+          <div app-section
+            class="draggable"
+            [ngClass]="{
+              'background-color-green is-new': subsection.isNew
+            }"
+            cdkDrag
+            [section]="subsection"
+            [parentSection]="section"
+            [grandparentSection]="parentSection"
+            [isEditingMode]="isEditingMode"
+            [sectionLevel]="sectionLevel + 1">
+            <button class="drag-button font-size-5" *ngIf="isEditingMode"
+              cdkDragHandle>
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </button>
+          </div>
+        </ng-container>
       </div>
-    </ng-container>
+    </div>
+    <div app-new-section
+      *ngIf="isEditingMode && (section.isExpanded || isDropdownTransitioning)"
+      [visible]="true"
+      (onNewSection)="onNewSection($event)">
+    </div>
   </div>
-  <div app-new-section
-    *ngIf="isEditingMode"
-    [visible]="true"
-    (onNewSection)="onNewSection($event)">
-  </div>
-
 </div>
+
 
 <!-- </div> -->

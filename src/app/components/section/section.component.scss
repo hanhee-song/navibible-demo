@@ -33,6 +33,8 @@
       border-right-width: 1px;
       border-top-width: 1px;
       padding: 9px 19px;
+      
+      @include phone { padding: 9px 6px; }
     }
 
     .expand-button {
@@ -92,36 +94,37 @@
 
   .section-comment {
     border-radius: 8px;
-    max-height: 0;
+    // max-height: 0;
+    max-height: 200px;
     overflow-y: auto;
     white-space: pre-wrap;
-    transition: max-height .2s;
-    margin-left: 45px;
+    // transition: max-height .2s;
+    // margin-left: 45px;
     
-    &.is-visible { max-height: 200px; }
+    // &.is-visible { max-height: 200px; }
     div { padding: 10px 20px; }
+  }
+  
+  .section-list__drop-wrapper {
+    border-radius: 8px;
+    margin-left: 19px;
+    margin-right: 10px;
+    overflow: hidden;
+    @include tablet { margin-left: 14px; margin-right: 5px; }
+    @include phone { margin-left: 9px; margin-right: 3px; }
+  }
+  
+  .section-list__drop {
+    opacity: 0;
+    transition: transform .3s, opacity .2s;
+    transform: translateY(max(-20%, -40px));
+    
+    &.is-visible { transform: translateY(0); opacity: 1; }
   }
 
   .section-list {
-    margin-left: 19px;
-    margin-right: 10px;
     position: relative;
-    border-radius: 8px;
     overflow: hidden;
-    padding-bottom: 10px;
-
-    @include tablet { margin-left: 14px; margin-right: 5px; }
-    @include phone { margin-left: 9px; margin-right: 3px; }
-    
-    .section-list-drop-wrapper {
-      border-radius: 8px;
-      opacity: 0;
-      transition: transform .15s, opacity .2s;
-      transform: translateY(-100%);
-      
-      &.is-empty { padding-bottom: 10px; }
-      &.is-visible { transform: translateY(0); opacity: 1; }
-    }
   }
 }
 
@@ -130,6 +133,5 @@
 
   & > .section-list {
     margin-left: 0;
-    // border-right-width: 1px;
   }
 }

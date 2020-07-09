@@ -1,3 +1,4 @@
+import { NotificationService } from './../../services/controls/notification.service';
 import { OptionsService } from './../../services/controls/options.service';
 import { LogService } from './../../logger/log.service';
 import { SectionService } from './../../services/section/section.service';
@@ -18,7 +19,8 @@ export class BibleMainComponent extends LogWrapper implements OnInit, OnDestroy 
   constructor(
     logService: LogService,
     private sectionService: SectionService,
-    private optionsService: OptionsService
+    private optionsService: OptionsService,
+    private notificationService: NotificationService
   ) {
     super(logService);
   }
@@ -31,6 +33,7 @@ export class BibleMainComponent extends LogWrapper implements OnInit, OnDestroy 
     });
     this.optionsService.onCancel$.subscribe(cancel => {
       this.sectionsParent = this.sectionService.getOriginalState();
+      this.notificationService.pushNotification('Changes have been discarded');
     });
   }
 
