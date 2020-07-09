@@ -12,6 +12,7 @@ export class Section implements SectionInterface {
   public sections: Section[] = [];
   public isNew: boolean = false;
   public uniqueId: number = Math.random();
+  public isSelected: boolean;
 
   constructor(title: string, comment: string, multiRanges: MultiRange[]) {
     this.title = title;
@@ -74,6 +75,7 @@ export class Section implements SectionInterface {
     delete this.isNew;
     delete this.isExpanded;
     delete this.uniqueId;
+    delete this.isSelected;
     if (!this.comment) delete this.comment;
     if (!this.title) delete this.title;
   }

@@ -1,6 +1,7 @@
 <!-- <div class="section border-color-default" *ngIf="section"> -->
 
 <div class="section__header border-color-subtle" *ngIf="sectionLevel > 0" [ngClass]="{'background-color-strong': isEdit}">
+  <div class="selected" *ngIf="false"></div>
   <div class="header__left">
     <button class="expand-button" (click)="toggleExpand()">
       <i class="font-size-5 fa fa-chevron-right" [ngClass]="{ 'rotate': section.isExpanded }" aria-hidden="true"></i>

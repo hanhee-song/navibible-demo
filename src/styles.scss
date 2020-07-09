@@ -7,6 +7,10 @@
   overflow-x: hidden;
 }
 
+.background-color-subtle-green, .background-color-subtle-red {
+  transition: background .3s;
+}
+
 .dark-mode {
   color: #eee;
   text-decoration-color: #eee;
@@ -20,8 +24,10 @@
   .background-color-subtle { background: #222; }
   .background-color-green { background: #025413; }
   .background-color-subtle-green { background: #025413; }
+  .background-color-subtle-green:hover { background: #0d5c1d; }
   .background-color-subtle-red { background: #691111; }
-  .background-color-backdrop { background: #eeeeee33; }
+  .background-color-subtle-red:hover { background: #7c1b1b; }
+  .background-color-backdrop { background: #eeeeee22; }
   .cdk-drag-preview { background: #333; }
   .border-color-default { border-color: #555; border-style: solid; }
   .border-color-subtle {border-color: #444; border-style: solid; }
@@ -53,8 +59,10 @@
   .background-color-subtle { background: #333; }
   .background-color-green { background: #035915; }
   .background-color-subtle-green { background: #035915; }
+  .background-color-subtle-green:hover { background: #0b7021; }
   .background-color-subtle-red { background: #7d1515; }
-  .background-color-backdrop { background: #dddddd33; }
+  .background-color-subtle-red:hover { background: #972424; }
+  .background-color-backdrop { background: #dddddd22; }
   .cdk-drag-preview { background: #444; }
   .border-color-default { border-color: #666; border-style: solid; }
   .border-color-subtle {border-color: #555; border-style: solid; }
@@ -85,9 +93,11 @@
   .background-color-strong { background: #fff; }
   .background-color-subtle { background: #f9f9f9; }
   .background-color-green { background: #adffad; }
-  .background-color-subtle-green { background: #d1ffd1; }
-  .background-color-subtle-red { background: #ffd4d4; }
-  .background-color-backdrop { background: #22222233; }
+  .background-color-subtle-green { background: #baffba; }
+  .background-color-subtle-green:hover { background: #d1ffd1; }
+  .background-color-subtle-red { background: #ffbaba; }
+  .background-color-subtle-red:hover { background: #ffd4d4; }
+  .background-color-backdrop { background: #22222222; }
   .cdk-drag-preview { background: #fff; }
   .border-color-default { border-color: #bbb; border-style: solid; }
   .border-color-subtle {border-color: #ddd; border-style: solid; }

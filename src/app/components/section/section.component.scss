@@ -23,6 +23,7 @@
     padding: 10px 20px;
     border-radius: 8px 8px 0 0;
     transition: background 1s;
+    position: relative;
     // background: inherit;
     
     @include phone { padding: 10px 7px; }
@@ -60,6 +61,17 @@
       position: absolute;
       bottom: -2px;
       right: 3px;
+    }
+    
+    .selected {
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      left: 0px;
+      width: 10%;
+      max-width: 20px;
+      background: rgb(4,0,74);
+      background: linear-gradient(90deg, rgba(4,0,74,0.42200630252100846) 0%, rgba(4,21,96,0.11668417366946782) 43%, rgba(0,179,255,0) 100%);
     }
   }
 

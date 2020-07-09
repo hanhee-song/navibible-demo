@@ -1,7 +1,7 @@
 import { ModalService } from './../../services/controls/modal.service';
 import { LogService } from './../../logger/log.service';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { Modal } from 'src/app/services/controls/modal.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { Modal } from 'src/app/services/controls/modal.service';
 export class ModalComponent extends LogWrapper implements OnInit, OnDestroy {
   
   public modals: Modal[] = [];
-  @ViewChild('modalButton') inputNameField: ElementRef;
+  @ViewChildren('modalButton') modalButtons: QueryList<ElementRef>;
 
   constructor(
     logService: LogService,
@@ -23,6 +23,7 @@ export class ModalComponent extends LogWrapper implements OnInit, OnDestroy {
       modal.isTransitioning = true;
       setTimeout(() => {
         modal.isVisible = true;
+        this.modalButtons.last.nativeElement.focus();
       }, 1);
       this.modals.push(modal.setCloseModal(this.closeModal(modal)));
       

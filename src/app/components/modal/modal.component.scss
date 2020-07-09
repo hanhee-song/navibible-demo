@@ -34,9 +34,9 @@
       flex: 1;
       text-align: center;
       padding: 15px;
-      
       &:first-of-type { border-radius: 0 0 0 10px; }
       &:last-of-type { border-radius: 0 0 10px 0; }
+      &:focus {  }
     }
   }
 }
