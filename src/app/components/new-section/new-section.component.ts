@@ -39,6 +39,7 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
 
   
   @ViewChild('inputNameField') inputNameField: ElementRef;
+  @ViewChild('form') form: ElementRef;
 
   private referenceFactory: ReferenceFactory;
   private sectionFactory: SectionFactory;
@@ -96,11 +97,6 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
     if (this.visible && this.isFormOpen) this.inputNameField.nativeElement.focus();
   }
 
-  public onAddMultiRange(event) {
-    event.preventDefault()
-    this.inputMultiRanges.push({});
-  }
-
   public onDeleteMultiRange(multiRange: { input?: string, multiRange?: string, error?: boolean }, event) {
     event.preventDefault();
     this.inputMultiRanges = this.inputMultiRanges.filter(ref => ref !== multiRange);
@@ -139,6 +135,9 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
     }
     if (!this.inputMultiRanges.filter(range => !range.input).length) {
       this.inputMultiRanges.push({});
+      setTimeout(() => {
+        this.form.nativeElement.scrollTop = this.form.nativeElement.scrollHeight
+      }, 1);
     }
   }
   

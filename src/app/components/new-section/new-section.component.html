@@ -14,7 +14,8 @@
     *ngIf="isVisible || isTransitioning"
     class="new-section-form background-color-strong border-color-subtle"
     (submit)="submit($event)"
-    autocomplete="off">
+    autocomplete="off"
+    #form>
     
     <span class="help-question"><i class="fa fa-question-circle-o" aria-hidden="true"></i></span>
     <div class="input-group">
