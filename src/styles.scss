@@ -9,7 +9,7 @@
 
 .hoverable {
   transition: background .25s;
-  background: inherit;
+  // background: inherit;
   cursor: pointer;
   
   &:hover { transition: background .15s; }

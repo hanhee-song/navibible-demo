@@ -20,10 +20,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px 20px; @include phone { padding: 10px 7px; }
+    padding: 10px 20px; @include phone { padding: 7px 7px; }
     border-radius: 8px 8px 0 0;
     transition: background 1s;
-    position: relative;
+    // position: relative;
     // background: inherit;
     
     button {
@@ -39,9 +39,9 @@
       border-left-width: 1px;
       border-right-width: 1px;
       border-top-width: 1px;
-      padding: 8px 19px;
+      padding: 9px 19px 10px 19px;
       
-      @include phone { padding: 6px 6px; }
+      @include phone { padding: 6px 6px 7px 6px; }
     }
 
     .expand-button {

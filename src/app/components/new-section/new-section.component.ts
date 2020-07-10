@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, ElementRef, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
 import { MultiRange } from 'src/app/models/multi-range.model';
 import { Section } from 'src/app/models/section.model';
@@ -17,8 +17,8 @@ import { SectionFactory } from './../../services/section/section-factory';
 })
 export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy {
   
-  @Input() visible: boolean = false;
-  @Input() isFormOpen: boolean = false;
+  public isFormOpen: boolean = false;
+  @Input() openForm: boolean = false;
   @Input() showHeader: boolean = true;
   @Input() submitButtonText: string = 'Create';
   @Input() inputName: string = '';
@@ -34,9 +34,6 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
     multiRange?: string,
     error?: boolean
   }[] = [{}];
-  
-  @HostBinding('class.is-visible') isVisible: boolean = false;
-
   
   @ViewChild('inputNameField') inputNameField: ElementRef;
   @ViewChild('form') form: ElementRef;
@@ -59,9 +56,6 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
   
   onCancel(event): void {
     event.preventDefault();
-    if (this.visible) {
-      this.visible = false;
-    }
     if (this.isFormOpen) {
       this.isFormOpen = false;
     }
@@ -77,24 +71,24 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
         multiRange: multiRange.toString()
       }));
       this.inputMultiRanges.push({});
-    } if (changes['visible'] && typeof changes['visible'].currentValue === 'boolean') {
-      const visible = changes['visible'].currentValue;
-      if (this.isVisible !== visible) {
-        this.isTransitioning = true;
-        setTimeout(() => this.isTransitioning = false, 200);
-        setTimeout(() => {
-          if (visible && this.isFormOpen) this.inputNameField.nativeElement.focus();
-          this.isVisible = visible;
-        }, 1);
-      }
+    }
+    if (changes['openForm'] && typeof changes['openForm'].currentValue === 'boolean') {
+      const openForm = changes['openForm'].currentValue;
+      this.onToggleForm(openForm);
     }
   }
 
   ngOnDestroy(): void { }
   
-  public onOpenForm(): void {
-    this.isFormOpen = !this.isFormOpen;
-    if (this.visible && this.isFormOpen) this.inputNameField.nativeElement.focus();
+  public onToggleForm(bool?: boolean): void {
+    this.isTransitioning = true;
+    setTimeout(() => this.isTransitioning = false, 200);
+    setTimeout(() => {
+      this.isFormOpen = bool === undefined ? !this.isFormOpen : bool;
+      setTimeout(() => {
+        if (this.isFormOpen) this.inputNameField.nativeElement.focus();
+      }, 1);
+    }, 1);
   }
 
   public onDeleteMultiRange(multiRange: { input?: string, multiRange?: string, error?: boolean }, event) {

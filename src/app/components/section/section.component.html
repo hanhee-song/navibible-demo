@@ -36,11 +36,10 @@
 
 <div app-new-section
   class="edit-section"
-  [visible]="isEdit && isEditingMode"
+  [openForm]="isEdit && isEditingMode"
   [inputName]="section.title"
   [inputComment]="section.comment"
   [multiRanges]="section.multiRanges"
-  [isFormOpen]="true"
   [showHeader]="false"
   [submitButtonText]="'Update ' + section.title"
   (onNewSection)="onUpdateSection($event)"
@@ -95,7 +94,6 @@
     </div>
     <div app-new-section
       *ngIf="isEditingMode && (section.isExpanded || isDropdownTransitioning)"
-      [visible]="true"
       (onNewSection)="onNewSection($event)">
     </div>
   </div>

@@ -1,7 +1,7 @@
 <!-- <div class="new-section"> -->
 <ng-container>
   <button class="section__header background-color-strong border-color-subtle hoverable"
-    (click)="onOpenForm()"
+    (click)="onToggleForm()"
     [ngClass]="{'is-expanded': isFormOpen || isTransitioning}"
     *ngIf="showHeader">
     <div>
@@ -11,7 +11,7 @@
 
   <!-- *ngIf="isFormOpen"> -->
   <form [ngClass]="{'is-visible': isFormOpen}"
-    *ngIf="isVisible || isTransitioning"
+    *ngIf="isFormOpen || isTransitioning"
     class="new-section-form background-color-strong border-color-subtle"
     (submit)="submit($event)"
     autocomplete="off"
