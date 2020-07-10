@@ -158,13 +158,13 @@ $desktop-width: 1024px;
 }
 
 @mixin tablet {
-  @media (min-width: #{$phone-width}) and (max-width: #{$tablet-width - 1px}) {
+  @media (min-width: #{$phone-width}) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media (min-width: #{$tablet-width}) {
+  @media (min-width: #{$tablet-width + 1px}) {
     @content;
   }
 }

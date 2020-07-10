@@ -12,7 +12,7 @@
   .drag-button {
     position: absolute;
     border-radius: 3px;
-    left: 0px; @include phone { left: -7px; }
+    left: -7px; @include tablet { left: 0px; }
     width: 16px;
   }
 
@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px 20px; @include phone { padding: 7px 7px; }
+    padding: 7px 7px; @include tablet { padding: 10px 20px; }
     border-radius: 8px 8px 0 0;
     transition: background 1s;
     // position: relative;
@@ -28,9 +28,9 @@
     
     button {
       border-radius: 3px;
-      height: 28px;
-      width: 23px;
-      @include phone { width: 20px; height: 23px; }
+      height: 23px;
+      width: 20px;
+      @include tablet { width: 23px; height: 28px; }
     }
     
     
@@ -39,9 +39,9 @@
       border-left-width: 1px;
       border-right-width: 1px;
       border-top-width: 1px;
-      padding: 9px 19px 10px 19px;
+      padding: 6px 6px 7px 6px;
       
-      @include phone { padding: 6px 6px 7px 6px; }
+      @include tablet { padding: 9px 19px 10px 19px; }
     }
 
     .expand-button {
@@ -109,7 +109,7 @@
       background: inherit;
       
       button {
-        width: 28px; @include phone { width: 25px; }
+        width: 25px; @include tablet { width: 28px; }
       }
     }
   }
@@ -133,14 +133,14 @@
       display: flex; justify-content: center; align-items: center;
     }
     .section-comment__content, .section-text__content {
-      padding: 10px 20px; @include phone { padding: 6px 15px; }
-      max-height: 40px;
+      padding: 6px 15px; @include tablet { padding: 10px 20px; }
+      max-height: 22px; @include tablet { max-height: 26px; }
       transition: max-height .2s;
       white-space: pre-wrap;
       overflow-y: hidden;
       
       &.is-expanded {
-        max-height: 300px;
+        max-height: 300px; @include tablet { max-height: 400px; }
         overflow-y: auto;
       }
     }
@@ -153,11 +153,11 @@
   
   .section-list__drop-wrapper {
     border-radius: 8px;
-    margin-left: 19px;
-    margin-right: 10px;
+    margin-left: 9px;
+    margin-right: 3px;
     overflow: hidden;
     @include tablet { margin-left: 14px; margin-right: 5px; }
-    @include phone { margin-left: 9px; margin-right: 3px; }
+    @include desktop { margin-left: 19px; margin-right: 10px; }
   }
   
   .section-list__drop {
