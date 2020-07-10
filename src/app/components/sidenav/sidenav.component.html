@@ -12,22 +12,39 @@
       Font
     </button>
     <div class="sidenav-section-body">
-        <button class="theme-button border-color-default light-mode"
-          (click)="togglelightTheme(LightThemeEnum.LIGHT)"
-          [ngClass]="{'is-selected': lightTheme === LightThemeEnum.LIGHT}">
-          abc
-        </button>
-        <button class="theme-button border-color-default dim-mode"
-          (click)="togglelightTheme(LightThemeEnum.DIM)"
-          [ngClass]="{'is-selected': lightTheme === LightThemeEnum.DIM}">
-          abc
-        </button>
-        <button class="theme-button border-color-default dark-mode"
-          (click)="togglelightTheme(LightThemeEnum.DARK)"
-          [ngClass]="{'is-selected': lightTheme === LightThemeEnum.DARK}">
-          abc
-        </button>
-    </div>
+      <button class="theme-button border-color-default light-mode"
+        (click)="togglelightTheme(LightThemeEnum.LIGHT)"
+        [ngClass]="{'is-selected': lightTheme === LightThemeEnum.LIGHT}">
+        abc
+      </button>
+      <button class="theme-button border-color-default dim-mode"
+        (click)="togglelightTheme(LightThemeEnum.DIM)"
+        [ngClass]="{'is-selected': lightTheme === LightThemeEnum.DIM}">
+        abc
+      </button>
+      <button class="theme-button border-color-default dark-mode"
+        (click)="togglelightTheme(LightThemeEnum.DARK)"
+        [ngClass]="{'is-selected': lightTheme === LightThemeEnum.DARK}">
+        abc
+      </button>
+  </div>
+  <div class="sidenav-section-body">
+    <button class="global-font-size-button" style="font-size: 22px;"
+      (click)="toggleGlobalFontSize(GlobalFontSizeEnum.BIG)"
+      [ngClass]="{'is-selected': globalFontSize === GlobalFontSizeEnum.BIG}">
+      Aa
+    </button>
+    <button class="global-font-size-button" style="font-size: 18px;"
+      (click)="toggleGlobalFontSize(GlobalFontSizeEnum.MEDIUM)"
+      [ngClass]="{'is-selected': globalFontSize === GlobalFontSizeEnum.MEDIUM}">
+      Aa
+    </button>
+    <button class="global-font-size-button" style="font-size: 14px;"
+      (click)="toggleGlobalFontSize(GlobalFontSizeEnum.SMALL)"
+      [ngClass]="{'is-selected': globalFontSize === GlobalFontSizeEnum.SMALL}">
+      Aa
+  </button>
+</div>
   </div>
 </div>
 

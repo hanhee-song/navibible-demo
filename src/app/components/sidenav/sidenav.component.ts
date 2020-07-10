@@ -1,8 +1,8 @@
-import { LightThemeEnum, OptionsService } from './../../services/controls/options.service';
-import { SidenavService } from './../../services/controls/sidenav.service';
-import { LogService } from './../../logger/log.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
+import { LogService } from './../../logger/log.service';
+import { GlobalFontSizeEnum, LightThemeEnum, OptionsService } from './../../services/controls/options.service';
+import { SidenavService } from './../../services/controls/sidenav.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -12,8 +12,10 @@ import { LogWrapper } from 'src/app/logger/log-wrapper';
 export class SidenavComponent extends LogWrapper implements OnInit, OnDestroy {
 
   public isOpen: boolean;
-  public LightThemeEnum = LightThemeEnum;
   public lightTheme: LightThemeEnum;
+  public LightThemeEnum = LightThemeEnum;
+  public globalFontSize: GlobalFontSizeEnum;
+  public GlobalFontSizeEnum = GlobalFontSizeEnum;
   public isTransitioning: boolean = false;
 
   public drawers: { [key: string]: boolean } = {};
@@ -37,6 +39,7 @@ export class SidenavComponent extends LogWrapper implements OnInit, OnDestroy {
     this.sidenavService = sidenavService;
     this.optionsService = optionsService;
     this.optionsService.lightTheme$.subscribe(theme => this.lightTheme = theme);
+    this.optionsService.globalFontSize$.subscribe(size => this.globalFontSize = size);
   }
 
   ngOnInit(): void {
@@ -46,6 +49,10 @@ export class SidenavComponent extends LogWrapper implements OnInit, OnDestroy {
 
   public togglelightTheme(mode: LightThemeEnum): void {
     this.optionsService.setlightTheme(mode);
+  }
+  
+  public toggleGlobalFontSize(size: GlobalFontSizeEnum): void {
+    this.optionsService.setGlobalFontSize(size);
   }
 
   public toggleSidenav(): void {

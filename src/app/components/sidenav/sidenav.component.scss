@@ -86,3 +86,15 @@
     text-decoration: underline double;
   }
 }
+
+.global-font-size-button {
+  border-width: 2px;
+  width: 45px;
+  height: 45px;
+  margin-right: 30px;
+  border-radius: 50%;
+
+  &.is-selected {
+    text-decoration: underline double;
+  }
+}

@@ -1,4 +1,4 @@
-<div class="main-body" [class]="lightTheme">
+<div class="main-body" [ngClass]="[lightTheme, globalFontSize]">
   <app-topnav></app-topnav>
   <app-sidenav></app-sidenav>
   <app-editing-bar *ngIf="isEditingMode"></app-editing-bar>

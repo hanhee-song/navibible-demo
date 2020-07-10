@@ -1,10 +1,8 @@
-import { OptionsService, LightThemeEnum } from './services/controls/options.service';
-import { SidenavService } from './services/controls/sidenav.service';
-import { LogService } from './logger/log.service';
-import { Verse } from './models/verse.model';
-import { BibleDataService } from './services/bible/bible-data.service';
 import { Component, OnDestroy } from '@angular/core';
 import { LogWrapper } from './logger/log-wrapper';
+import { LogService } from './logger/log.service';
+import { BibleDataService } from './services/bible/bible-data.service';
+import { GlobalFontSizeEnum, LightThemeEnum, OptionsService } from './services/controls/options.service';
 
 @Component({
   selector: 'body',
@@ -18,6 +16,7 @@ export class AppComponent extends LogWrapper implements OnDestroy {
 
   public isBibleDataInitialized: boolean = false;
   public lightTheme: LightThemeEnum;
+  public globalFontSize: GlobalFontSizeEnum;
   public isEditingMode: boolean = false;
   
   private optionsService: OptionsService;
@@ -35,6 +34,7 @@ export class AppComponent extends LogWrapper implements OnDestroy {
     this.optionsService = optionsService;
 
     this.optionsService.lightTheme$.subscribe(mode => this.lightTheme = mode);
+    this.optionsService.globalFontSize$.subscribe(size => this.globalFontSize = size);
     this.optionsService.isEditingMode$.subscribe(editingMode => this.isEditingMode = editingMode);
   }
 
