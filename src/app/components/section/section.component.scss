@@ -81,7 +81,7 @@
       width: 100%;
       
       button {
-        left: -3px;
+        top: -3px;
       }
       
       .header__left--title {
@@ -156,7 +156,12 @@
 }
 
 .top-level-section {
-  &.section { max-width: 800px; width: 100%; margin-bottom: 400px; }
+  &.section {
+    max-width: 800px;
+    width: 100%;
+    margin-bottom: 400px;
+    > .section-list__drop-wrapper { padding-bottom: 10px; }
+  }
 
   & > .section-list {
     margin-left: 0;
