@@ -44,18 +44,20 @@
         ></textarea>
     </div>
 
-    <div [cdkDropListData]="inputMultiRanges"
+    <!-- <div [cdkDropListData]="inputMultiRanges"
       cdkDropList
       class="drag-wrapper"
-      (cdkDropListDropped)="drop($event)">
+      (cdkDropListDropped)="drop($event)"> -->
+    <div 
+      class="drag-wrapper">
       
       <ng-container *ngFor="let inputMultiRange of inputMultiRanges; let i = index;">
         <div class="input-group draggable"
           [ngClass]="{
             'error': inputMultiRange.error,
             'transparent': !inputMultiRange.input
-          }"
-          cdkDrag>
+          }">
+          <!-- cdkDrag> -->
           <label for="section-reference">Reference: {{inputMultiRange.multiRange}}</label>
           <button type="button" class="delete-multi-range font-size-5"
             (click)="onDeleteMultiRange(inputMultiRange, $event)"

@@ -60,9 +60,11 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
     event.preventDefault();
     if (this.visible) {
       this.visible = false;
-    } else if (this.isFormOpen) {
+    }
+    if (this.isFormOpen) {
       this.isFormOpen = false;
     }
+    this.clearFields();
     this.cancel.next();
   }
 
@@ -114,10 +116,14 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
     if (this.inputMultiRanges.some(inputMultiRange => inputMultiRange.error)) return;
     const multiRange = this.inputMultiRanges.map(inputMultiRange => this.referenceFactory.resolveMultiReference(inputMultiRange.input));
     this.onNewSection.emit(this.sectionFactory.create(this.inputName, this.inputComment, multiRange));
+    this.clearFields();
+    this.inputNameField.nativeElement.focus();
+  }
+  
+  private clearFields(): void {
     this.inputName = '';
     this.inputMultiRanges = [{}];
     this.multiRanges = [];
-    this.inputNameField.nativeElement.focus();
   }
 
   public onInputReferenceChange(input: string, inputMultiRange: { input?: string, multiRange?: string, error?: boolean }) {

@@ -11,22 +11,28 @@
 
   .drag-button {
     position: absolute;
-    left: 0px;
+    border-radius: 3px;
+    left: 0px; @include phone { left: -7px; }
     width: 16px;
-    @include phone { left: -7px; }
   }
 
   .section__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 10px 20px; @include phone { padding: 10px 7px; }
     border-radius: 8px 8px 0 0;
     transition: background 1s;
     position: relative;
     // background: inherit;
     
-    @include phone { padding: 10px 7px; }
+    button {
+      border-radius: 3px;
+      height: 28px;
+      width: 23px;
+      @include phone { width: 20px; height: 25px; }
+    }
+    
     
     &.background-color-strong {
       transition: background .25s;
@@ -40,10 +46,6 @@
 
     .expand-button {
       position: absolute;
-    }
-
-    button {
-      width: 22px;
     }
     
     .fa {
@@ -73,41 +75,38 @@
       background: rgb(4,0,74);
       background: linear-gradient(90deg, rgba(4,0,74,0.42200630252100846) 0%, rgba(4,21,96,0.11668417366946782) 43%, rgba(0,179,255,0) 100%);
     }
-  }
-
-  .header__left {
-    position: relative;
-    width: 100%;
     
-    .header__left--title {
-      padding-left: 25px;
+    .header__left {
+      position: relative;
+      width: 100%;
       
-      .truncate {
-        width: 80%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      .header__left--title {
+        padding-left: 25px;
         
-        @include phone { max-width: 225px; }
-      }
-      
-      * {
-        @include tablet { max-width: 500px; }
-        @include desktop { max-width: 800px; }
+        .truncate {
+          width: 80%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          
+          @include phone { max-width: 225px; }
+        }
+        
+        * {
+          @include tablet { max-width: 500px; }
+          @include desktop { max-width: 800px; }
+        }
       }
     }
-  }
-
-  .header__right {
-    position: absolute;
-    right: 0;
-    background: inherit;
     
-    button {
-      border-radius: 3px;
-      height: 28px;
-      width: 28px;
-      @include phone { width: 25px; height: 25px; }
+    .header__right {
+      position: absolute;
+      right: 0;
+      background: inherit;
+      
+      button {
+        width: 28px; @include phone { width: 25px; }
+      }
     }
   }
 

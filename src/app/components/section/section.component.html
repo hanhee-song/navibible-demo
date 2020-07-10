@@ -3,7 +3,7 @@
 <div class="section__header border-color-subtle" *ngIf="sectionLevel > 0" [ngClass]="{'background-color-strong': isEdit}">
   <div class="selected" *ngIf="false"></div>
   <div class="header__left">
-    <button class="expand-button" (click)="toggleExpand()">
+    <button class="expand-button hoverable" (click)="toggleExpand()">
       <i class="font-size-5 fa fa-chevron-right" [ngClass]="{ 'rotate': section.isExpanded }" aria-hidden="true"></i>
       <span *ngIf="section.sections.length" class="section-count text-color-subtle font-size-1">{{section.sections.length}}</span>
     </button>
@@ -85,7 +85,7 @@
             [grandparentSection]="parentSection"
             [isEditingMode]="isEditingMode"
             [sectionLevel]="sectionLevel + 1">
-            <button class="drag-button font-size-5" *ngIf="isEditingMode"
+            <button class="drag-button font-size-5 hoverable" *ngIf="isEditingMode"
               cdkDragHandle>
               <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </button>
