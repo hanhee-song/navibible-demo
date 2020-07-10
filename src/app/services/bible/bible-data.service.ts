@@ -1,26 +1,32 @@
-import { Observable, Subject, zip } from 'rxjs';
-import { flatMap, switchMap, map } from 'rxjs/operators';
-import { HttpDataService } from './http-data.service';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
+import { Observable, zip } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { LogWrapper } from 'src/app/logger/log-wrapper';
 import { Bible } from 'src/app/models/bible';
+import { LogService } from './../../logger/log.service';
+import { HttpDataService } from './http-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BibleDataService {
+export class BibleDataService extends LogWrapper implements OnDestroy {
   
-  private httpDataService: HttpDataService;
 
   private static readonly BIBLE_CHAPTER_VERSE_MAP_PATH: string = 'assets/bible-chapter-verse-map.json';
-  private static readonly BIBLE_VERSE_ARR_PATH: string = 'assets/bible-book-map-arr.json';
+  // private static readonly BIBLE_VERSE_ARR_PATH: string = 'assets/bible-book-map-arr.json';
+  private static readonly BIBLE_VERSE_ARR_PATH: string = 'assets/bible-arr.json';
+  
 
   private kjv;
 
   constructor(
-    httpDataService: HttpDataService
+    logService: LogService,
+    private httpDataService: HttpDataService
   ) {
-    this.httpDataService = httpDataService;
+    super(logService);
   }
+  
+  ngOnDestroy() { }
 
   public initializeBible(): Observable<boolean> {
     return zip(this.httpDataService.getJson(BibleDataService.BIBLE_VERSE_ARR_PATH), this.httpDataService.getJson(BibleDataService.BIBLE_CHAPTER_VERSE_MAP_PATH))
@@ -32,7 +38,7 @@ export class BibleDataService {
       );
   }
   
-  public getBible(): Bible {
+  public getBible = (): Bible => {
     return this.kjv;
   }
 }

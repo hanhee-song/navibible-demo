@@ -1,12 +1,11 @@
+import { cloneDeep, startCase } from 'lodash';
 import { Book } from './book';
-import { Verse } from './verse.model';
-import { startCase, cloneDeep } from 'lodash';
-import { Reference } from './reference';
+import { Reference, ReferenceInterface } from './reference';
 import { ReferenceRange } from './reference-range';
 
 export class Bible {
   private CHAPTER_VERSE_MAP: { [book: string]: Book } = {};
-  private BOOK_MAP_ARR: { [book: string]: string[][] } = {};
+  private BOOK_MAP_ARR: string[] = [];
   private VERSE_INDEX_ARR: { [book: string]: number[] } = {};
 
   constructor(bookMapArray, chapterVerseMap: { [book: string]: number[] } ) {
@@ -36,12 +35,22 @@ export class Bible {
   }
 
   public getVerseByReference(ref: Reference): string {
-    return this.BOOK_MAP_ARR[ref.book][ref.chapter][ref.verse];
+    return this.BOOK_MAP_ARR[this.getIndexByReference(ref)];
   }
 
-  public getVersesByReferenceRange(refRange: ReferenceRange): { [ref: string]: string } {
-    const verses: { [ref: string]: string } = {};
-    return verses;
+  public getVersesByReferenceRange(refRange: ReferenceRange, limit?: number): { index: number, ref: ReferenceInterface, text: string }[] {
+    const startingIndex = this.getIndexByReference(refRange.fromReference);
+    const endIndex = Math.min(this.getIndexByReference(refRange.toReference) + 1, limit + startingIndex);
+    return this.BOOK_MAP_ARR.slice(
+      startingIndex,
+      endIndex
+    ).map((verse, i) => {
+      return {
+        index: i + startingIndex,
+        ref: this.getReferenceByIndex(i + startingIndex),
+        text: verse
+      }
+    });
   }
 
   public getBookByInput(input: string): Book {
@@ -63,4 +72,20 @@ export class Bible {
   public getIndexByReference(ref: Reference): number {
     return this.getIndexByBookChapterVerse(ref.book, ref.chapter, ref.verse);
   }
+  
+  public getReferenceByIndex(index: number): ReferenceInterface {
+    const bookArr = Book.getOrderedBooks();
+    const book = bookArr.find((book, i) => this.VERSE_INDEX_ARR[book][1] <= index && index < (this.VERSE_INDEX_ARR[bookArr[i + 1]][1] || 999999999))
+    const bookChapters = this.VERSE_INDEX_ARR[book];
+    for (let i = 0; i < bookChapters.length; i++) {
+      if (index <= bookChapters[i + 1]) {
+        return {
+          book,
+          chapter: i,
+          verse: index - bookChapters[i]
+        };
+      }
+    }
+  }
 }
+

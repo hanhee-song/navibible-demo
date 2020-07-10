@@ -1,7 +1,6 @@
-import { Bible } from './bible';
 import { Book } from './book';
 
-export class Reference {
+export class Reference implements ReferenceInterface {
   public readonly book: string;
   public readonly chapter: number;
   public readonly verse: number;
@@ -48,4 +47,10 @@ export class Reference {
   public compareTo(ref: Reference): number {
     return this.index < ref.index ? -1 : this.index === ref.index ? 0 : 1;
   }
+}
+
+export interface ReferenceInterface {
+  book: string;
+  chapter: number;
+  verse: number;
 }

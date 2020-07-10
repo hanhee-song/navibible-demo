@@ -18,6 +18,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { EditingBarComponent } from './components/editing-bar/editing-bar.component';
 import { SmoothHeightDirective } from './directives/smooth-height.directive';
 import { NotificationComponent } from './components/notification/notification.component';
+import { NgVarDirective } from './directives/ng-var.directive';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NotificationComponent } from './components/notification/notification.co
     ModalComponent,
     EditingBarComponent,
     SmoothHeightDirective,
-    NotificationComponent
+    NotificationComponent,
+    NgVarDirective
   ],
   imports: [
     BrowserModule,

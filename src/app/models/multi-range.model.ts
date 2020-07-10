@@ -1,5 +1,5 @@
-import { ReferenceRange } from './reference-range';
 import { flatten } from 'lodash';
+import { ReferenceRange } from './reference-range';
 
 export class MultiRange implements MultiRange {
   public referenceRanges: ReferenceRange[] = [];
@@ -13,6 +13,10 @@ export class MultiRange implements MultiRange {
     } else if (arg1) {
       this.referenceRanges = [arg1];
     }
+  }
+  
+  public getText(): string {
+    return '';
   }
 
   public isEmpty(): boolean {
@@ -35,10 +39,6 @@ export class MultiRange implements MultiRange {
   
   public add(refRange: ReferenceRange): void {
     this.referenceRanges.push(refRange);
-  }
-  
-  public size(): number {
-    return this.referenceRanges.length;
   }
 }
 

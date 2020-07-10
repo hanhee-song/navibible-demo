@@ -170,28 +170,28 @@ $desktop-width: 1024px;
 }
 
 @include phone {
-  .font-size-6 { font-size: 20px; }
-  .font-size-5 { font-size: 18px; }
-  .font-size-4 { font-size: 16px; }
-  .font-size-3 { font-size: 14px; }
-  .font-size-2 { font-size: 12px; }
-  .font-size-1 { font-size: 10px; }
+  .font-size-6 { font-size: 20px; &.spaced { line-height: 24px; } }
+  .font-size-5 { font-size: 18px; &.spaced { line-height: 22px; } }
+  .font-size-4 { font-size: 16px; &.spaced { line-height: 20px; } }
+  .font-size-3 { font-size: 14px; &.spaced { line-height: 18px; } }
+  .font-size-2 { font-size: 12px; &.spaced { line-height: 16px; } }
+  .font-size-1 { font-size: 10px; &.spaced { line-height: 14px; } }
 }
 
 @include tablet {
-  .font-size-6 { font-size: 21px; }
-  .font-size-5 { font-size: 19px; }
-  .font-size-4 { font-size: 17px; }
-  .font-size-3 { font-size: 15px; }
-  .font-size-2 { font-size: 13px; }
-  .font-size-1 { font-size: 11px; }
+  .font-size-6 { font-size: 21px; &.spaced { line-height: 25px; } }
+  .font-size-5 { font-size: 19px; &.spaced { line-height: 23px; } }
+  .font-size-4 { font-size: 17px; &.spaced { line-height: 21px; } }
+  .font-size-3 { font-size: 15px; &.spaced { line-height: 19px; } }
+  .font-size-2 { font-size: 13px; &.spaced { line-height: 17px; } }
+  .font-size-1 { font-size: 11px; &.spaced { line-height: 15px; } }
 }
 
 @include desktop {
-  .font-size-6 { font-size: 21px; }
-  .font-size-5 { font-size: 19px; }
-  .font-size-4 { font-size: 17px; }
-  .font-size-3 { font-size: 15px; }
-  .font-size-2 { font-size: 13px; }
-  .font-size-1 { font-size: 11px; }
+  .font-size-6 { font-size: 21px; &.spaced { line-height: 25px; } }
+  .font-size-5 { font-size: 19px; &.spaced { line-height: 23px; } }
+  .font-size-4 { font-size: 17px; &.spaced { line-height: 21px; } }
+  .font-size-3 { font-size: 15px; &.spaced { line-height: 19px; } }
+  .font-size-2 { font-size: 13px; &.spaced { line-height: 17px; } }
+  .font-size-1 { font-size: 11px; &.spaced { line-height: 15px; } }
 }

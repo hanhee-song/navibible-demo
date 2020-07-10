@@ -33,7 +33,6 @@
     </button>
   </div>
 </div>
-
 <div app-new-section
   class="edit-section"
   [openForm]="isEdit && isEditingMode"
@@ -47,6 +46,7 @@
 </div>
 
 <div class="section-list__drop-wrapper"
+  *ngIf="section.isExpanded || isDropdownTransitioning"
   [ngClass]="{
     'background-color-subtle': !(sectionLevel % 2),
     'background-color-default': !!(sectionLevel % 2)
@@ -55,16 +55,36 @@
     [ngClass]="{
       'is-visible': section.isExpanded
     }">
-    <div class="font-size-3 section-comment"
-      *ngIf="section.comment && (section.isExpanded || isDropdownTransitioning)"
-      [ngClass]="{
-        'is-visible': section.isExpanded && !isEdit
-      }">
-      <div>{{section.comment}}</div>
+    <div class="section-comment"
+      *ngIf="section.comment">
+      <div class="section-comment__header hoverable"
+        (click)="toggleComment()">
+        <i class="fa" [ngClass]="{'fa-plus': !section.isCommentExpanded, 'fa-minus': section.isCommentExpanded}" aria-hidden="true"></i>
+      </div>
+      <div class="section-comment__content font-size-3 spaced"
+        [ngClass]="{'is-expanded': section.isCommentExpanded}">
+        {{section.comment}}
+      </div>
     </div>
     
-    <div class="section-list"
-      *ngIf="section.isExpanded || isDropdownTransitioning">
+    <ng-container *ngIf="section.getVersesText(section.isTextExpanded ? 400 : 30); let verses">
+      <div class="section-text"
+        *ngIf="sectionLevel > 0 && verses?.length">
+        <div class="section-text__header hoverable"
+          (click)="toggleText()">
+          <i class="fa" [ngClass]="{'fa-plus': !section.isTextExpanded, 'fa-minus': section.isTextExpanded}" aria-hidden="true"></i>
+        </div>
+        <div class="section-text__content font-size-3 spaced"
+          [ngClass]="{'is-expanded': section.isTextExpanded}">
+          <ng-container *ngFor="let verse of verses">
+            <span class="section-text__verse-ref font-size-1">{{verse.ref}}</span>{{verse.text}}
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+    
+    
+    <div class="section-list">
       <div class="drag-wrapper"
         [cdkDropListData]="section.sections"
         cdkDropList id="list-{{sectionLevel}}"

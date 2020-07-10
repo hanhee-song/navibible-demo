@@ -1,11 +1,11 @@
-import { SectionService } from './../../services/section/section.service';
-import { ModalService } from './../../services/controls/modal.service';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, Input, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { smoothHeight } from 'src/app/animations/animations';
+import { LogWrapper } from 'src/app/logger/log-wrapper';
 import { LogService } from './../../logger/log.service';
 import { Section } from './../../models/section.model';
-import { Component, OnInit, Input, OnDestroy, ViewChild, HostBinding, SimpleChanges, EventEmitter, Output, ViewEncapsulation, ElementRef } from '@angular/core';
-import { LogWrapper } from 'src/app/logger/log-wrapper';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { smoothHeight } from 'src/app/animations/animations';
+import { ModalService } from './../../services/controls/modal.service';
+import { SectionService } from './../../services/section/section.service';
 
 @Component({
   selector: 'div[app-section]',
@@ -61,6 +61,14 @@ export class SectionComponent extends LogWrapper implements OnInit, OnDestroy {
       const original = this.sectionService.getOriginalStateSection(this.section.uniqueId);
       if (original) original.isExpanded = this.section.isExpanded;
     }, 1);
+  }
+  
+  public toggleComment(): void {
+    this.section.isCommentExpanded = !this.section.isCommentExpanded;
+  }
+  
+  public toggleText(): void {
+    this.section.isTextExpanded = !this.section.isTextExpanded;
   }
 
   public onEdit() {

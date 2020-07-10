@@ -42,20 +42,20 @@ export class ReferenceRange {
     return res;
   }
 
-  /**
-   * Makes a map of all the reference ranges where the book is the same. WARNING: Excludes all two-book ranges!
-   */
-  public static groupSingleBookRangesByBook(refRanges: ReferenceRange[]): { [book: string]: ReferenceRange[] } {
-    const bookMap: { [book: string]: ReferenceRange[] } = {};
-    refRanges
-      .filter(refRange => refRange.isOneBook())
-      .forEach(refRange => {
-        !bookMap[refRange.fromReference.book]
-          ? bookMap[refRange.fromReference.book] = [refRange]
-          : bookMap[refRange.fromReference.book].push(refRange);
-      });
-    return bookMap;
-  }
+  // /**
+  //  * Makes a map of all the reference ranges where the book is the same. WARNING: Excludes all two-book ranges!
+  //  */
+  // public static groupSingleBookRangesByBook(refRanges: ReferenceRange[]): { [book: string]: ReferenceRange[] } {
+  //   const bookMap: { [book: string]: ReferenceRange[] } = {};
+  //   refRanges
+  //     .filter(refRange => refRange.isOneBook())
+  //     .forEach(refRange => {
+  //       !bookMap[refRange.fromReference.book]
+  //         ? bookMap[refRange.fromReference.book] = [refRange]
+  //         : bookMap[refRange.fromReference.book].push(refRange);
+  //     });
+  //   return bookMap;
+  // }
   
   /**
    * Stringifies an array of reference ranges, merging and sorting as needed
@@ -72,7 +72,7 @@ export class ReferenceRange {
     return str.join(', ');
   }
   
-  private static sort(refRanges: ReferenceRange[]): ReferenceRange[] {
+  public static sort(refRanges: ReferenceRange[]): ReferenceRange[] {
     return refRanges.sort((range1, range2) => range1.fromReference.compareTo(range2.fromReference));
   }
 
@@ -80,8 +80,6 @@ export class ReferenceRange {
     return this.fromReference.isSameBook(this.toReference);
   }
 
-  public toString();
-  public toString(noBook?: boolean);
   public toString(noBook?: boolean): string {
     // genesis 1:1-exodus 40:end -> genesis 1-exodus 40
     if (!this.fromReference.isSameBook(this.toReference)) {

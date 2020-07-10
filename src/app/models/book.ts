@@ -1,21 +1,31 @@
-import { ReferenceRange } from './reference-range';
-import { Reference } from './reference';
 import { Bible } from 'src/app/models/bible';
 export class Book {
   private readonly bible: Bible;
   private readonly chapterVerseMap: number[];
   public readonly name: string;
-  public static readonly BOOK_INDEX: { [name: string]: number } = [
-    "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy", "Joshua", "Judges", "Ruth", "1 Samuel", "2 Samuel", "1 Kings", "2 Kings", "1 Chronicles", "2 Chronicles", "Ezra", "Nehemiah", "Esther", "Job", "Psalms", "Proverbs", "Ecclesiastes", "Song Of Solomon", "Isaiah", "Jeremiah", "Lamentations", "Ezekiel", "Daniel", "Hosea", "Joel", "Amos", "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk", "Zephaniah", "Haggai", "Zechariah", "Malachi", "Matthew", "Mark", "Luke", "John", "Acts", "Romans", "1 Corinthians", "2 Corinthians", "Galatians", "Ephesians", "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians", "1 Timothy", "2 Timothy", "Titus", "Philemon", "Hebrews", "James", "1 Peter", "2 Peter", "1 John", "2 John", "3 John", "Jude", "Revelation"
-  ].reduce((map, book, index) => {
-    map[book] = index;
+  private static readonly BOOKS: string[][] = [["Genesis", "Gen"],["Exodus", "Ex"],["Leviticus", "Lev"],["Numbers", "Num"],["Deuteronomy", "Deut"],["Joshua", "Josh"],["Judges", "Judg"],["Ruth", "Ruth"],["1 Samuel", "1 Sam"],["2 Samuel", "2 Sam"],["1 Kings", "1 Kings"],["2 Kings", "2 Kings"],["1 Chronicles", "1 Chron"],["2 Chronicles", "2 Chron"],["Ezra", "Ezra"],["Nehemiah", "Neh"],["Esther", "Est"],["Job", "Job"],["Psalms", "Ps"],["Proverbs", "Prov"],["Ecclesiastes", "Ecc"],["Song Of Solomon", "Song"],["Isaiah", "Isa"],["Jeremiah", "Jer"],["Lamentations", "Lam"],["Ezekiel", "Ezek"],["Daniel", "Dan"],["Hosea", "Hos"],["Joel", "Joel"],["Amos", "Amos"],["Obadiah", "Obad"],["Jonah", "Jonah"],["Micah", "Mic"],["Nahum", "Nah"],["Habakkuk", "Hab"],["Zephaniah", "Zeph"],["Haggai", "Hag"],["Zechariah", "Zech"],["Malachi", "Mal"],["Matthew", "Matt"],["Mark", "Mark"],["Luke", "Luke"],["John", "John"],["Acts", "Act"],["Romans", "Rom"],["1 Corinthians", "1 Cor"],["2 Corinthians", "2 Cor"],["Galatians", "Gal"],["Ephesians", "Eph"],["Philippians", "Phil"],["Colossians", "Col"],["1 Thessalonians", "1 Thess"],["2 Thessalonians", "2 Thess"],["1 Timothy", "1 Tim"],["2 Timothy", "2 Tim"],["Titus", "Titus"],["Philemon", "Philem"],["Hebrews", "Heb"],["James", "James"],["1 Peter", "1 Pet"],["2 Peter", "2 Pet"],["1 John", "1 John"],["2 John", "2 John"],["3 John", "3 John"],["Jude", "Jude"],["Revelation", "Rev"]];
+  private static readonly ORDERED_BOOKS: string[] = Book.BOOKS.map(bookArr => bookArr[0]);
+  public static readonly BOOK_INDEX: { [name: string]: number } = Book.ORDERED_BOOKS.reduce((map, book, index) => {
+    map[book[0]] = index;
     return map;
+  }, {});
+  private static readonly ABBREVIATED_BOOKS: { [name: string]: string } = Book.BOOKS.reduce((map, book) => {
+    map[book[0]] = book[1];
+    return map
   }, {});
 
   constructor(name: string, chapterVerseMap: number[], bible: Bible) {
     this.chapterVerseMap = chapterVerseMap;
     this.name = name;
     this.bible = bible;
+  }
+  
+  public static abbreviate(bookName: string): string {
+    return this.ABBREVIATED_BOOKS[bookName];
+  }
+  
+  public static getOrderedBooks(): string[] {
+    return this.ORDERED_BOOKS;
   }
 
   public getLastChapter(): number {
