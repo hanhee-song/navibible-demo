@@ -1,8 +1,10 @@
+@import '../../../styles.scss';
+
 $bar-height: 50px;
 
 .editing-bar {
   position: fixed;
-  height: $bar-height;
+  height: $bar-height; @include phone { height: $bar-height - 12px; }
   max-height: 0;
   border-bottom-width: 1px;
   left: 0;
@@ -16,7 +18,7 @@ $bar-height: 50px;
   // padding-right: 20px;
   
   &.is-visible {
-    max-height: $bar-height;
+    max-height: $bar-height; @include phone { height: $bar-height - 12px; }
   }
   
   & > button {
@@ -38,12 +40,12 @@ $bar-height: 50px;
 }
 
 .editing-bar-offset {
-  height: $bar-height;
+  height: $bar-height; @include phone { height: $bar-height - 12px; }
   max-height: 0;
   overflow: hidden;
   transition: max-height .3s;
   
   &.is-visible {
-    max-height: $bar-height;
+    max-height: $bar-height; @include phone { height: $bar-height - 12px; }
   }
 }

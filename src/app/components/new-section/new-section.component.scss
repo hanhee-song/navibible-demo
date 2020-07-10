@@ -53,7 +53,7 @@ $form-height: 400px;
       right: 0;
       position: sticky;
       button {
-        padding: 10px 15px;
+        padding: 10px 15px; @include phone { padding: 7px 10px; }
         flex: 1;
         
         &:first-of-type { border-radius: 0 0 0 8px; }

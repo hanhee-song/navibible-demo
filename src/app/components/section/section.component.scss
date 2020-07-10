@@ -30,7 +30,7 @@
       border-radius: 3px;
       height: 28px;
       width: 23px;
-      @include phone { width: 20px; height: 25px; }
+      @include phone { width: 20px; height: 23px; }
     }
     
     
@@ -39,9 +39,9 @@
       border-left-width: 1px;
       border-right-width: 1px;
       border-top-width: 1px;
-      padding: 9px 19px;
+      padding: 8px 19px;
       
-      @include phone { padding: 9px 6px; }
+      @include phone { padding: 6px 6px; }
     }
 
     .expand-button {
@@ -79,6 +79,10 @@
     .header__left {
       position: relative;
       width: 100%;
+      
+      button {
+        left: -3px;
+      }
       
       .header__left--title {
         padding-left: 25px;

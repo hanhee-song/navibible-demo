@@ -1,5 +1,7 @@
+@import '../../../styles.scss';
+
 .topnav {
-  height: 60px;
+  height: 60px; @include phone { height: 40px; }
   position: fixed;
   top: 0;
   left: 0;
@@ -19,10 +21,11 @@
   .edit-button {
     width: 36px;
     height: 36px;
+    @include phone { width: 30px; height: 30px; }
     border-radius: 4px;
   }
 }
 
 .topnav-offset {
-  margin-top: 60px;
+  height: 60px; @include phone { height: 40px; }
 }
