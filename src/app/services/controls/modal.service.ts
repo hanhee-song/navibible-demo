@@ -1,7 +1,7 @@
-import { LogService } from './../../logger/log.service';
-import { LogWrapper } from 'src/app/logger/log-wrapper';
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
+import { LogWrapper } from 'src/app/logger/log-wrapper';
+import { LogService } from './../../logger/log.service';
 
 @Injectable({
   providedIn: 'root'
@@ -87,10 +87,10 @@ export class ModalButton {
   }
   
   public static greenModal(text: string, callback?: Function) {
-    return new ModalButton(text, 'background-color-subtle-green', callback);
+    return new ModalButton(text, 'background-color-subtle-green hoverable', callback);
   }
     
   public static redModal(text: string, callback?: Function) {
-    return new ModalButton(text, 'background-color-subtle-red', callback);
+    return new ModalButton(text, 'background-color-subtle-red hoverable', callback);
   }
 }

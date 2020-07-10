@@ -102,6 +102,13 @@
     position: absolute;
     right: 0;
     background: inherit;
+    
+    button {
+      border-radius: 3px;
+      height: 28px;
+      width: 28px;
+      @include phone { width: 25px; height: 25px; }
+    }
   }
 
   .section-comment {

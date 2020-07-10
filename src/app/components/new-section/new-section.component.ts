@@ -1,13 +1,11 @@
-import { remove } from 'lodash';
-import { SectionFactory } from './../../services/section/section-factory';
-import { Section } from 'src/app/models/section.model';
-import { ReferenceFactory } from './../../services/bible/reference-factory';
-import { LogService } from './../../logger/log.service';
-import { LogWrapper } from 'src/app/logger/log-wrapper';
-import { Component, OnInit, OnDestroy, Output, EventEmitter, Input, SimpleChanges, ViewEncapsulation, ElementRef, ViewChild, HostBinding } from '@angular/core';
-import { MultiRange } from 'src/app/models/multi-range.model';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import {CdkTextareaAutosize} from '@angular/cdk/text-field';
+import { Component, ElementRef, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
+import { LogWrapper } from 'src/app/logger/log-wrapper';
+import { MultiRange } from 'src/app/models/multi-range.model';
+import { Section } from 'src/app/models/section.model';
+import { LogService } from './../../logger/log.service';
+import { ReferenceFactory } from './../../services/bible/reference-factory';
+import { SectionFactory } from './../../services/section/section-factory';
 
 
 @Component({

@@ -1,6 +1,6 @@
 <!-- <div class="new-section"> -->
 <ng-container>
-  <button class="section__header background-color-strong border-color-subtle"
+  <button class="section__header background-color-strong border-color-subtle hoverable"
     (click)="onOpenForm()"
     [ngClass]="{'is-expanded': isFormOpen || isTransitioning}"
     *ngIf="showHeader">
@@ -74,12 +74,12 @@
     </div>
     
     <div class="form-buttons">
-      <button type="button" class="cancel-button background-color-subtle-red"
+      <button type="button" class="cancel-button background-color-subtle-red hoverable"
         (click)="onCancel($event)">
         Cancel
       </button>
       <button type="submit"
-        class="submit-button"
+        class="submit-button hoverable"
         [ngClass]="{
           'background-color-subtle-green': inputName,
           'background-color-subtle text-color-faint': !inputName

@@ -1,6 +1,6 @@
-import { MultiRange } from './multi-range.model';
-import { BibleDataService } from './../services/bible/bible-data.service';
 import { flatten } from 'lodash';
+import { BibleDataService } from './../services/bible/bible-data.service';
+import { MultiRange } from './multi-range.model';
 
 export class Section implements SectionInterface {
   public static bibleDataService: BibleDataService;

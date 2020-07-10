@@ -1,8 +1,8 @@
-import { ModalService } from './../../services/controls/modal.service';
-import { LogService } from './../../logger/log.service';
+import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { Modal } from 'src/app/services/controls/modal.service';
+import { LogService } from './../../logger/log.service';
+import { ModalService } from './../../services/controls/modal.service';
 
 @Component({
   selector: 'app-modal',

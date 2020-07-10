@@ -7,8 +7,12 @@
   overflow-x: hidden;
 }
 
-.background-color-subtle-green, .background-color-subtle-red {
-  transition: background .3s;
+.hoverable {
+  transition: background .25s;
+  background: inherit;
+  cursor: pointer;
+  
+  &:hover { transition: background .15s; }
 }
 
 .dark-mode {
@@ -19,14 +23,16 @@
   .text-color-default { color: #eee; }
   .text-color-subtle { color: #ccc; }
   .text-color-faint { color: #aaa; }
+  .hoverable:hover { background: #444; }
   .background-color-default { background: #111; }
   .background-color-strong { background: #333; }
   .background-color-subtle { background: #222; }
+  .background-color-subtle.hoverable:hover { background: #333; }
   .background-color-green { background: #025413; }
   .background-color-subtle-green { background: #025413; }
-  .background-color-subtle-green:hover { background: #0d5c1d; }
+  .background-color-subtle-green.hoverable:hover { background: #0d5c1d; }
   .background-color-subtle-red { background: #691111; }
-  .background-color-subtle-red:hover { background: #7c1b1b; }
+  .background-color-subtle-red.hoverable:hover { background: #7c1b1b; }
   .background-color-backdrop { background: #eeeeee22; }
   .cdk-drag-preview { background: #333; }
   .border-color-default { border-color: #555; border-style: solid; }
@@ -54,14 +60,16 @@
   .text-color-default { color: #ddd; }
   .text-color-subtle { color: #bbb; }
   .text-color-faint { color: #999; }
+  .hoverable:hover { background: #555; }
   .background-color-default { background: #222; }
   .background-color-strong { background: #444; }
   .background-color-subtle { background: #333; }
+  .background-color-subtle.hoverable:hover { background: #444; }
   .background-color-green { background: #035915; }
   .background-color-subtle-green { background: #035915; }
-  .background-color-subtle-green:hover { background: #0b7021; }
+  .background-color-subtle-green.hoverable:hover { background: #0b7021; }
   .background-color-subtle-red { background: #7d1515; }
-  .background-color-subtle-red:hover { background: #972424; }
+  .background-color-subtle-red.hoverable:hover { background: #972424; }
   .background-color-backdrop { background: #dddddd22; }
   .cdk-drag-preview { background: #444; }
   .border-color-default { border-color: #666; border-style: solid; }
@@ -89,14 +97,16 @@
   .text-color-default { color: #222; }
   .text-color-subtle { color: #444; }
   .text-color-faint { color: #666; }
+  .hoverable:hover { background: #fff; }
   .background-color-default { background: #eee; }
-  .background-color-strong { background: #fff; }
-  .background-color-subtle { background: #f9f9f9; }
+  .background-color-strong { background: #fafafa; }
+  .background-color-subtle { background: #f6f6f6; }
+  .background-color-subtle.hoverable:hover { background: #fff; }
   .background-color-green { background: #adffad; }
   .background-color-subtle-green { background: #baffba; }
-  .background-color-subtle-green:hover { background: #d1ffd1; }
+  .background-color-subtle-green.hoverable:hover { background: #d1ffd1; }
   .background-color-subtle-red { background: #ffbaba; }
-  .background-color-subtle-red:hover { background: #ffd4d4; }
+  .background-color-subtle-red.hoverable:hover { background: #ffd4d4; }
   .background-color-backdrop { background: #22222222; }
   .cdk-drag-preview { background: #fff; }
   .border-color-default { border-color: #bbb; border-style: solid; }
