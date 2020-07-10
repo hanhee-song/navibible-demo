@@ -1,8 +1,9 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
+import { LogService } from 'src/app/logger/log.service';
 import { ModalService } from './../../services/controls/modal.service';
 import { OptionsService } from './../../services/controls/options.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { LogService } from 'src/app/logger/log.service';
 
 @Component({
   selector: 'app-topnav',
@@ -11,22 +12,25 @@ import { LogService } from 'src/app/logger/log.service';
 })
 export class TopnavComponent extends LogWrapper implements OnInit, OnDestroy {
 
-  private optionsService: OptionsService;
+  public isSigninDropdownOpen: boolean;
+  public user: SocialUser;
   private isEditingMode: boolean;
-  private modalService: ModalService;
   
   constructor(
     logService: LogService,
-    optionsService: OptionsService,
-    modalService: ModalService
+    private optionsService: OptionsService,
+    private modalService: ModalService,
+    private authService: SocialAuthService
   ) {
     super(logService);
-    this.optionsService = optionsService;
-    this.modalService = modalService;
   }
 
   ngOnInit(): void {
     this.optionsService.isEditingMode$.subscribe(bool => this.isEditingMode = bool);
+    
+    this.authService.authState.subscribe(user => {
+      this.user = user;
+    });
   }
   
   ngOnDestroy() { }
@@ -40,5 +44,15 @@ export class TopnavComponent extends LogWrapper implements OnInit, OnDestroy {
     } else {
       this.optionsService.setEditingMode(!this.isEditingMode);
     }
+  }
+  
+  public signinWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.isSigninDropdownOpen = false;
+  }
+  
+  public signout(): void {
+    this.authService.signOut();
+    this.isSigninDropdownOpen = false;
   }
 }

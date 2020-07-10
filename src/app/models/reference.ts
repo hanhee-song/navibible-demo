@@ -53,4 +53,5 @@ export interface ReferenceInterface {
   book: string;
   chapter: number;
   verse: number;
+  index?: number;
 }

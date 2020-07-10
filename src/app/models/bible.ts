@@ -38,7 +38,7 @@ export class Bible {
     return this.BOOK_MAP_ARR[this.getIndexByReference(ref)];
   }
 
-  public getVersesByReferenceRange(refRange: ReferenceRange, limit?: number): { index: number, ref: ReferenceInterface, text: string }[] {
+  public getVersesByReferenceRange(refRange: ReferenceRange, limit?: number): { ref: ReferenceInterface, text: string }[] {
     const startingIndex = this.getIndexByReference(refRange.fromReference);
     const endIndex = Math.min(this.getIndexByReference(refRange.toReference) + 1, limit + startingIndex);
     return this.BOOK_MAP_ARR.slice(
@@ -46,7 +46,6 @@ export class Bible {
       endIndex
     ).map((verse, i) => {
       return {
-        index: i + startingIndex,
         ref: this.getReferenceByIndex(i + startingIndex),
         text: verse
       }
@@ -80,6 +79,7 @@ export class Bible {
     for (let i = 0; i < bookChapters.length; i++) {
       if (index <= bookChapters[i + 1]) {
         return {
+          index,
           book,
           chapter: i,
           verse: index - bookChapters[i]

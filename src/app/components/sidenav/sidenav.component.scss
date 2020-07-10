@@ -38,22 +38,6 @@
   }
 }
 
-.page-cover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 3;
-  transition: opacity .2s;
-  opacity: 0;
-
-  &.is-active {
-    visibility: visible;
-    opacity: 1;
-  }
-}
-
 .sidenav-section {
   border-top-width: 1px;
 

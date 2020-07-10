@@ -42,7 +42,7 @@ export class Section implements SectionInterface {
 
   public getVersesText(limit?: number): { ref: string, text: string }[] {
     const refRanges = this.getAllChildRefRanges();
-    let verses: { ref: ReferenceInterface, text: string, index: number }[] = flatten(refRanges.map(refRange => {
+    let verses: { ref: ReferenceInterface, text: string }[] = flatten(refRanges.map(refRange => {
       if (limit <= 0) return [];
       const verses = Section.bibleDataService.getBible().getVersesByReferenceRange(refRange, limit);
       limit -= verses.length;
@@ -59,7 +59,7 @@ export class Section implements SectionInterface {
       }
       ref += verse.ref.verse;
       let text = verse.text;
-      if (next && (verse.index + 1 !== next.index || next.ref.verse === 1)) text += '\n\n';
+      if (next && (verse.ref.index + 1 !== next.ref.index || next.ref.verse === 1)) text += '\n\n';
       return {
         ref,
         text: text,
