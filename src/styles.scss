@@ -1,3 +1,6 @@
+@import '~firebaseui/dist/firebaseui.css';
+@import 'mixins.scss';
+
 .main-body {
   position: absolute;
   top: 0;
@@ -13,6 +16,10 @@
   cursor: pointer;
   
   &:hover { transition: background .15s; }
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .page-cover {
@@ -50,6 +57,7 @@
   .background-color-subtle-red { background: #691111; }
   .background-color-subtle-red.hoverable:hover { background: #7c1b1b; }
   .background-color-backdrop { background: #eeeeee22; }
+  .background-color-opposite { background: #eee; }
   .cdk-drag-preview { background: #333; }
   .border-color-default { border-color: #555; border-style: solid; }
   .border-color-subtle {border-color: #444; border-style: solid; }
@@ -87,6 +95,7 @@
   .background-color-subtle-red { background: #7d1515; }
   .background-color-subtle-red.hoverable:hover { background: #972424; }
   .background-color-backdrop { background: #dddddd22; }
+  .background-color-opposite { background: #ddd; }
   .cdk-drag-preview { background: #444; }
   .border-color-default { border-color: #666; border-style: solid; }
   .border-color-subtle {border-color: #555; border-style: solid; }
@@ -124,6 +133,7 @@
   .background-color-subtle-red { background: #ffbaba; }
   .background-color-subtle-red.hoverable:hover { background: #ffd4d4; }
   .background-color-backdrop { background: #22222222; }
+  .background-color-opposite { background: #222; }
   .cdk-drag-preview { background: #fff; }
   .border-color-default { border-color: #bbb; border-style: solid; }
   .border-color-subtle {border-color: #ddd; border-style: solid; }
@@ -162,30 +172,6 @@
 .drag-wrapper.cdk-drop-list-dragging .draggable:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-
-$phone-width: 420px;
-$tablet-width: 768px;
-$desktop-width: 1024px;
-
-@mixin phone {
-  @media (max-width: #{$phone-width - 1px}) {
-    @content;
-  }
-}
-
-@mixin tablet {
-  @media (min-width: #{$phone-width}) {
-    @content;
-  }
-}
-
-@mixin desktop {
-  @media (min-width: #{$tablet-width + 1px}) {
-    @content;
-  }
-}
-
-
 
 .global-font-size-3 {
   @include phone {

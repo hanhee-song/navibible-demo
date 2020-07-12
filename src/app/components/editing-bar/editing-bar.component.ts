@@ -15,7 +15,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 })
 export class EditingBarComponent extends LogWrapper implements OnInit, OnDestroy {
 
-  public isVisible: boolean = false;
+  public isEditingMode: boolean = false;
   
   
   constructor(
@@ -30,20 +30,23 @@ export class EditingBarComponent extends LogWrapper implements OnInit, OnDestroy
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.isVisible = true;
-    }, 10);
+    this.optionsService.isEditingMode$.subscribe(mode => this.isEditingMode = mode);
   }
   
   ngOnDestroy() { }
+  
+  public onEdit() {
+    this.optionsService.setEditingMode(true);
+  }
 
   public onSave(): void {
     this.optionsService.onSave();
   }
   
   public onCancel(): void {
-    this.modalService.yesNoModal('Are you sure you want to discard unsaved changes and revert to last saved state?', () => {
+    this.modalService.yesNoModal('Are you sure you want to discard unsaved changes and quit editing?', () => {
       this.optionsService.onCancel();
+      this.optionsService.setEditingMode(!this.isEditingMode);
     });
   }
   
@@ -62,7 +65,7 @@ export class EditingBarComponent extends LogWrapper implements OnInit, OnDestroy
     if (this.copy(data)) {
       this.notificationService.pushNotification('Successfully exported data to clipboard')
     } else {
-      this.modalService.customModal('Copy the following text:', data, ModalButton.greenModal('Close'));
+      this.modalService.customModal('Copy the following text:', data, undefined, ModalButton.greenModal('Close'));
     }
     
   }

@@ -59,7 +59,8 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
     if (this.isFormOpen) {
       this.isFormOpen = false;
     }
-    this.clearFields();
+    // !showHeader means this is an Edit form, which we don't want to clear
+    if (!this.showHeader) this.clearFields();
     this.cancel.next();
   }
 

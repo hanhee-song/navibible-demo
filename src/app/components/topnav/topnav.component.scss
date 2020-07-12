@@ -1,4 +1,4 @@
-@import '../../../styles.scss';
+@import '../../../mixins.scss';
 
 .topnav {
   height: 60px; @include phone { height: 40px; }
@@ -67,9 +67,9 @@
   }
 }
 
-.user-img {
-  border-radius: 50%;
-  max-width: 40px;
-  max-height: 40px;
-  margin: 0 auto 8px auto;
-}
+// .user-img {
+//   border-radius: 50%;
+//   max-width: 40px;
+//   max-height: 40px;
+//   margin: 0 auto 8px auto;
+// }

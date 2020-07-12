@@ -1,9 +1,12 @@
 <div class="main-body" [ngClass]="[lightTheme, globalFontSize]">
-  <app-topnav></app-topnav>
   <app-sidenav></app-sidenav>
-  <app-editing-bar *ngIf="isEditingMode"></app-editing-bar>
-  <app-bible-main *ngIf="isBibleDataInitialized"></app-bible-main>
   <app-modal></app-modal>
   <app-notification></app-notification>
-  <app-footer></app-footer>
+
+  <div style="display: flex; flex-direction: column; min-height: 100%;">
+    <app-topnav></app-topnav>
+    <app-editing-bar></app-editing-bar>
+    <app-main style="flex: 1 0 auto;"></app-main>
+    <app-footer style="flex-shrink: 0;"></app-footer>
+  </div>
 </div>

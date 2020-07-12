@@ -1,3 +1,5 @@
+import { User } from 'firebase';
+import { SectionsParentList } from './../../models/sections-parent-list.model';
 import { NotificationService } from './../controls/notification.service';
 import { LogService } from './../../logger/log.service';
 import { cloneDeep } from 'lodash';
@@ -9,6 +11,7 @@ import { tap, map, catchError } from 'rxjs/operators';
 import { Section } from 'src/app/models/section.model';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
 import { of, BehaviorSubject, Subject } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -16,38 +19,53 @@ import { of, BehaviorSubject, Subject } from 'rxjs';
 export class SectionService extends LogWrapper implements OnDestroy {
 
   public onSectionParent$: BehaviorSubject<SectionsParent> = new BehaviorSubject<SectionsParent>(null);
+  public onSectionsParentList$: BehaviorSubject<SectionsParentList> = new BehaviorSubject<SectionsParentList>(null);
   
-  private originalState: SectionsParent;
-  private idSectionMap: Map<number, Section>;
-  private sectionsParent: SectionsParent;
+  private sectionsParentList: SectionsParentList;
+  private currentSectionParentOriginalState: SectionsParent;
+  private currentSectionParentIdSectionMap: Map<number, Section>;
+  private user: User;
 
   constructor(
     logService: LogService,
     private sectionDataService: SectionDataService,
-    private notificationsService: NotificationService
+    private notificationsService: NotificationService,
+    private auth: AngularFireAuth
   ) {
     super(logService);
-    this.initSectionsParent().subscribe(data => this.setSectionParent(data));
+    
+    this.auth.authState.subscribe(user => {
+      this.user = user;
+    });
+    
+    this.initSectionsParentList().subscribe()
   }
   
   ngOnDestroy() { }
   
   public getOriginalState(): SectionsParent {
-    return cloneDeep(this.originalState);
+    return cloneDeep(this.currentSectionParentOriginalState);
   }
   
   public getOriginalStateSection(uniqueId: number): Section {
-    return this.idSectionMap.get(uniqueId);
+    return this.currentSectionParentIdSectionMap.get(uniqueId);
   }
 
-  private initSectionsParent(): Observable<SectionsParent> {
+  public initSectionsParentList(): Observable<SectionsParentList> {
     return this.sectionDataService.getSections()
-      .pipe(tap(data => this.setSectionParent(data)));
+      .pipe(
+        tap(data => data.length() === 1 && this.setSectionParent(data.get(0))),
+        tap(data => this.setSectionParentList(data))
+      )
   }
   
-  public setSectionParent(sectionParent: SectionsParent) {
+  public setSectionParentList(list: SectionsParentList): void {
+    this.onSectionsParentList$.next(list);
+  }
+  
+  public setSectionParent(sectionParent: SectionsParent): void {
     this.setOriginalState(sectionParent);
-    return this.onSectionParent$.next(sectionParent);
+    this.onSectionParent$.next(sectionParent);
   }
 
   public save(sectionsParent: SectionsParent): Observable<boolean> {
@@ -67,13 +85,13 @@ export class SectionService extends LogWrapper implements OnDestroy {
   }
   
   private setOriginalState(sectionsParent: SectionsParent): void {
-    this.originalState = cloneDeep(sectionsParent);
-    this.idSectionMap = new Map();
-    this.originalState.forAllDescendents(section => this.idSectionMap.set(section.uniqueId, section));
+    this.currentSectionParentOriginalState = cloneDeep(sectionsParent);
+    this.currentSectionParentIdSectionMap = new Map();
+    this.currentSectionParentOriginalState.forAllDescendents(section => this.currentSectionParentIdSectionMap.set(section.uniqueId, section));
   }
   
   public export(): string {
-    return this.sectionDataService.export(this.originalState);
+    return this.sectionDataService.export(this.currentSectionParentOriginalState);
   }
   
   public import(str: string) {

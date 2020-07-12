@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, TemplateRef } from '@angular/core';
 import { Subject } from 'rxjs';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
 import { LogService } from './../../logger/log.service';
@@ -41,8 +41,8 @@ export class ModalService extends LogWrapper implements OnDestroy {
     this.modals$.next(new Modal(content, buttons, text));
   }
   
-  public customModal(content: string, inputText: string, ...modalButtons: ModalButton[]) {
-    this.modals$.next(new Modal(content, modalButtons, inputText));
+  public customModal(content: string, inputText: string, templateRef: TemplateRef<any>, ...modalButtons: ModalButton[]) {
+    this.modals$.next(new Modal(content, modalButtons, inputText, templateRef));
   }
 }
 
@@ -52,11 +52,14 @@ export class Modal {
   public isVisible: boolean;
   public isTransitioning: boolean;
   public inputText: string;
+  public templateRef: TemplateRef<any>;
+  
 
-  constructor(content: string, buttons: ModalButton[], inputText?: string) {
+  constructor(content: string, buttons: ModalButton[], inputText?: string, templateRef?: TemplateRef<any>) {
     this.content = content;
     this.buttons = buttons;
-    if (inputText !== undefined) this.inputText = inputText;
+    this.inputText = inputText;
+    this.templateRef = templateRef;
   }
 
   public setCloseModal(fn: Function): Modal {

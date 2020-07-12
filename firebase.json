@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "site": "biblenavi",
+    "public": "dist/navibible"
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}

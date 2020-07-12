@@ -1,19 +1,25 @@
 <ng-container *ngFor="let modal of modals">
   <div class="modal background-color-strong border-color-default"
     [ngClass]="{'is-visible': modal.isVisible}">
+    <div class="modal__header"></div>
     <div class="modal__content">
       {{modal.content}}
+      <ng-container *ngIf="modal.templateRef">
+        <ng-container *ngTemplateOutlet="modal.templateRef"></ng-container>
+      </ng-container>
+      
+      
+      <textarea
+        *ngIf="modal.inputText !== undefined"
+        name="inputText"
+        [ngModel]="modal.inputText"
+        (ngModelChange)="modal.inputText = $event"
+        (focus)="$event.target.select()"
+        cdkTextareaAutosize
+        tabindex="1"
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="5"></textarea>
     </div>
-    <textarea
-      *ngIf="modal.inputText !== undefined"
-      name="inputText"
-      [ngModel]="modal.inputText"
-      (ngModelChange)="modal.inputText = $event"
-      (focus)="$event.target.select()"
-      cdkTextareaAutosize
-      tabindex="1"
-      cdkAutosizeMinRows="1"
-      cdkAutosizeMaxRows="5"></textarea>
     <div class="modal__buttons">
       <ng-container *ngFor="let button of modal.buttons">
         <button [ngClass]="button.classes" (click)="button.onClick()" #modalButton tabindex="2">

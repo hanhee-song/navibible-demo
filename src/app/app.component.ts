@@ -1,3 +1,4 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnDestroy } from '@angular/core';
 import { LogWrapper } from './logger/log-wrapper';
 import { LogService } from './logger/log.service';
@@ -14,28 +15,19 @@ import { GlobalFontSizeEnum, LightThemeEnum, OptionsService } from './services/c
 })
 export class AppComponent extends LogWrapper implements OnDestroy {
 
-  public isBibleDataInitialized: boolean = false;
   public lightTheme: LightThemeEnum;
   public globalFontSize: GlobalFontSizeEnum;
-  public isEditingMode: boolean = false;
   
-  private optionsService: OptionsService;
-
   constructor(
-    bibleDataService: BibleDataService,
     logService: LogService,
-    optionsService: OptionsService
+    private optionsService: OptionsService,
   ) {
     super(logService);
-    bibleDataService.initializeBible()
-      .subscribe(data => {
-        this.isBibleDataInitialized = true;
-      });
-    this.optionsService = optionsService;
-
+  }
+  
+  ngOnInit(): void {
     this.optionsService.lightTheme$.subscribe(mode => this.lightTheme = mode);
     this.optionsService.globalFontSize$.subscribe(size => this.globalFontSize = size);
-    this.optionsService.isEditingMode$.subscribe(editingMode => this.isEditingMode = editingMode);
   }
 
   ngOnDestroy() { }

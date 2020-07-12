@@ -14,7 +14,7 @@ const SUBJECTS = Symbol('subjects'),
   NG_ON_DESTROY = Symbol('ngOnDestroy')
 
 const INVALID_KEYS: Set<string> = new Set(['Observable', 'Router', 'User', 'ElementRef', 'Bible', 'EventEmitter']);
-const INVALID_ENDSWITH: string[] = ['Service', 'Factory'];
+const INVALID_ENDSWITH: string[] = ['Service', 'Factory', 'Firestore', 'FireAuth'];
 
 interface Prototype {
   [WRAPPED_FUNCTIONS]: { [name: string]: Function };

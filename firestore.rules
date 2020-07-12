@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  function s() {
+    return request.auth != null;
+  }
+  
+  function isCollaborator() {
+    return resource.data.collaborators[request.auth.uid] != null;
+  }
+  
+  function isAuthor() {
+    return request.auth.uid == resource.data.authorUid;
+  }
+  
+  match /databases/{database}/documents {
+    match /sections/{section} {
+      // allow get, list: if s() && (isAuthor() || resource.data.isPublic || isCollaborator());
+      allow read;
+    }
+    match /sections/{section} {
+      allow update, delete: if s() && (isAuthor() || isCollaborator() && resource.data.authorUid == request.resource.data.authorUid);
+      allow create: if s();
+    }
+  }
+}

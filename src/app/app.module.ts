@@ -6,7 +6,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from "angularx-social-login";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BibleMainComponent } from './components/bible-main/bible-main.component';
@@ -21,6 +20,53 @@ import { TopnavComponent } from './components/topnav/topnav.component';
 import { NgVarDirective } from './directives/ng-var.directive';
 import { SmoothHeightDirective } from './directives/smooth-height.directive';
 
+// import { FirebaseUIModule } from 'firebaseui-angular';
+// import * as firebase from 'firebase/app';
+// import * as firebaseui from 'firebaseui';
+// // currently there is a bug while building the app with --prod
+// // - https://github.com/RaphaelJenni/FirebaseUI-Angular/issues/76
+// // the plugin exposes the two libraries as well. You can use those:
+import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from 'src/environments/environment';
+import { NaviListComponent } from './components/navi-list/navi-list.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { MainComponent } from './components/main/main.component';
+
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInFlow: 'popup',
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    // {
+    //   scopes: [
+    //     'public_profile',
+    //     'email',
+    //     'user_likes',
+    //     'user_friends'
+    //   ],
+    //   customParameters: {
+    //     'auth_type': 'reauthenticate'
+    //   },
+    //   provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID
+    // },
+    // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+    // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+    {
+      requireDisplayName: false,
+      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
+    },
+    firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+    // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+  ],
+  // tosUrl: '<your-tos-link>',
+  privacyPolicyUrl: 'https://www.privacypolicies.com/generic/',
+  credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
+};
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +80,10 @@ import { SmoothHeightDirective } from './directives/smooth-height.directive';
     SmoothHeightDirective,
     NotificationComponent,
     NgVarDirective,
-    FooterComponent
+    FooterComponent,
+    NaviListComponent,
+    LoadingComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -45,33 +94,12 @@ import { SmoothHeightDirective } from './directives/smooth-height.directive';
     DragDropModule,
     TextFieldModule,
     ClipboardModule,
-    SocialLoginModule
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+    AngularFirestoreModule
   ],
   providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: true,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '139250843797-ssr8p9s87amfs3th7ja2crb319556k3j.apps.googleusercontent.com'
-            ),
-          },
-          // {
-          //   id: FacebookLoginProvider.PROVIDER_ID,
-          //   provider: new FacebookLoginProvider('clientId'),
-          // },
-          // {
-          //   id: AmazonLoginProvider.PROVIDER_ID,
-          //   provider: new AmazonLoginProvider(
-          //     'clientId'
-          //   ),
-          // },
-        ],
-      } as SocialAuthServiceConfig,
-    }
   ],
   bootstrap: [AppComponent]
 })

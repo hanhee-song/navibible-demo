@@ -1,5 +1,5 @@
 <div class="editing-bar background-color-subtle border-color-default font-size-6"
-  [ngClass]="{'is-visible': isVisible}">
+  [ngClass]="{'is-visible': isEditingMode}">
   <button class="save-button border-color-subtle background-color-subtle hoverable"
     (click)="onImport()">
     <i class="fa fa-download" aria-hidden="true"></i>
@@ -23,5 +23,11 @@
 </div>
 
 <div class="editing-bar-offset"
-  [ngClass]="{'is-visible': isVisible}">
+  [ngClass]="{'is-visible': isEditingMode}">
 </div>
+
+<button class="edit-button hoverable background-color-strong border-color-subtle font-size-6"
+  [ngClass]="{'is-hidden': isEditingMode}"
+  (click)="onEdit()">
+  <i class="fa fa-pencil" aria-hidden="true"></i>
+</button>

@@ -1,4 +1,4 @@
-@import '../../../styles.scss';
+@import '../../../mixins.scss';
 
 $bar-height: 50px;
 
@@ -47,5 +47,27 @@ $bar-height: 50px;
   
   &.is-visible {
     max-height: $bar-height; @include phone { height: $bar-height - 12px; }
+  }
+}
+
+.edit-button {
+  position: fixed;
+  bottom: 50px;
+  right: 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  transition: transform .2s cubic-bezier(.41,1.5,.86,1.21);
+  z-index: 12;
+  
+  &:hover {
+    transform: scale(1.2);
+  }
+  
+  &.is-hidden {
+    transform: scale(0);
+    transition: transform .2s cubic-bezier(.31,-0.43,.94,.52);
   }
 }

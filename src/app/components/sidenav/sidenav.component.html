@@ -7,6 +7,32 @@
 <div class="sidenav background-color-default border-color-default"
   [ngClass]="{'is-active': isOpen}"
   *ngIf="isOpen || isTransitioning">
+  
+  <div class="sidenav-section">
+        <button class="signin-button hoverable background-color-subtle border-color-subtle font-size-3" (click)="isSigninDropdownOpen = !isSigninDropdownOpen">
+          {{ user ? 'Welcome ' + user.displayName : 'Sign In' }}
+        </button>
+    
+    <div class="signin-dropdown " *ngIf="isSigninDropdownOpen">
+      <div *ngIf="!user" class="signin-dropdown__header">
+        Sign into NaviBible
+      </div>
+      <div *ngIf="user" class="signin-dropdown__header">
+        <!-- <img class="user-img" *ngIf="user.photoUrl" src="{{user.photoUrl}}" alt="User Portrait"> -->
+        <div>
+          Welcome {{user.displayName}}
+        </div>
+      </div>
+      
+      <firebase-ui (signInFailure)="onSignInError($event)"
+        (signInSuccessWithAuthResult)="onSignIn($event)">
+      </firebase-ui>
+      
+      <button class="background-color-subtle border-color-subtle hoverable" *ngIf="user" (click)="signout()">Sign Out</button>
+    </div>
+    
+  </div>
+  
   <div class="sidenav-section border-color-default">
     <button class="sidenav-section-header">
       Font

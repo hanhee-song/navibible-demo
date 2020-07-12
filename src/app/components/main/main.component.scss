@@ -1,0 +1,16 @@
+@import '../../../mixins.scss';
+
+:host(app-main) {
+  display: flex;
+
+  @include tablet { margin-left: 10px; margin-right: 10px; }
+  @include desktop { margin-left: 20px; margin-right: 20px; }
+  
+  app-bible-main {
+    min-width: 100%;
+  }
+  
+  app-navi-list {
+    min-width: 50%;
+  }
+}

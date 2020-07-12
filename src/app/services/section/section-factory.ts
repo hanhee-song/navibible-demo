@@ -1,3 +1,6 @@
+import { User } from 'firebase';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { SectionsParentList } from './../../models/sections-parent-list.model';
 import { SectionInterface } from './../../models/section.model';
 import { MultiRange } from './../../models/multi-range.model';
 import { ReferenceFactory } from './../bible/reference-factory';
@@ -11,17 +14,17 @@ import { SectionsParent, SectionsParentInterface } from 'src/app/models/sections
   providedIn: 'root'
 })
 export class SectionFactory {
-
-  private bibleDataService: BibleDataService;
-  private referenceFactory: ReferenceFactory;
+  
+  private user: User;
 
   constructor(
-    bibleDataService: BibleDataService,
-    referenceFactory: ReferenceFactory
+    private bibleDataService: BibleDataService,
+    private referenceFactory: ReferenceFactory,
+    private auth: AngularFireAuth
   ) {
-    this.bibleDataService = bibleDataService;
-    this.referenceFactory = referenceFactory;
     Section.bibleDataService = bibleDataService;
+    
+    auth.authState.subscribe(user => this.user = user);
   }
 
   public create(title: string, comment: string, multiRange: MultiRange);
@@ -36,15 +39,30 @@ export class SectionFactory {
     return new Section(title, comment, arg1);
   }
 
-  public fromSectionsParentJson(sectionsParentJson: SectionsParentInterface): SectionsParent {
+  public fromSectionsParentListJson(sectionsParentJson: SectionsParentInterface | SectionsParentInterface[]): SectionsParentList {
+    if (!Array.isArray(sectionsParentJson)) sectionsParentJson = [sectionsParentJson]; // temp backward compatability code
+    const sectionParentList = new SectionsParentList();
+    sectionsParentJson.forEach(json => sectionParentList.push(this.fromSectionsParentJson(json)));
+    return sectionParentList;
+  }
+  
+  public fromSectionsParentJson(json: SectionsParentInterface): SectionsParent {
     const sectionParent = new SectionsParent();
-    if (sectionsParentJson.author) sectionParent.author = sectionsParentJson.author;
-    if (sectionsParentJson.date) sectionParent.date = new Date(sectionsParentJson.date);
-    if (sectionsParentJson.sections) {
-      sectionParent.sections = sectionsParentJson.sections.map(section => this.fromSectionJson(section));
+    if (this.user) {
+      sectionParent.authorName = this.user.displayName;
+      sectionParent.authorUid = this.user.uid;
+    }
+    if (json.title) sectionParent.title = json.title;
+    if (json.authorName) sectionParent.authorName = json.authorName;
+    if (json.authorUid) sectionParent.authorUid = json.authorUid;
+    if (json.createdDate) sectionParent.createdDate = json.createdDate;
+    if (json.lastUpdatedByName) sectionParent.lastUpdatedByName = json.lastUpdatedByName;
+    if (json.lastUpdatedByUid) sectionParent.lastUpdatedByUid = json.lastUpdatedByUid;
+    if (json.lastUpdatedDate) sectionParent.lastUpdatedDate = json.lastUpdatedDate;
+    if (json.sections) {
+      sectionParent.sections = json.sections.map(section => this.fromSectionJson(section));
     }
     this.populateVerseFromIds(sectionParent);
-
     return sectionParent;
   }
 
