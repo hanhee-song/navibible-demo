@@ -38,7 +38,9 @@ export class SectionService extends LogWrapper implements OnDestroy {
       this.user = user;
     });
     
-    this.initSectionsParentList().subscribe()
+    this.onSectionsParentList$.subscribe(data => {
+      this.sectionsParentList = data;
+    })
   }
   
   ngOnDestroy() { }

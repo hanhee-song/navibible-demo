@@ -1,7 +1,7 @@
 @import '../../../mixins.scss';
 
 .topnav {
-  height: 60px; @include phone { height: 40px; }
+  height: 40px;
   position: fixed;
   top: 0;
   left: 0;
@@ -32,7 +32,7 @@
 }
 
 .topnav-offset {
-  height: 60px; @include phone { height: 40px; }
+  height: 40px;
 }
 
 .signin-button {

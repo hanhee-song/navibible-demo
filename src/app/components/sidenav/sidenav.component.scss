@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: column;
   -webkit-user-select: none;
-  padding-top: 59px; @include phone { padding-top: 39px; }
+  padding-top: 39px;
 
   &.is-active {
     transform: translateX(0);
@@ -29,13 +29,10 @@
   top: 0;
   cursor: pointer;
   z-index: 10;
-  
-  @include phone {
-    transform: scaleX(.7) scaleY(.7);
-    padding: 10px;
-    left: -5px;
-    top: -5px;
-  }
+  transform: scaleX(.7) scaleY(.7);
+  padding: 10px;
+  left: -5px;
+  top: -5px;
 }
 
 .sidenav-section {

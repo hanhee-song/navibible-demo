@@ -2,13 +2,14 @@ import { Section, SectionInterface } from './section.model';
 import { ReferenceRange } from './reference-range';
 
 export class SectionsParent extends Section implements SectionsParentInterface {
+  public id: string;
   public authorUid: string;
   public sortNo: number;
   public authorName: string;
   public lastUpdatedByUid: string;
   public lastUpdatedByName: string;
-  public lastUpdatedDate: Date;
-  public createdDate: Date;
+  public lastUpdatedDate: Date = new Date();
+  public createdDate: Date = new Date();
   public lastActive: number;
   public sections: Section[] = [];
   public isExpanded = true;
@@ -22,6 +23,7 @@ export class SectionsParent extends Section implements SectionsParentInterface {
 }
 
 export interface SectionsParentInterface extends SectionInterface {
+  id: string;
   authorName?: string,
   authorUid?: string,
   lastUpdatedByUid?: string,

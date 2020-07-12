@@ -60,7 +60,10 @@
   .background-color-opposite { background: #eee; }
   .cdk-drag-preview { background: #333; }
   .border-color-default { border-color: #555; border-style: solid; }
-  .border-color-subtle {border-color: #444; border-style: solid; }
+  .border-color-subtle { border-color: #444; border-style: solid; }
+  .shadow {
+    
+  }
   input[type=text] {
     outline-color: #333;
   }
@@ -98,7 +101,10 @@
   .background-color-opposite { background: #ddd; }
   .cdk-drag-preview { background: #444; }
   .border-color-default { border-color: #666; border-style: solid; }
-  .border-color-subtle {border-color: #555; border-style: solid; }
+  .border-color-subtle { border-color: #555; border-style: solid; }
+  .shadow {
+    
+  }
   input[type=text] {
     outline-color: #bbb;
   }
@@ -136,7 +142,12 @@
   .background-color-opposite { background: #222; }
   .cdk-drag-preview { background: #fff; }
   .border-color-default { border-color: #bbb; border-style: solid; }
-  .border-color-subtle {border-color: #ddd; border-style: solid; }
+  .border-color-subtle { border-color: #ddd; border-style: solid; }
+  .shadow {
+    -webkit-box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+    -webkit-border-radius: 2px;
+  }
   input[type=text] {
     outline-color: #444;
   }

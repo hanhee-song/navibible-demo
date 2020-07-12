@@ -1,18 +1,18 @@
 <!-- <div class="new-section"> -->
 <ng-container>
-  <button class="section__header background-color-strong border-color-subtle hoverable"
+  <button class="section__header background-color-strong border-color-subtle hoverable shadow"
     (click)="onToggleForm()"
     [ngClass]="{'is-expanded': isFormOpen || isTransitioning}"
     *ngIf="showHeader">
     <div>
-      <button><i class="fa fa-chevron-right" [ngClass]="{ 'rotate': isFormOpen }" aria-hidden="true"></i></button> New Section
+      <button><i class="fa fa-caret-right" [ngClass]="{ 'rotate': isFormOpen }" aria-hidden="true"></i></button> New Section
     </div>
   </button>
 
   <!-- *ngIf="isFormOpen"> -->
   <form [ngClass]="{'is-visible': isFormOpen}"
     *ngIf="isFormOpen || isTransitioning"
-    class="new-section-form background-color-strong border-color-subtle"
+    class="new-section-form background-color-strong border-color-subtle shadow"
     (submit)="submit($event)"
     autocomplete="off"
     #form>

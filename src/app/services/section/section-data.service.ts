@@ -29,11 +29,6 @@ export class SectionDataService extends LogWrapper implements OnDestroy {
     this.auth.authState.subscribe(user => {
       this.user = user;
     });
-    this.firestore.collection<SectionsParentInterface>('sections')//, ref => ref.where('authorUid', '==', this.user.uid))
-      .snapshotChanges()
-      .subscribe(data => {
-        debugger;
-      })
   }
   
   ngOnDestroy() { }
@@ -45,20 +40,15 @@ export class SectionDataService extends LogWrapper implements OnDestroy {
         .pipe(map(sps => this.sectionFactoryService.fromSectionsParentListJson(sps)));
     } else if (this.user !== null) {
       // get = from(this.firestore.collection<SectionsParentInterface>('sections', ref => ref.where('authorUid', '==', this.user.uid))
-      get = from(this.firestore.collection<SectionsParentInterface>('sections')//, ref => ref.where('authorUid', '==', this.user.uid))
-        .get())
-      this.firestore.collection<SectionsParentInterface>('sections')//, ref => ref.where('authorUid', '==', this.user.uid))
-        .snapshotChanges()
-        .subscribe(data => {
-          debugger;
-        })
+      get = from(this.firestore.collection<SectionsParentInterface>('sections', ref => ref.where('authorUid', '==', this.user.uid))
+        .valueChanges())
     }
     return get;
   }
 
   public save(sectionsParent: SectionsParent): Observable<boolean> {
     try {
-      return from(this.firestore.collection('sections').add(this.toSectionsParentFirebase(sectionsParent)))
+      return from(this.firestore.collection('sections').doc(sectionsParent.id).set(this.toSectionsParentFirebase(sectionsParent)))
         .pipe(
           tap(data => this.logService.log(data)),
           map(data => {

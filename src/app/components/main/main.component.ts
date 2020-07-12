@@ -1,3 +1,4 @@
+import { SectionService } from './../../services/section/section.service';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
 import { LogService } from './../../logger/log.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -17,13 +18,19 @@ export class MainComponent extends LogWrapper implements OnInit, OnDestroy {
   constructor(
     logService: LogService,
     private bibleDataService: BibleDataService,
+    private sectionService: SectionService,
     private auth: AngularFireAuth
   ) {
     super(logService);
   }
 
   ngOnInit(): void {
-    this.bibleDataService.initializeBible().subscribe(data => this.isBibleDataInitialized = true);
+    this.bibleDataService.initializeBible()
+      .subscribe(data => {
+        // this.isBibleDataInitialized = true
+        this.sectionService.initSectionsParentList()
+          .subscribe(d => this.isBibleDataInitialized = true);
+      });
     this.auth.authState.subscribe(user => this.isAuthLoaded = true);
   }
 

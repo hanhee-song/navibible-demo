@@ -1,3 +1,4 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { SectionsParentList } from './../../models/sections-parent-list.model';
@@ -20,7 +21,8 @@ export class SectionFactory {
   constructor(
     private bibleDataService: BibleDataService,
     private referenceFactory: ReferenceFactory,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private firestore: AngularFirestore
   ) {
     Section.bibleDataService = bibleDataService;
     
@@ -52,6 +54,7 @@ export class SectionFactory {
       sectionParent.authorName = this.user.displayName;
       sectionParent.authorUid = this.user.uid;
     }
+    sectionParent.id = json.id || this.firestore.createId();
     if (json.title) sectionParent.title = json.title;
     if (json.authorName) sectionParent.authorName = json.authorName;
     if (json.authorUid) sectionParent.authorUid = json.authorUid;

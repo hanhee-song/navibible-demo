@@ -1,6 +1,6 @@
 <div class="notifications">
   <ng-container *ngFor="let notification of notifications">
-    <div class="notification font-size-5" [ngClass]="notification.cssClass">
+    <div class="notification font-size-5 shadow" [ngClass]="notification.cssClass">
       {{notification.text}}
     </div>
   </ng-container>

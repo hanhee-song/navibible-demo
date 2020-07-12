@@ -1,9 +1,10 @@
 <ng-container *ngIf="sectionParentList">
   <div *ngFor="let sectionParent of sectionParentList">
-    {{sectionParent.authorName}}
-    {{sectionParent.lastUpdatedByName}}
-    {{sectionParent.lastUpdatedDate}}
-    {{sectionParent.createdDate}}
-    {{sectionParent.isPublic}}
+    <div>title: {{sectionParent.title}}</div>
+    <div>authorName: {{sectionParent.authorName}}</div>
+    <div>lastUpdatedByName: {{sectionParent.lastUpdatedByName}}</div>
+    <div>lastUpdatedDate: {{sectionParent.lastUpdatedDate}}</div>
+    <div>createdDate: {{sectionParent.createdDate}}</div>
+    <div>isPublic: {{sectionParent.isPublic}}</div>
   </div>
 </ng-container>

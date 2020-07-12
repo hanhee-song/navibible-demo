@@ -6,23 +6,23 @@
   width: 100%;
   overflow: hidden;
   transition: max-height .3s;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 3px 3px;
   
   &:not(.edit-section) {
-    border-radius: 8px;
+    border-radius: 3px;
     padding: 6px;
     @include phone { padding: 4px; }
   }
   .section__header {
     width: 100%;
-    border-radius: 7px;
+    border-radius: 3px;
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
     border-left-width: 1px;
     
     &.is-expanded {
-      border-radius: 7px 7px 0 0;
+      border-radius: 3px 3px 0 0;
       border-bottom-width: 0;
     }
   }
@@ -35,7 +35,7 @@
     overflow: hidden;
     overflow-y: auto;
     transition: max-height .3s;
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 3px 3px;
     border-left-width: 1px;
     border-right-width: 1px;
     
@@ -51,14 +51,14 @@
         padding: 10px 15px; @include phone { padding: 7px 10px; }
         flex: 1;
         
-        &:first-of-type { border-radius: 0 0 0 8px; }
-        &:last-of-type { border-radius: 0 0 8px 0; }
+        &:first-of-type { border-radius: 0 0 0 3px; }
+        &:last-of-type { border-radius: 0 0 3px 0; }
       }
     }
     
     .section-comment-input {
       padding: 8px;
-      border-radius: 8px;
+      border-radius: 3px;
     }
 
     .help-question {
@@ -92,7 +92,7 @@
   }
 
   input.input-text {
-    border-radius: 8px;
+    border-radius: 3px;
     border-width: 1px;
     font-size: 16px;
     padding: 8px

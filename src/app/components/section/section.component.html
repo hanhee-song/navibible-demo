@@ -4,7 +4,7 @@
   <div class="selected" *ngIf="false"></div>
   <div class="header__left">
     <button class="expand-button hoverable" (click)="toggleExpand()">
-      <i class="font-size-5 fa fa-chevron-right" [ngClass]="{ 'rotate': section.isExpanded }" aria-hidden="true"></i>
+      <i class="font-size-5 fa fa-angle-right" [ngClass]="{ 'rotate': section.isExpanded }" aria-hidden="true"></i>
       <span *ngIf="section.sections.length" class="section-count text-color-subtle font-size-1">{{section.sections.length}}</span>
     </button>
     <div class="header__left--title">
@@ -45,7 +45,7 @@
   (cancel)="isEdit = false;">
 </div>
 
-<div class="section-list__drop-wrapper"
+<div class="section-list__drop-wrapper shadow"
   *ngIf="section.isExpanded || isDropdownTransitioning"
   [ngClass]="{
     'background-color-subtle': !(sectionLevel % 2),

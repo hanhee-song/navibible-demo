@@ -3,8 +3,8 @@
 .section {
   // background: inherit;
   transition: background 2s;
-  border-radius: 8px;
-
+  border-radius: 3px;
+  
   &.is-new {
     transition: background 0s;
   }
@@ -21,7 +21,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 7px 7px; @include tablet { padding: 10px 20px; }
-    border-radius: 8px 8px 0 0;
+    border-radius: 3px 3px 0 0;
     transition: background 1s;
     // position: relative;
     // background: inherit;
@@ -120,7 +120,7 @@
 
   .section-comment, .section-text {
     position: relative;
-    border-radius: 8px;
+    border-radius: 3px;
 
     .section-comment__header, .section-text__header {
       position: absolute;
@@ -152,7 +152,7 @@
   }
   
   .section-list__drop-wrapper {
-    border-radius: 8px;
+    border-radius: 3px;
     margin-left: 9px;
     margin-right: 3px;
     overflow: hidden;
