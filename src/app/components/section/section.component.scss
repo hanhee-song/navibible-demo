@@ -9,12 +9,12 @@
     transition: background 0s;
   }
 
-  .drag-button {
-    position: absolute;
-    border-radius: 3px;
-    left: -7px; @include tablet { left: 0px; }
-    width: 16px;
-  }
+  // .drag-button {
+  //   position: absolute;
+  //   border-radius: 3px;
+  //   left: -7px; @include tablet { left: 0px; }
+  //   width: 16px;
+  // }
 
   .section__header {
     display: flex;
@@ -107,6 +107,18 @@
       position: absolute;
       right: 0;
       background: inherit;
+      display: flex;
+      
+      .edit__menu {
+        display: flex;
+        max-width: 0;
+        overflow: hidden;
+        transition: max-width .2s;
+      }
+      
+      &:hover .edit__menu {
+        max-width: 150px;
+      }
       
       button {
         width: 25px; @include tablet { width: 28px; }
@@ -153,9 +165,10 @@
   
   .section-list__drop-wrapper {
     border-radius: 3px;
+    overflow: hidden;
+
     margin-left: 9px;
     margin-right: 3px;
-    overflow: hidden;
     @include tablet { margin-left: 14px; margin-right: 5px; }
     @include desktop { margin-left: 19px; margin-right: 10px; }
   }
@@ -176,14 +189,13 @@
   .drag-wrapper {
     display: flex;
     flex-direction: column;
+    padding-bottom: 10px;
   }
 }
 
 .top-level-section {
   &.section {
-    max-width: 800px;
-    width: 100%;
-    > .section-list__drop-wrapper { padding-bottom: 10px; }
+    > .section-list__drop-wrapper { padding-bottom: 10px; margin: 0; }
   }
 
   & > .section-list {

@@ -1,3 +1,4 @@
+import { ActivatedRoute, Routes } from '@angular/router';
 import { User } from 'firebase';
 import { SectionsParentList } from './../../models/sections-parent-list.model';
 import { NotificationService } from './../controls/notification.service';
@@ -30,7 +31,8 @@ export class SectionService extends LogWrapper implements OnDestroy {
     logService: LogService,
     private sectionDataService: SectionDataService,
     private notificationsService: NotificationService,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private route: ActivatedRoute
   ) {
     super(logService);
     
@@ -40,7 +42,14 @@ export class SectionService extends LogWrapper implements OnDestroy {
     
     this.onSectionsParentList$.subscribe(data => {
       this.sectionsParentList = data;
-    })
+    });
+    
+    this.onFirestoreData().subscribe();
+    this.onLocalData().subscribe();
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      logService.error(id); // todo set active one here
+    });
   }
   
   ngOnDestroy() { }
@@ -53,16 +62,29 @@ export class SectionService extends LogWrapper implements OnDestroy {
     return this.currentSectionParentIdSectionMap.get(uniqueId);
   }
 
-  public initSectionsParentList(): Observable<SectionsParentList> {
-    return this.sectionDataService.getSections()
-      .pipe(
-        tap(data => data.length() === 1 && this.setSectionParent(data.get(0))),
-        tap(data => this.setSectionParentList(data))
-      )
+  public onFirestoreData(): Observable<SectionsParentList> {
+    return this.sectionDataService.onFirestoreData$
+      .pipe(tap(data => this.mergeSectionParentList(data)));
   }
   
-  public setSectionParentList(list: SectionsParentList): void {
-    this.onSectionsParentList$.next(list);
+  public onLocalData(): Observable<SectionsParentList> {
+    return this.sectionDataService.onLocalData$
+      .pipe(tap(data => this.mergeSectionParentList(data)));
+  }
+  
+  public mergeSectionParentList(list: SectionsParentList): void {
+    let newList: SectionsParentList;
+    if (!list) return;
+    if (!this.sectionsParentList) {
+      newList = list;
+    } else {
+      newList = this.sectionsParentList.merge(list); // merge the new and old lists here
+    }
+    this.onSectionsParentList$.next(newList);
+    
+    if (!this.currentSectionParentOriginalState && newList.length()) {
+      this.setSectionParent(newList.get(0));
+    }
   }
   
   public setSectionParent(sectionParent: SectionsParent): void {

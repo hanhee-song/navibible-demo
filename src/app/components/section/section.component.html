@@ -12,24 +12,29 @@
       <div class="font-size-2 truncate text-color-subtle">{{section.multiRangeString()}}</div>
     </div>
   </div>
-  <ng-content></ng-content>
 
   <div class="header__right font-size-5" *ngIf="isEditingMode">
-    <button class="hoverable"
-      (click)="onPromote()" *ngIf="sectionLevel > 1">
-      <i class="fa fa-sort-amount-desc" style="transform: scaleY(-1);" aria-hidden="true"></i>
-    </button>
-    <button class="hoverable"
-      (click)="onDemote()" *ngIf="parentSection.sections.length > 1">
-      <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
-    </button>
-    <button class="hoverable"
-      (click)="onDeleteSelf()">
-      <i class="fa fa-trash" aria-hidden="true"></i>
-    </button>
-    <button class="hoverable"
-      (click)="onEdit()">
-      <i class="fa fa-edit" aria-hidden="true"></i>
+    <div class="edit__menu">
+      <ng-content></ng-content>
+      <button class="hoverable"
+        (click)="onPromote()" *ngIf="sectionLevel > 1">
+        <i class="fa fa-sort-amount-desc" style="transform: scaleY(-1);" aria-hidden="true"></i>
+      </button>
+      <button class="hoverable"
+        (click)="onDemote()" *ngIf="parentSection.sections.length > 1">
+        <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+      </button>
+      <button class="hoverable"
+        (click)="onDeleteSelf()">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      </button>
+      <button class="hoverable"
+        (click)="onEdit()">
+        <i class="fa fa-edit" aria-hidden="true"></i>
+      </button>
+    </div>
+    <button class="hoverable edit__hover">
+      <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
     </button>
   </div>
 </div>
@@ -106,7 +111,7 @@
             [sectionLevel]="sectionLevel + 1">
             <button class="drag-button font-size-5 hoverable" *ngIf="isEditingMode"
               cdkDragHandle>
-              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              <i class="fa fa-arrows" aria-hidden="true"></i>
             </button>
           </div>
         </ng-container>
@@ -114,7 +119,8 @@
     </div>
     <div app-new-section
       *ngIf="isEditingMode && (section.isExpanded || isDropdownTransitioning)"
-      (onNewSection)="onNewSection($event)">
+      (onNewSection)="onNewSection($event)"
+      [showHeader]="true">
     </div>
   </div>
 </div>

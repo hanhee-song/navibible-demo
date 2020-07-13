@@ -5,7 +5,7 @@
     [ngClass]="{'is-expanded': isFormOpen || isTransitioning}"
     *ngIf="showHeader">
     <div>
-      <button><i class="fa fa-caret-right" [ngClass]="{ 'rotate': isFormOpen }" aria-hidden="true"></i></button> New Section
+      <button><i class="fa fa-angle-right" [ngClass]="{ 'rotate': isFormOpen }" aria-hidden="true"></i></button> New Section
     </div>
   </button>
 
@@ -20,7 +20,7 @@
     <span class="help-question"><i class="fa fa-question-circle-o" aria-hidden="true"></i></span>
     <div class="input-group">
       <label for="section-name">Name: </label>
-      <input class="input-text border-color-default background-color-strong text-color-default"
+      <input class="input-text border-color-default background-color-strongest text-color-default"
         [ngModel]="inputName"
         (ngModelChange)="inputName = $event"
         type="text"
@@ -34,7 +34,7 @@
 
     <div class="input-group">
       <label for="section-comment">Comment: </label>
-      <textarea class="section-comment-input input-text border-color-default background-color-strong text-color-default text-size-3"
+      <textarea class="section-comment-input input-text border-color-default background-color-strongest text-color-default text-size-3"
         [ngModel]="inputComment"
         (ngModelChange)="inputComment = $event"
         cdkTextareaAutosize
@@ -65,7 +65,7 @@
             *ngIf="inputMultiRange.input">
             <i class="fa fa-trash" aria-hidden="true"></i>
           </button>
-          <input class="input-text border-color-default background-color-strong text-color-default"
+          <input class="input-text border-color-default background-color-strongest text-color-default"
             [ngModel]="inputMultiRange.input"
             (ngModelChange)="onInputReferenceChange($event, inputMultiRange)"
             type="text"

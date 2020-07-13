@@ -1,0 +1,22 @@
+:host(app-navi-list) {
+  width: 100%;
+}
+
+.navi-list {
+  display: flex;
+  flex-direction: column;
+  
+  .navi-list__header {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .navi-list__item {
+    transform: translateX(0);
+    transition: transform .2s, background .2s;
+    
+    &:hover {
+      transform: translateX(5px);
+    }
+  }
+}

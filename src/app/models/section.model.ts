@@ -115,6 +115,14 @@ export class Section implements SectionInterface {
     if (!this.comment) delete this.comment;
     if (!this.title) delete this.title;
   }
+  
+  public equals(section: Section) {
+    if (this.title !== section.title || this.comment !== section.comment || this.multiRanges.length !== section.multiRanges.length) return false; 
+    for (let i = 0; i < this.multiRanges.length; i++) {
+      if (this.multiRanges[i].equals(section.multiRanges[i])) return false;
+    }
+    return true;
+  }
 }
 
 export interface SectionInterface {

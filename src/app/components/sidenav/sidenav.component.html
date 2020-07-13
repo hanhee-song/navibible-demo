@@ -18,7 +18,7 @@
         Sign into NaviBible
       </div>
       <div *ngIf="user" class="signin-dropdown__header">
-        <!-- <img class="user-img" *ngIf="user.photoUrl" src="{{user.photoUrl}}" alt="User Portrait"> -->
+        <img class="user-img" *ngIf="user.photoUrl" src="{{user.photoUrl}}" alt="User Portrait">
         <div>
           Welcome {{user.displayName}}
         </div>
@@ -43,11 +43,11 @@
         [ngClass]="{'is-selected': lightTheme === LightThemeEnum.LIGHT}">
         abc
       </button>
-      <button class="theme-button border-color-default dim-mode"
+      <!-- <button class="theme-button border-color-default dim-mode"
         (click)="togglelightTheme(LightThemeEnum.DIM)"
         [ngClass]="{'is-selected': lightTheme === LightThemeEnum.DIM}">
         abc
-      </button>
+      </button> -->
       <button class="theme-button border-color-default dark-mode"
         (click)="togglelightTheme(LightThemeEnum.DARK)"
         [ngClass]="{'is-selected': lightTheme === LightThemeEnum.DARK}">

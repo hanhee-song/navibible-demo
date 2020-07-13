@@ -1,10 +1,10 @@
 @import '../../../mixins.scss';
 
-$bar-height: 50px;
+$bar-height: 30px;
 
 .editing-bar {
   position: fixed;
-  height: $bar-height; @include phone { height: $bar-height - 12px; }
+  height: $bar-height; @include tablet { height: $bar-height + 10px; }
   max-height: 0;
   border-bottom-width: 1px;
   left: 0;
@@ -18,7 +18,7 @@ $bar-height: 50px;
   // padding-right: 20px;
   
   &.is-visible {
-    max-height: $bar-height; @include phone { height: $bar-height - 12px; }
+    max-height: $bar-height; @include tablet { max-height: $bar-height + 10px; }
   }
   
   & > button {
@@ -40,13 +40,13 @@ $bar-height: 50px;
 }
 
 .editing-bar-offset {
-  height: $bar-height; @include phone { height: $bar-height - 12px; }
+  height: $bar-height; @include tablet { height: $bar-height + 10px; }
   max-height: 0;
   overflow: hidden;
   transition: max-height .3s;
   
   &.is-visible {
-    max-height: $bar-height; @include phone { height: $bar-height - 12px; }
+    max-height: $bar-height; @include tablet { max-height: $bar-height + 10px; }
   }
 }
 

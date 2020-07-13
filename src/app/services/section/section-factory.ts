@@ -40,6 +40,10 @@ export class SectionFactory {
     }
     return new Section(title, comment, arg1);
   }
+  
+  public merge(sp1: SectionsParent, sp2: SectionsParent): SectionsParent {
+    return null;
+  }
 
   public fromSectionsParentListJson(sectionsParentJson: SectionsParentInterface | SectionsParentInterface[]): SectionsParentList {
     if (!Array.isArray(sectionsParentJson)) sectionsParentJson = [sectionsParentJson]; // temp backward compatability code
@@ -65,7 +69,6 @@ export class SectionFactory {
     if (json.sections) {
       sectionParent.sections = json.sections.map(section => this.fromSectionJson(section));
     }
-    this.populateVerseFromIds(sectionParent);
     return sectionParent;
   }
 
@@ -76,36 +79,5 @@ export class SectionFactory {
       section.sections = json.sections.map(section => this.fromSectionJson(section));
     }
     return section;
-
-  }
-
-  private populateVerseFromIds(sectionParent: SectionsParent): void {
-    // if (!sectionParent.sections) return;
-    
-    // const ids = [];
-    // sectionParent.sections.forEach(section => this.iterateOverSections(section, (section: Section) => {
-    //   if (section.fromReferenceId) ids.push(section.fromReferenceId);
-    //   if (section.toReferenceId) ids.push(section.toReferenceId);
-    // }));
-
-    // const data = this.bibleDataService.getBible().getVersesByIds(ids);
-
-    // sectionParent.sections.forEach(section => this.iterateOverSections(section, (section: Section) => {
-    //   if (section.fromReferenceId && data[section.fromReferenceId]) {
-    //     const verse = data[section.fromReferenceId];
-    //     section.fromReference = verse.reference;
-    //   }
-    //   if (section.toReferenceId && data[section.toReferenceId]) {
-    //     const verse = data[section.toReferenceId];
-    //     section.toReference = verse.reference;
-    //   }
-    // }));
-  };
-
-  private iterateOverSections(section: Section, callback: Function): void {
-    callback(section);
-    if (section.sections) {
-      section.sections.forEach(section => this.iterateOverSections(section, callback));
-    }
   }
 }

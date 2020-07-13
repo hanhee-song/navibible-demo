@@ -47,6 +47,10 @@ export class Reference implements ReferenceInterface {
   public compareTo(ref: Reference): number {
     return this.index < ref.index ? -1 : this.index === ref.index ? 0 : 1;
   }
+  
+  public equals(ref: Reference): boolean {
+    return this.book === ref.book && this.chapter === ref.chapter && this.verse === ref.verse;
+  }
 }
 
 export interface ReferenceInterface {

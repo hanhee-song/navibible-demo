@@ -1,10 +1,22 @@
-<ng-container *ngIf="sectionParentList">
-  <div *ngFor="let sectionParent of sectionParentList">
-    <div>title: {{sectionParent.title}}</div>
-    <div>authorName: {{sectionParent.authorName}}</div>
-    <div>lastUpdatedByName: {{sectionParent.lastUpdatedByName}}</div>
-    <div>lastUpdatedDate: {{sectionParent.lastUpdatedDate}}</div>
-    <div>createdDate: {{sectionParent.createdDate}}</div>
-    <div>isPublic: {{sectionParent.isPublic}}</div>
+<div class="navi-list shadow background-color-subtle asc__content">
+  <div class="navi-list__header">
+    <div>header right</div>
+    <div>header left</div>
   </div>
-</ng-container>
+  <ng-container *ngIf="sectionParentList">
+    <div class="navi-list__item hoverable hover-shadow font-size-2"
+      *ngFor="let sectionParent of sectionParentList"
+      (click)="onNavigate(sectionParent)">
+      <div class="font-size-4">{{sectionParent.title}}</div>
+      <div>Created: {{sectionParent.createdDate | dateAgo}} {{sectionParent.authorName ? ' by ' + sectionParent.authorName : ''}}</div>
+      <div>Last Updated: {{sectionParent.lastUpdatedDate | dateAgo}} {{sectionParent.lastUpdatedByName ? ' by ' + sectionParent.lastUpdatedByName : ''}}</div>
+      <div class="">
+        <i class="fa" [ngClass]="{'fa-lock': !sectionParent.isPublic, 'fa-unlock': sectionParent.isPublic}" aria-hidden="true"></i> {{ sectionParent.isPublic ? 'Public' : 'Private' }}
+      </div>
+      <div>contributors: {{sectionParent.numberOfCollaborators()}}</div>
+    </div>
+  </ng-container>
+  <div class="navi-list__item hoverable hover-shadow navi-list__new">
+    New Navi
+  </div>
+</div>

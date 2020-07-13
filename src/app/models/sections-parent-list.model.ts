@@ -10,6 +10,10 @@ export class SectionsParentList {
     this.list = arg1;
   }
   
+  public merge(spl: SectionsParentList): SectionsParentList {
+    return this;
+  }
+  
   public push(sp: SectionsParent): SectionsParentList {
     this.list.push(sp);
     return this;

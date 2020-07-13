@@ -40,6 +40,14 @@ export class MultiRange implements MultiRange {
   public add(refRange: ReferenceRange): void {
     this.referenceRanges.push(refRange);
   }
+  
+  public equals(multiRange: MultiRange): boolean {
+    if (this.referenceRanges.length !== multiRange.referenceRanges.length) return false;
+    for (let i = 0; i < this.referenceRanges.length; i++) {
+      if (this.referenceRanges[i].equals(multiRange.referenceRanges[i])) return false;
+    }
+    return true;
+  }
 }
 
 export interface MultiRange {

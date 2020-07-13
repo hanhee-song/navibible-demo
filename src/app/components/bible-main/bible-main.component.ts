@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { NotificationService } from './../../services/controls/notification.service';
 import { OptionsService } from './../../services/controls/options.service';
 import { LogService } from './../../logger/log.service';
@@ -15,6 +16,7 @@ export class BibleMainComponent extends LogWrapper implements OnInit, OnDestroy 
 
   public sectionsParent: SectionsParent;
   public isEditingMode: boolean;
+  private subs: Subscription[] = [];
   
   constructor(
     logService: LogService,
@@ -26,20 +28,18 @@ export class BibleMainComponent extends LogWrapper implements OnInit, OnDestroy 
   }
 
   ngOnInit(): void {
-    this.sectionService.onSectionParent$.subscribe(sectionParent => {
-      this.sectionsParent = sectionParent;
-    });
-    this.optionsService.isEditingMode$.subscribe(editingMode => this.isEditingMode = editingMode);
-    this.optionsService.onSave$.subscribe(val => {
-      this.save();
-    });
-    this.optionsService.onCancel$.subscribe(cancel => {
+    const onSectionParent = this.sectionService.onSectionParent$.subscribe(sectionParent => this.sectionsParent = sectionParent);
+    const isEditingMode = this.optionsService.isEditingMode$.subscribe(editingMode => this.isEditingMode = editingMode);
+    const onSave = this.optionsService.onSave$.subscribe(val => this.save());
+    const onCancel = this.optionsService.onCancel$.subscribe(cancel => {
       this.sectionsParent = this.sectionService.getOriginalState();
       this.notificationService.pushNotification('Changes have been discarded');
     });
+    this.subs.push(onSectionParent, isEditingMode, onSave, onCancel);
   }
 
   ngOnDestroy(): void {
+    this.subs.forEach(sub => sub.unsubscribe());
   }
 
   public save() {

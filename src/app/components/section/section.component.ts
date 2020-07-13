@@ -1,6 +1,5 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, Input, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { smoothHeight } from 'src/app/animations/animations';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
 import { LogService } from './../../logger/log.service';
 import { Section } from './../../models/section.model';
@@ -14,7 +13,6 @@ import { SectionService } from './../../services/section/section.service';
   host: {
     'class': 'section'
   },
-  animations: [smoothHeight],
   encapsulation: ViewEncapsulation.None
 })
 export class SectionComponent extends LogWrapper implements OnInit, OnDestroy {

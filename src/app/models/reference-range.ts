@@ -106,4 +106,7 @@ export class ReferenceRange {
       + '-' + this.toReference.toChapterVerseString(false);
   }
 
+  public equals(refRange: ReferenceRange): boolean {
+    return this.fromReference.equals(refRange.fromReference) && this.toReference.equals(refRange.toReference);
+  }
 }

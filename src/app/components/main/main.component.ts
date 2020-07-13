@@ -1,9 +1,11 @@
+import { zip } from 'rxjs';
 import { SectionService } from './../../services/section/section.service';
 import { LogWrapper } from 'src/app/logger/log-wrapper';
 import { LogService } from './../../logger/log.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BibleDataService } from 'src/app/services/bible/bible-data.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main',
@@ -25,13 +27,20 @@ export class MainComponent extends LogWrapper implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.bibleDataService.initializeBible()
+    this.sectionService.onSectionsParentList$
+      .pipe(takeWhile(res => !res, true))
       .subscribe(data => {
-        // this.isBibleDataInitialized = true
-        this.sectionService.initSectionsParentList()
-          .subscribe(d => this.isBibleDataInitialized = true);
+        this.isBibleDataInitialized = true;
       });
-    this.auth.authState.subscribe(user => this.isAuthLoaded = true);
+    this.bibleDataService.isDataReady$
+      .pipe(takeWhile(res => !res, true))
+      .subscribe(data => {
+        this.isBibleDataInitialized = true;
+      })
+    const authSub = this.auth.user.subscribe(user => {
+      this.isAuthLoaded = true;
+      authSub.unsubscribe();
+    });
   }
 
   ngOnDestroy() { }

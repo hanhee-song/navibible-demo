@@ -64,7 +64,7 @@ export class OptionsService extends LogWrapper implements OnDestroy {
 export enum LightThemeEnum {
   LIGHT = 'light-mode',
   DARK = 'dark-mode',
-  DIM = 'dim-mode'
+  // DIM = 'dim-mode'
 }
 
 export enum GlobalFontSizeEnum {

@@ -19,7 +19,7 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
   
   public isFormOpen: boolean = false;
   @Input() openForm: boolean = false;
-  @Input() showHeader: boolean = true;
+  @Input() showHeader: boolean = false;
   @Input() submitButtonText: string = 'Create';
   @Input() inputName: string = '';
   @Input() inputComment: string = '';
@@ -73,7 +73,7 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
       }));
       this.inputMultiRanges.push({});
     }
-    if (changes['openForm'] && typeof changes['openForm'].currentValue === 'boolean') {
+    if (changes['openForm'] && typeof changes['openForm'].currentValue === 'boolean' && !!changes['openForm'].currentValue !== !!changes['openForm'].previousValue) {
       const openForm = changes['openForm'].currentValue;
       this.onToggleForm(openForm);
     }
@@ -92,7 +92,7 @@ export class NewSectionComponent extends LogWrapper implements OnInit, OnDestroy
     }, 1);
   }
 
-  public onDeleteMultiRange(multiRange: { input?: string, multiRange?: string, error?: boolean }, event) {
+  public onDeleteMultiRange(multiRange: { input?: string, multiRange?: string, error?: boolean }, event): void {
     event.preventDefault();
     this.inputMultiRanges = this.inputMultiRanges.filter(ref => ref !== multiRange);
   }

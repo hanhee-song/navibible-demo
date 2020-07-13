@@ -1,6 +1,10 @@
 <div style="margin-top: 40px;">
   
 </div>
-<app-navi-list *ngIf="isBibleDataInitialized && isAuthLoaded"></app-navi-list>
-<app-bible-main *ngIf="isBibleDataInitialized && isAuthLoaded"></app-bible-main>
+<!-- <app-navi-list *ngIf="isBibleDataInitialized && isAuthLoaded"></app-navi-list>
+<app-bible-main *ngIf="isBibleDataInitialized && isAuthLoaded"></app-bible-main> -->
 <app-loading *ngIf="!isBibleDataInitialized || !isAuthLoaded"></app-loading>
+
+<router-outlet *ngIf="isBibleDataInitialized && isAuthLoaded">
+  
+</router-outlet>

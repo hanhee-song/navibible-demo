@@ -1,3 +1,4 @@
+import { DateAgoPipe } from './utils/date-ago-pipe.pipe';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TextFieldModule } from '@angular/cdk/text-field';
@@ -83,7 +84,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     FooterComponent,
     NaviListComponent,
     LoadingComponent,
-    MainComponent
+    MainComponent,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule,
