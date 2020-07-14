@@ -1,4 +1,10 @@
 {
   "indexes": [],
-  "fieldOverrides": []
+  "fieldOverrides": [
+    {
+      "collectionGroup": "sections",
+      "fieldPath": "sections",
+      "indexes": []
+    }
+  ]
 }

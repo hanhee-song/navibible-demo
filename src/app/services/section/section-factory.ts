@@ -1,7 +1,8 @@
+import { SectionParentDtoV1 } from './../../models/section-parent-dto-1.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { SectionsParentList } from './../../models/sections-parent-list.model';
+import { SectionParentList } from './../../models/section-parent-list.model';
 import { SectionInterface } from './../../models/section.model';
 import { MultiRange } from './../../models/multi-range.model';
 import { ReferenceFactory } from './../bible/reference-factory';
@@ -9,7 +10,7 @@ import { ReferenceRange } from './../../models/reference-range';
 import { BibleDataService } from './../bible/bible-data.service';
 import { Injectable } from '@angular/core';
 import { Section } from '../../models/section.model';
-import { SectionsParent, SectionsParentInterface } from 'src/app/models/sections-parent.model';
+import { SectionParent, SectionParentInterface } from 'src/app/models/section-parent.model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,31 +42,34 @@ export class SectionFactory {
     return new Section(title, comment, arg1);
   }
   
-  public merge(sp1: SectionsParent, sp2: SectionsParent): SectionsParent {
+  public merge(sp1: SectionParent, sp2: SectionParent): SectionParent {
     return null;
   }
 
-  public fromSectionsParentListJson(sectionsParentJson: SectionsParentInterface | SectionsParentInterface[]): SectionsParentList {
-    if (!Array.isArray(sectionsParentJson)) sectionsParentJson = [sectionsParentJson]; // temp backward compatability code
-    const sectionParentList = new SectionsParentList();
-    sectionsParentJson.forEach(json => sectionParentList.push(this.fromSectionsParentJson(json)));
+  public fromSectionParentListJson(sectionParentJson: SectionParentInterface | SectionParentInterface[]): SectionParentList {
+    if (!Array.isArray(sectionParentJson)) sectionParentJson = [sectionParentJson]; // temp backward compatability code
+    const sectionParentList = new SectionParentList();
+    sectionParentJson.forEach(json => sectionParentList.push(this.fromSectionParentJson(json)));
     return sectionParentList;
   }
   
-  public fromSectionsParentJson(json: SectionsParentInterface): SectionsParent {
-    const sectionParent = new SectionsParent();
+  public fromSectionParentJson(json: SectionParentInterface): SectionParent {
+    const sectionParent = new SectionParent();
     if (this.user) {
       sectionParent.authorName = this.user.displayName;
       sectionParent.authorUid = this.user.uid;
     }
     sectionParent.id = json.id || this.firestore.createId();
+    if (json.dtoVersion) sectionParent.dtoVersion = json.dtoVersion;
+    if (json.versionList) sectionParent.versionList = json.versionList;
+    if (json.isSavedToCloud) sectionParent.isSavedToCloud = json.isSavedToCloud;
     if (json.title) sectionParent.title = json.title;
     if (json.authorName) sectionParent.authorName = json.authorName;
     if (json.authorUid) sectionParent.authorUid = json.authorUid;
-    if (json.createdDate) sectionParent.createdDate = json.createdDate;
+    if (json.createdDate) sectionParent.createdDate = new Date(json.createdDate);
     if (json.lastUpdatedByName) sectionParent.lastUpdatedByName = json.lastUpdatedByName;
     if (json.lastUpdatedByUid) sectionParent.lastUpdatedByUid = json.lastUpdatedByUid;
-    if (json.lastUpdatedDate) sectionParent.lastUpdatedDate = json.lastUpdatedDate;
+    if (json.lastUpdatedDate) sectionParent.lastUpdatedDate = new Date(json.lastUpdatedDate);
     if (json.sections) {
       sectionParent.sections = json.sections.map(section => this.fromSectionJson(section));
     }

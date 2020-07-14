@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "biblenavi",
+    "site": "navibible",
     "public": "dist/navibible"
   },
   "firestore": {

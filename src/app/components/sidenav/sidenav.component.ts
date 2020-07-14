@@ -60,10 +60,6 @@ export class SidenavComponent extends LogWrapper implements OnInit, OnDestroy {
     this.optionsService.setGlobalFontSize(size);
   }
 
-  public toggleSidenav(): void {
-    this.sidenavService.toggleSidenav();
-  }
-
   public closeSidenav(): void {
     this.sidenavService.closeSidenav();
   }

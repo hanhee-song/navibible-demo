@@ -134,7 +134,7 @@ export class ReferenceFactory extends LogWrapper implements OnDestroy {
       toVerse = toVerseInput || toBook.getLastVerseOfChapter(toChapter);
     }
 
-    return this.createReferenceRange(
+    return this.__createReferenceRange(
       this.__createReference(fromBook.name, fromChapter, fromVerse),
       this.__createReference(toBook ? toBook.name : fromBook.name, toChapter, toVerse)
     );
@@ -153,7 +153,7 @@ export class ReferenceFactory extends LogWrapper implements OnDestroy {
     return new Reference(bookName, chapter, verse, index, isLastChapter, isLastVerse);
   }
 
-  public createReferenceRange(ref1: Reference, ref2: Reference): ReferenceRange {
+  public __createReferenceRange(ref1: Reference, ref2: Reference): ReferenceRange {
     const range = new ReferenceRange(ref1, ref2);
     this.__validateReferenceRange(range);
     return range;
@@ -182,7 +182,7 @@ export class ReferenceFactory extends LogWrapper implements OnDestroy {
     } else {
       return json.map(multiRange => {
         return this.createMultiRange(multiRange.referenceRanges.map(refRange => {
-          return this.createReferenceRange(
+          return this.__createReferenceRange(
             this.__createReference(refRange.fromReference.book, refRange.fromReference.chapter, refRange.fromReference.verse, refRange.fromReference.index, refRange.fromReference.isLastChapter, refRange.fromReference.isLastVerse),
             this.__createReference(refRange.toReference.book, refRange.toReference.chapter, refRange.toReference.verse, refRange.toReference.index, refRange.toReference.isLastChapter, refRange.toReference.isLastVerse)
           );

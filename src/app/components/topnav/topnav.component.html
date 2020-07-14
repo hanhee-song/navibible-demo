@@ -1,4 +1,12 @@
-<div class="topnav background-color-default border-color-default">
+<div class="topnav background-color-default border-color-default"
+  [ngClass]="{'shadow': !isEditingMode}">
+  
+  <button class="sidenav-button hoverable hamburger hamburger--collapse" type="button" [ngClass]="{'is-active': isSidenavOpen}" (click)="toggleSidenav()">
+    <span class="hamburger-box">
+      <span class="hamburger-inner background-color-default"></span>
+    </span>
+  </button>
+  
   <div class="topnav-right font-size-6">
   </div>
 </div>

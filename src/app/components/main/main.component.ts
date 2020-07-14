@@ -27,11 +27,11 @@ export class MainComponent extends LogWrapper implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sectionService.onSectionsParentList$
-      .pipe(takeWhile(res => !res, true))
-      .subscribe(data => {
-        this.isBibleDataInitialized = true;
-      });
+    // this.sectionService.onSectionParentList$
+    //   .pipe(takeWhile(res => !res, true))
+    //   .subscribe(data => {
+    //     this.isBibleDataInitialized = true;
+    //   });
     this.bibleDataService.isDataReady$
       .pipe(takeWhile(res => !res, true))
       .subscribe(data => {

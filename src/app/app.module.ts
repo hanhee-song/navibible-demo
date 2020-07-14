@@ -36,6 +36,8 @@ import { environment } from 'src/environments/environment';
 import { NaviListComponent } from './components/navi-list/navi-list.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MainComponent } from './components/main/main.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { LoginComponent } from './components/login/login.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -60,7 +62,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
     },
     firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-    // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+    firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
   ],
   // tosUrl: '<your-tos-link>',
   privacyPolicyUrl: 'https://www.privacypolicies.com/generic/',
@@ -85,7 +87,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     NaviListComponent,
     LoadingComponent,
     MainComponent,
-    DateAgoPipe
+    DateAgoPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +102,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
   ],

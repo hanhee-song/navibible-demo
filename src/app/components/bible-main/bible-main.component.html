@@ -1,8 +1,19 @@
+<app-editing-bar></app-editing-bar>
+
+
 <div app-section
-  *ngIf="sectionsParent"
+  *ngIf="sectionParent"
   class="asc__content top-level-section"
   cdkDropListGroup
-  [section]="sectionsParent"
+  [section]="sectionParent"
   [isEditingMode]="isEditingMode"
   [sectionLevel]="0">
+</div>
+
+<div *ngIf="sectionParent === null"
+  class="asc__content top-level-section section">
+  We couldn't find the project you were looking for.
+  <br>
+  <br>
+  <a [routerLink]="[ '/sections/list' ]" class="font-size-5">Go back to list</a>
 </div>

@@ -120,6 +120,7 @@
     <div app-new-section
       *ngIf="isEditingMode && (section.isExpanded || isDropdownTransitioning)"
       (onNewSection)="onNewSection($event)"
+      [openForm]="sectionLevel === 0 && section.sections.length === 0"
       [showHeader]="true">
     </div>
   </div>

@@ -1,11 +1,11 @@
-<div class="navi-list shadow background-color-subtle asc__content">
+<div class="navi-list shadow background-color-subtle asc__content" *ngIf="sectionParentListMergeResolver">
   <div class="navi-list__header">
     <div>header right</div>
     <div>header left</div>
   </div>
-  <ng-container *ngIf="sectionParentList">
-    <div class="navi-list__item hoverable hover-shadow font-size-2"
-      *ngFor="let sectionParent of sectionParentList"
+  <ng-container *ngIf="sectionParentListMergeResolver">
+    <div class="navi-list__item hoverable hover-shadow hover-animation font-size-2"
+      *ngFor="let sectionParent of sectionParentListMergeResolver.merged"
       (click)="onNavigate(sectionParent)">
       <div class="font-size-4">{{sectionParent.title}}</div>
       <div>Created: {{sectionParent.createdDate | dateAgo}} {{sectionParent.authorName ? ' by ' + sectionParent.authorName : ''}}</div>
@@ -15,8 +15,22 @@
       </div>
       <div>contributors: {{sectionParent.numberOfCollaborators()}}</div>
     </div>
+    <div class="background-color-strong conflict font-size-3 hover-shadow"
+      *ngFor="let conflict of sectionParentListMergeResolver.conflicts;">
+      <div class="conflict__title font-size-4">{{conflict.title}}</div>
+      <div class="conflict__error font-size-3">{{conflict.error}}</div>
+      <div class="conflict__resolutions">
+        <div class="conflict__resolution hoverable"
+          *ngFor="let res of conflict.resolution"
+          [ngClass]="res.cssClass"
+          (click)="res.fn()">
+          {{res.text}}
+        </div>
+      </div>
+    </div>
   </ng-container>
-  <div class="navi-list__item hoverable hover-shadow navi-list__new">
+  <div class="navi-list__item hoverable hover-shadow navi-list__new"
+    (click)="onNewProject()">
     New Navi
   </div>
 </div>

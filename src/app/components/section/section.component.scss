@@ -176,7 +176,7 @@
   .section-list__drop {
     opacity: 0;
     transition: transform .3s, opacity .2s;
-    transform: translateY(max(-20%, -40px));
+    transform: translateY(max(-20%, -20px));
     
     &.is-visible { transform: translateY(0); opacity: 1; }
   }

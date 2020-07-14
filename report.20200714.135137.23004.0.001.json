@@ -1,0 +1,519 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20200714.135137.23004.0.001.json",
+    "dumpEventTime": "2020-07-14T13:51:37Z",
+    "dumpEventTimeStamp": "1594749097989",
+    "processId": 23004,
+    "cwd": "C:\\Users\\Hanhee\\Code\\Bible\\FE",
+    "commandLine": [
+      "node",
+      "C:\\Users\\Hanhee\\AppData\\Roaming\\npm\\\\node_modules\\@angular\\cli\\bin\\ng",
+      "serve"
+    ],
+    "nodejsVersion": "v12.13.0",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.13.0",
+      "v8": "7.7.299.13-node.12",
+      "uv": "1.32.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.39.2",
+      "napi": "5",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1d",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019a",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Erbium",
+      "headersUrl": "https://nodejs.org/download/release/v12.13.0/node-v12.13.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.13.0/node-v12.13.0.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.13.0/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.17134",
+    "osVersion": "Windows 10 Enterprise",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "AMD Ryzen 5 3600X 6-Core Processor             ",
+        "speed": 3793,
+        "user": 29829687,
+        "nice": 0,
+        "sys": 15691796,
+        "idle": 295035859,
+        "irq": 4373765
+      },
+      {
+        "model": "AMD Ryzen 5 3600X 6-Core Processor             ",
+        "speed": 3793,
+        "user": 12728812,
+        "nice": 0,
+        "sys": 3050437,
+        "idle": 324778093,
+        "irq": 126109
+      },
+      {
+        "model": "AMD Ryzen 5 3600X 6-Core Processor             ",
+        "speed": 3793,
+        "user": 16798062,
+        "nice": 0,
+        "sys": 3521453,
+        "idle": 320237828,
+        "irq": 124843
+      },
+      {
+        "model": "AMD Ryzen 5 3600X 6-Core Processor             ",
+        "speed": 3793,
+        "user": 7976250,
+        "nice": 0,
+        "sys": 1298031,
+        "idle": 331283062,
+        "irq": 51000
+      },
+      {
+        "model": "AMD Ryzen 5 3600X 6-Core Processor             ",
+        "speed": 3793,
+        "user": 23456390,
+        "nice": 0,
+        "sys": 5120765,
+        "idle": 311980046,
+        "irq": 99171
+      },
+      {
+        "model": "AMD Ryzen 5 3600X 6-Core Processor             ",
+        "speed": 3793,
+        "user": 14056015,
+        "nice": 0,
+        "sys": 2390171,
+        "idle": 324111015,
+        "irq": 86453
+      },
+      {
+        "model": "AMD Ryzen 5 3600X 6-Core Processor             ",
+        "speed": 3793,
+        "user": 12410890,
+        "nice": 0,
+        "sys": 2784015,
+        "idle": 325362296,
+        "irq": 98125
+      },
+      {
+        "model": "AMD Ryzen 5 3600X 6-Core Processor             ",
+        "speed": 3793,
+        "user": 6872718,
+        "nice": 0,
+        "sys": 1354890,
+        "idle": 332329593,
+        "irq": 58046
+      },
+      {
+        "model": "AMD Ryzen 5 3600X 6-Core Processor             ",
+        "speed": 3793,
+        "user": 9623671,
+        "nice": 0,
+        "sys": 2795265,
+        "idle": 328138265,
+        "irq": 87593
+      },
+      {
+        "model": "AMD Ryzen 5 3600X 6-Core Processor             ",
+        "speed": 3793,
+        "user": 5451906,
+        "nice": 0,
+        "sys": 1262968,
+        "idle": 333842328,
+        "irq": 29828
+      },
+      {
+        "model": "AMD Ryzen 5 3600X 6-Core Processor             ",
+        "speed": 3793,
+        "user": 19483703,
+        "nice": 0,
+        "sys": 9899468,
+        "idle": 311174031,
+        "irq": 188140
+      },
+      {
+        "model": "AMD Ryzen 5 3600X 6-Core Processor             ",
+        "speed": 3793,
+        "user": 15034968,
+        "nice": 0,
+        "sys": 3692015,
+        "idle": 321830218,
+        "irq": 73968
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "Local Area Connection* 14",
+        "internal": false,
+        "mac": "5e:87:9c:07:ec:57",
+        "address": "fe80::adcc:def1:c26e:4a67",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 22
+      },
+      {
+        "name": "Local Area Connection* 14",
+        "internal": false,
+        "mac": "5e:87:9c:07:ec:57",
+        "address": "192.168.137.1",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Wi-Fi 2",
+        "internal": false,
+        "mac": "5c:87:9c:07:ec:57",
+        "address": "fe80::4511:7f75:f9bd:4911",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 14
+      },
+      {
+        "name": "Wi-Fi 2",
+        "internal": false,
+        "mac": "5c:87:9c:07:ec:57",
+        "address": "192.168.86.246",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      }
+    ],
+    "host": "Hanhee-PC"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff656b21389",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+10873"
+    },
+    {
+      "pc": "0x00007ff656b257cc",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+28348"
+    },
+    {
+      "pc": "0x00007ff656b24778",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+24168"
+    },
+    {
+      "pc": "0x00007ff656c1332b",
+      "symbol": "v8::base::CPU::has_sse+37723"
+    },
+    {
+      "pc": "0x00007ff657416f4e",
+      "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
+    },
+    {
+      "pc": "0x00007ff6573fef91",
+      "symbol": "v8::SharedArrayBuffer::Externalize+833"
+    },
+    {
+      "pc": "0x00007ff6572cc85c",
+      "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
+    },
+    {
+      "pc": "0x00007ff6572d7c00",
+      "symbol": "v8::internal::Heap::ProtectUnprotectedMemoryChunks+1312"
+    },
+    {
+      "pc": "0x00007ff6572d4734",
+      "symbol": "v8::internal::Heap::PageFlagsAreConsistent+3204"
+    },
+    {
+      "pc": "0x00007ff6572c9fc3",
+      "symbol": "v8::internal::Heap::CollectGarbage+1283"
+    },
+    {
+      "pc": "0x00007ff6572c8794",
+      "symbol": "v8::internal::Heap::AddRetainedMap+2356"
+    },
+    {
+      "pc": "0x00007ff6572e9a65",
+      "symbol": "v8::internal::Factory::NewFillerObject+53"
+    },
+    {
+      "pc": "0x00007ff657056239",
+      "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+4057"
+    },
+    {
+      "pc": "0x00007ff657842c6d",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+567949"
+    },
+    {
+      "pc": "0x000002df2b8f7f05",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2176737280,
+    "totalCommittedMemory": 2176737280,
+    "usedMemory": 2111197640,
+    "availableMemory": 50597840,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 261872,
+        "used": 32296,
+        "available": 229576
+      },
+      "new_space": {
+        "memorySize": 33554432,
+        "committedMemory": 33554432,
+        "capacity": 16759808,
+        "used": 4280336,
+        "available": 12479472
+      },
+      "old_space": {
+        "memorySize": 1853992960,
+        "committedMemory": 1853992960,
+        "capacity": 1828459472,
+        "used": 1828408504,
+        "available": 50968
+      },
+      "code_space": {
+        "memorySize": 11960320,
+        "committedMemory": 11960320,
+        "capacity": 10128096,
+        "used": 10128096,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 10752000,
+        "committedMemory": 10752000,
+        "capacity": 4099520,
+        "used": 4099520,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 265592832,
+        "committedMemory": 265592832,
+        "capacity": 263698488,
+        "used": 263698488,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 622592,
+        "committedMemory": 622592,
+        "capacity": 550400,
+        "used": 550400,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 16759808,
+        "used": 0,
+        "available": 16759808
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 447.546,
+    "kernelCpuSeconds": 16.984,
+    "cpuConsumptionPercent": 4.14093,
+    "maxRss": 2518003712,
+    "pageFaults": {
+      "IORequired": 5518241,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 8183,
+      "writes": 63
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "": "::=::\\",
+    "": "C:=C:\\Users\\Hanhee\\Code\\Bible\\FE",
+    "": "ExitCode=00000000",
+    "aliases": "C:\\Users\\Hanhee\\Code\\cmder_mini\\config\\user_aliases.cmd",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "AMDRMPATH": "C:\\Program Files\\AMD\\RyzenMaster\\",
+    "ANSICON": "87x1000 (87x73)",
+    "ANSICON_DEF": "7",
+    "APPDATA": "C:\\Users\\Hanhee\\AppData\\Roaming",
+    "architecture": "64",
+    "architecture_bits": "64",
+    "BROWSERSLIST_IGNORE_OLD_DATA": "1",
+    "ccall": "call C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\bin\\cexec.cmd",
+    "cexec": "C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\bin\\cexec.cmd",
+    "CMDER_ALIASES": "1",
+    "CMDER_CLINK": "1",
+    "CMDER_CONFIGURED": "1",
+    "CMDER_INIT_END": "10:08:56.19",
+    "CMDER_INIT_START": "10:08:55.05",
+    "CMDER_ROOT": "C:\\Users\\Hanhee\\Code\\cmder_mini",
+    "CMDER_SHELL": "cmd",
+    "CMDER_USER_FLAGS": " ",
+    "CommonProgramFiles": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "HANHEE-PC",
+    "ComSpec": "C:\\WINDOWS\\system32\\cmd.exe",
+    "ConEmuANSI": "ON",
+    "ConEmuAnsiLog": "",
+    "ConEmuArgs": "",
+    "ConEmuArgs2": "",
+    "ConEmuBackHWND": "0x00020F18",
+    "ConEmuBaseDir": "C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\conemu-maximus5\\ConEmu",
+    "ConEmuBaseDirShort": "C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\conemu-maximus5\\ConEmu",
+    "ConEmuBuild": "180626",
+    "ConEmuCfgDir": "C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\conemu-maximus5",
+    "ConEmuConfig": "",
+    "ConEmuDir": "C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\conemu-maximus5",
+    "ConEmuDrawHWND": "0x00020F1C",
+    "ConEmuDrive": "C:",
+    "ConEmuHooks": "Enabled",
+    "ConEmuHWND": "0x00070378",
+    "ConEmuPalette": "Monokai",
+    "ConEmuPID": "15480",
+    "ConEmuServerPID": "1756",
+    "ConEmuTask": "{cmd::Cmder}",
+    "ConEmuWorkDir": "C:\\Users\\Hanhee",
+    "ConEmuWorkDrive": "C:",
+    "debug_output": "0",
+    "dp0": "C:\\Users\\Hanhee\\AppData\\Roaming\\npm\\",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "fast_init": "0",
+    "feFlagName": " ",
+    "GIT_INSTALL_ROOT": "C:\\Program Files\\Git",
+    "HOME": "C:\\Users\\Hanhee",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\Hanhee",
+    "IntelliJ IDEA": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2019.2.4\\bin;",
+    "IntelliJ IDEA Community Edition": "C:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2019.3.2\\bin;",
+    "JAVA_HOME": "C:\\Program Files\\Java\\dcevm-11.0.5+1",
+    "LANG": "en_US.UTF-8",
+    "lib_base": "call \"C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\lib\\lib_base.cmd\"",
+    "lib_console": "call \"C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\lib\\lib_console.cmd\"",
+    "lib_git": "call \"C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\lib\\lib_git.cmd\"",
+    "lib_path": "call \"C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\lib\\lib_path.cmd\"",
+    "lib_profile": "call \"C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\lib\\lib_profile.cmd\"",
+    "LOCALAPPDATA": "C:\\Users\\Hanhee\\AppData\\Local",
+    "LOGONSERVER": "\\\\HANHEE-PC",
+    "max_depth": "1",
+    "nix_tools": "1",
+    "NUMBER_OF_PROCESSORS": "12",
+    "OneDrive": "C:\\Users\\Hanhee\\OneDrive",
+    "OneDriveConsumer": "C:\\Users\\Hanhee\\OneDrive",
+    "OS": "Windows_NT",
+    "Path": "C:\\Users\\Hanhee\\Code\\cmder_mini\\bin;C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\bin;C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\conemu-maximus5\\ConEmu\\Scripts;C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\conemu-maximus5;C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\conemu-maximus5\\ConEmu;C:\\Program Files (x86)\\Razer Chroma SDK\\bin;C:\\Program Files\\Razer Chroma SDK\\bin;C:\\Program Files (x86)\\Razer\\ChromaBroadcast\\bin;C:\\Program Files\\Razer\\ChromaBroadcast\\bin;C:\\Program Files (x86)\\Python38-32\\Scripts\\;C:\\Program Files (x86)\\Python38-32\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\nodejs\\;C:\\Program Files\\Microsoft VS Code\\bin;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Users\\Hanhee\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2019.2.4\\bin;C:\\Users\\Hanhee\\AppData\\Roaming\\npm;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files\\Git\\cmd;C:\\Users\\Hanhee\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2019.2.4\\bin;C:\\Users\\Hanhee\\AppData\\Roaming\\npm;C:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2019.3.2\\bin;C:\\Users\\Hanhee\\Code\\_tools\\apache-maven-3.6.3\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\Hanhee\\Code\\cmder_mini",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC;.PY;.PYW",
+    "PLINK_PROTOCOL": "ssh",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "AMD64 Family 23 Model 113 Stepping 0, AuthenticAMD",
+    "PROCESSOR_LEVEL": "23",
+    "PROCESSOR_REVISION": "7100",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PROMPT": "C\bL\bI\bN\bK\b \b$P$G",
+    "PSModulePath": "C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules",
+    "PUBLIC": "C:\\Users\\Public",
+    "SESSIONNAME": "Console",
+    "SVN_SSH": "C:\\\\Program Files\\\\Git\\\\bin\\\\ssh.exe",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\Hanhee\\AppData\\Local\\Temp",
+    "TERM": "cygwin",
+    "time_init": "0",
+    "TMP": "C:\\Users\\Hanhee\\AppData\\Local\\Temp",
+    "USERDOMAIN": "Hanhee-PC",
+    "USERDOMAIN_ROAMINGPROFILE": "Hanhee-PC",
+    "USERNAME": "Hanhee",
+    "USERPROFILE": "C:\\Users\\Hanhee",
+    "user_aliases": "C:\\Users\\Hanhee\\Code\\cmder_mini\\config\\user_aliases.cmd",
+    "verbose_output": "0",
+    "WEBPACK_DEV_SERVER": "true",
+    "windir": "C:\\WINDOWS",
+    "_prog": "node"
+  },
+  "sharedObjects": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\MSASN1.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\System32\\profapi.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\SYSTEM32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMMBASE.dll",
+    "C:\\WINDOWS\\System32\\cfgmgr32.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\Users\\Hanhee\\Code\\cmder_mini\\vendor\\conemu-maximus5\\ConEmu\\ConEmuHk64.dll",
+    "C:\\WINDOWS\\System32\\powrprof.dll",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\System32\\bcryptPrimitives.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\System32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\WINDOWS\\System32\\fwpuclnt.dll",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll",
+    "C:\\WINDOWS\\System32\\wshbth.dll"
+  ]
+}
