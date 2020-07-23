@@ -1,0 +1,120 @@
+{
+  "configVersion": 1,
+  "timestamp": 1595535094356,
+  "index": "https://hanhee-song.github.io/navibible-demo/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://hanhee-song.github.io/navibible-demo/favicon.ico",
+        "https://hanhee-song.github.io/navibible-demo/index.html",
+        "https://hanhee-song.github.io/navibible-demo/main-es2015.01fd1739cce58beaaa8f.js",
+        "https://hanhee-song.github.io/navibible-demo/main-es5.01fd1739cce58beaaa8f.js",
+        "https://hanhee-song.github.io/navibible-demo/manifest.webmanifest",
+        "https://hanhee-song.github.io/navibible-demo/polyfills-es2015.95bb65e853d2781ac3bd.js",
+        "https://hanhee-song.github.io/navibible-demo/polyfills-es5.341d48ffc88eaeae911d.js",
+        "https://hanhee-song.github.io/navibible-demo/runtime-es2015.409e6590615fb48d139f.js",
+        "https://hanhee-song.github.io/navibible-demo/runtime-es5.409e6590615fb48d139f.js",
+        "https://hanhee-song.github.io/navibible-demo/styles.a66a7802f735f0fed3c8.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://hanhee-song.github.io/navibible-demo/assets/Roboto/LICENSE.txt",
+        "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-Black.ttf",
+        "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-BlackItalic.ttf",
+        "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-Bold.ttf",
+        "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-BoldItalic.ttf",
+        "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-Italic.ttf",
+        "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-Light.ttf",
+        "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-LightItalic.ttf",
+        "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-Medium.ttf",
+        "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-MediumItalic.ttf",
+        "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-Regular.ttf",
+        "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-Thin.ttf",
+        "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-ThinItalic.ttf",
+        "https://hanhee-song.github.io/navibible-demo/assets/bible-arr.json",
+        "https://hanhee-song.github.io/navibible-demo/assets/bible-book-map-arr.json",
+        "https://hanhee-song.github.io/navibible-demo/assets/bible-chapter-verse-map.json",
+        "https://hanhee-song.github.io/navibible-demo/assets/bible.json",
+        "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-128x128.png",
+        "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-144x144.png",
+        "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-152x152.png",
+        "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-192x192.png",
+        "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-384x384.png",
+        "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-512x512.png",
+        "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-72x72.png",
+        "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://hanhee-song.github.io/navibible-demo/assets/Roboto/LICENSE.txt": "47b573e3824cd5e02a1a3ae99e2735b49e0256e4",
+    "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-Black.ttf": "ee52f7cf8e54f3ee2afbc474a352d5c19514d9c1",
+    "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-BlackItalic.ttf": "94ba47a5510d3e21ae4db0da0425b855686de586",
+    "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-Bold.ttf": "3dd713113ff2d79b94d2df343e2e28fa8e7279cf",
+    "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-BoldItalic.ttf": "60b9860b7fc93d6b0b322f170634105bc6a8cc8d",
+    "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-Italic.ttf": "dc6756127707ab2d6e388a6023087351fa41999c",
+    "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-Light.ttf": "92cc3b6f9440193c12fd02ed690e434d685a9cc8",
+    "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-LightItalic.ttf": "a0440f60a96a59c4105c3eb639cb2573826f84fe",
+    "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-Medium.ttf": "f6783010d5def128c4a1539333324f75701d9bab",
+    "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-MediumItalic.ttf": "e4e31e55d279a9b12c32327a60a3a65c8350e5df",
+    "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-Regular.ttf": "096c9245b6a192d1403a82848e104a65f578a8ec",
+    "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-Thin.ttf": "711e666e7f52210ac487c7ed81a0ac68a2b52261",
+    "https://hanhee-song.github.io/navibible-demo/assets/Roboto/Roboto-ThinItalic.ttf": "75ffde032d49005faa643338eda97c311ad7d316",
+    "https://hanhee-song.github.io/navibible-demo/assets/bible-arr.json": "d2ee8c3499a5ce8e7af170744416386d69c04508",
+    "https://hanhee-song.github.io/navibible-demo/assets/bible-book-map-arr.json": "1956724f78d054dfba33c5c888d6b61ff5a2cf21",
+    "https://hanhee-song.github.io/navibible-demo/assets/bible-chapter-verse-map.json": "0537bf14745c9799fe91cde5302769bd048d2feb",
+    "https://hanhee-song.github.io/navibible-demo/assets/bible.json": "8570e511a3113c40f4c57d98cf33016afb12072b",
+    "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "https://hanhee-song.github.io/navibible-demo/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "https://hanhee-song.github.io/navibible-demo/favicon.ico": "645247dd17bd3f10de3336dd1f5dba43748ca88e",
+    "https://hanhee-song.github.io/navibible-demo/index.html": "9bd014ed85ea3a65da792107de9ff4c32fd3a702",
+    "https://hanhee-song.github.io/navibible-demo/main-es2015.01fd1739cce58beaaa8f.js": "33edc4ef54048a2ff59913d604e587926dcdb76e",
+    "https://hanhee-song.github.io/navibible-demo/main-es5.01fd1739cce58beaaa8f.js": "a94f01bf9e8444072c06a34848d9fd3e1b5880de",
+    "https://hanhee-song.github.io/navibible-demo/manifest.webmanifest": "ca41dd29ee2299b2fc16b2c89150b71e0b734bef",
+    "https://hanhee-song.github.io/navibible-demo/polyfills-es2015.95bb65e853d2781ac3bd.js": "72ad4ccc0a3916ae4598199447cdeadd6d380570",
+    "https://hanhee-song.github.io/navibible-demo/polyfills-es5.341d48ffc88eaeae911d.js": "8aa26ea87b9958c6bd13b7c257c0e9940438e684",
+    "https://hanhee-song.github.io/navibible-demo/runtime-es2015.409e6590615fb48d139f.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "https://hanhee-song.github.io/navibible-demo/runtime-es5.409e6590615fb48d139f.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "https://hanhee-song.github.io/navibible-demo/styles.a66a7802f735f0fed3c8.css": "5eecb22864fa127278870fbc7eb8cbddc1b6bf54"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
