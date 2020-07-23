@@ -7,7 +7,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "de": "ng deploy --base-href=https://hanhee-song.github.io/navibible/",
+    "de": "ng deploy --base-href=https://hanhee-song.github.io/navibible-demo/",
     "s": "ng serve",
     "d": "firebase deploy",
     "dr": "firebase deploy --only firestore:rules",
